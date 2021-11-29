@@ -101,7 +101,7 @@ MonoBehaviour:
   jumpForce: 5
   mask:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 64
 --- !u!50 &276784399
 Rigidbody2D:
   serializedVersion: 4
