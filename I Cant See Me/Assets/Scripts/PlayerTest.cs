@@ -43,8 +43,6 @@ public class PlayerTest : MonoBehaviour
     void Update()
     {
         _horizontalMovement = Input.GetAxisRaw("Horizontal");
-        Debug.Log(_collidedRight);
-        Debug.Log(_collidedLeft);
 
         if (_horizontalMovement > 0 && !_collidedRight)
         {
@@ -85,4 +83,15 @@ public class PlayerTest : MonoBehaviour
         Vector2 originRight = _rb.position + Vector2.right * _horizontalBoxWidth;
         _collidedRight = Physics2D.OverlapBox(originRight, _horizontalBoxCheck, 0f, mask);
     }
+
+    //private void OnDrawGizmos()
+    //{
+    //    Gizmos.color = Color.black;
+    //    Vector2 origin = _rb.position + Vector2.down * _groundBoxHeight;
+    //    Gizmos.DrawCube(origin, _groundBoxCheck);
+    //    Vector2 originLeft = _rb.position + Vector2.left * _horizontalBoxWidth;
+    //    Gizmos.DrawCube(originLeft, _horizontalBoxCheck);
+    //    Vector2 originRight = _rb.position + Vector2.right * _horizontalBoxWidth;
+    //    Gizmos.DrawCube(originRight, _horizontalBoxCheck);
+    //}
 }
