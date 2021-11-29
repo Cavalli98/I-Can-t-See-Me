@@ -8,7 +8,7 @@ public class PlayerTest : MonoBehaviour
 {
     private Rigidbody2D _rb;
     private float _horizontalMovement;
-    public float velocity = 5f;
+    public float velocity = 10f;
     private bool _jump = false;
     public float jumpForce = 5;
     private BoxCollider2D _boxCollider;
