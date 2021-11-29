@@ -76,13 +76,13 @@ public class PlayerTest : MonoBehaviour
         else
         {
             Vector2 origin = _rb.position + Vector2.down * _groundBoxHeight;
-            _grounded = Physics2D.OverlapBox(origin, _groundBoxCheck, mask);
+            _grounded = Physics2D.OverlapBox(origin, _groundBoxCheck, 0f, mask);
         }
 
         Vector2 originLeft = _rb.position + Vector2.left * _horizontalBoxWidth;
-        _collidedLeft = Physics2D.OverlapBox(originLeft, _horizontalBoxCheck, mask);
+        _collidedLeft = Physics2D.OverlapBox(originLeft, _horizontalBoxCheck, 0f, mask);
 
         Vector2 originRight = _rb.position + Vector2.right * _horizontalBoxWidth;
-        _collidedRight = Physics2D.OverlapBox(originRight, _horizontalBoxCheck, mask);
+        _collidedRight = Physics2D.OverlapBox(originRight, _horizontalBoxCheck, 0f, mask);
     }
 }
