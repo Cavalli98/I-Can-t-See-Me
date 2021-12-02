@@ -1,12 +1,14 @@
+using Photon.Pun;
 using UnityEngine;
 
 
-public class PlayerMovement : MonoBehaviour
+public class PlayerMovement : MonoBehaviourPun
 {
     private Rigidbody2D _rb;
     private float _horizontalMovement;
     private BoxCollider2D _boxCollider;
     private SpriteRenderer _spr;
+    private Transform _tr;
 
     private float _playerSkin = 0.05f;
     private float _scaleFactor;
@@ -42,10 +44,16 @@ public class PlayerMovement : MonoBehaviour
 
     private void Awake()
     {
+        if (!photonView.IsMine)
+        {
+            return;
+        }
+
         _rb = GetComponent<Rigidbody2D>();
         _boxCollider = GetComponent<BoxCollider2D>();
         _spr = GetComponent<SpriteRenderer>();
-        _scaleFactor = transform.localScale.x;
+        _tr = GetComponent<Transform>();
+        _scaleFactor = _tr.localScale.x;
 
         _playerWidth = _boxCollider.size.x * _scaleFactor;
         _playerHeight = _boxCollider.size.y * _scaleFactor;
@@ -63,13 +71,18 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (photonView.IsMine == false && PhotonNetwork.IsConnected == true)
+        {
+            return;
+        }
+        
         _horizontalMovement = Input.GetAxisRaw("Horizontal");
 
         //Player moves right
         if (_horizontalMovement > 0 && !_collidedRight)
         {
-            transform.position = transform.position
-                                + _horizontalMovement * transform.right * velocity * Time.deltaTime;
+            _tr.position = _tr.position
+                                + _horizontalMovement * _tr.right * velocity * Time.deltaTime;
             if (!_facingRight)
             {
                 Flip();
@@ -79,8 +92,8 @@ public class PlayerMovement : MonoBehaviour
         //Player moves left
         if (_horizontalMovement < 0 && !_collidedLeft)
         {
-            transform.position = transform.position
-                                    + _horizontalMovement * transform.right * velocity * Time.deltaTime;
+            _tr.position = _tr.position
+                                    + _horizontalMovement * _tr.right * velocity * Time.deltaTime;
             if (_facingRight)
             {
                 Flip();
@@ -96,6 +109,11 @@ public class PlayerMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
+        if (photonView.IsMine == false && PhotonNetwork.IsConnected == true)
+        {
+            return;
+        }
+
         if (_jump)
         {
             _rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);

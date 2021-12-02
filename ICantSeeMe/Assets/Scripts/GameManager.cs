@@ -8,7 +8,31 @@ using Photon.Realtime;
 
 public class GameManager : MonoBehaviourPunCallbacks
 {
+    public GameObject playerBoy;
+    public GameObject playerGirl;
+
     #region Private Methods
+    private void Start()
+    {
+        if (!PhotonNetwork.IsConnected)
+        {
+            return;
+        }
+        Debug.LogFormat("We are Instantiating LocalPlayer from {0}", SceneManager.GetActiveScene());
+        if (PhotonNetwork.IsMasterClient)
+        {
+            // we're in a room. spawn a character for the local player. it gets synced by using PhotonNetwork.Instantiate
+            GameObject player = PhotonNetwork.Instantiate(this.playerBoy.name, new Vector3(-7f, 2f, 0f), Quaternion.identity, 0);
+            Ghost.instance.transform.position = new Vector3(13f, 2f, 0f);
+            Ghost.instance.transform.SetParent(player.transform);
+        }
+        else
+        {
+            GameObject player = PhotonNetwork.Instantiate(this.playerGirl.name, new Vector3(13f, 2f, 0f), Quaternion.identity, 0);
+            Ghost.instance.transform.position = new Vector3(-7, 2f, 0f);
+            Ghost.instance.transform.SetParent(player.transform);
+        }
+    }
 
     private void ReturnToLobby()
     {
