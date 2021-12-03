@@ -9,52 +9,54 @@ public class Lever : Trigger
     public Sprite deactivated;
     private bool isColliding = false;
     private bool isActive = false;
-//    public delegate void  OnTrigger();
-//    public static event OnTrigger Trigger;
+    //    public delegate void  OnTrigger();
+    //    public static event OnTrigger Trigger;
 
 
     private void Awake()
     {
         isActive = false;
         isColliding = false;
-        photonView.RPC("Activate", RpcTarget.All, null);
-        
     }
 
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     [PunRPC]
     public void Activate()
     {
+
+        if (!isActive)
+        {
+            GetComponent<SpriteRenderer>().sprite = activated;
+            isActive = true;
+        }
+        if (isActive)
+        {
+            GetComponent<SpriteRenderer>().sprite = deactivated;
+            isActive = false;
+        }
         toActivate.GetComponent<Triggerable>().activate();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (isColliding )
+
+        if (isColliding)
         {
-            if (Input.GetKeyDown(KeyCode.E) && !isActive)
+            if (Input.GetKeyDown(KeyCode.E))
             {
-                GetComponent<SpriteRenderer>().sprite = activated;
-                isActive = true;
-             //   Trigger();
-            }
-            else if (Input.GetKeyDown(KeyCode.E) && isActive)
-            {
-                GetComponent<SpriteRenderer>().sprite = deactivated;
-                isActive = false;
-              //  Trigger();
+                photonView.RPC("Activate", RpcTarget.All, null);
             }
         }
     }
 
-    private void OnTriggerEnter2D (Collider2D Player)
-    {        
+    private void OnTriggerEnter2D(Collider2D Player)
+    {
         if (Player.tag != "Player")
             return;
         isColliding = true;
