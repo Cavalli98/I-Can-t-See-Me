@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: -884512755599213956}
   - component: {fileID: 6931244547710778836}
   - component: {fileID: 6570307588526081111}
+  - component: {fileID: 3392231674533101445}
   m_Layer: 0
   m_Name: Girl
   m_TagString: Player
@@ -190,3 +191,15 @@ MonoBehaviour:
   m_SynchronizeRotation: 0
   m_SynchronizeScale: 0
   m_UseLocal: 1
+--- !u!114 &3392231674533101445
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4831168149764279899}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fdf97f820c1526242a554d75d777c3d9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

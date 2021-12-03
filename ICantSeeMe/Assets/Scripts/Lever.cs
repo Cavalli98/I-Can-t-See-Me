@@ -43,28 +43,28 @@ public class Lever : Trigger
     }
 
     // Update is called once per frame
-    void Update()
-    {
+    //void Update()
+    //{
 
-        if (isColliding)
-        {
-            if (Input.GetKeyDown(KeyCode.E))
-            {
-                photonView.RPC("trigger", RpcTarget.All, null);
-            }
-        }
-    }
+    //    if (isColliding)
+    //    {
+    //        if (Input.GetKeyDown(KeyCode.E))
+    //        {
+    //            photonView.RPC("trigger", RpcTarget.All, null);
+    //        }
+    //    }
+    //}
 
-    private void OnTriggerEnter2D(Collider2D Player)
-    {
-        if (Player.tag != "Player")
-            return;
-        isColliding = true;
-    }
-    private void OnTriggerExit2D(Collider2D Player)
-    {
-        if (Player.tag != "Player")
-            return;
-        isColliding = false;
-    }
+    //private void OnTriggerEnter2D(Collider2D Player)
+    //{
+    //    if (Player.tag != "Player")
+    //        return;
+    //    isColliding = true;
+    //}
+    //private void OnTriggerExit2D(Collider2D Player)
+    //{
+    //    if (Player.tag != "Player")
+    //        return;
+    //    isColliding = false;
+    //}
 }
