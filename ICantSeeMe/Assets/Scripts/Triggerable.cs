@@ -6,7 +6,7 @@ public class Triggerable : MonoBehaviourPun
     public GameObject fromTrigger;
 
     [PunRPC]
-    public void activate()
+    public virtual void activate()
     {
 
     }

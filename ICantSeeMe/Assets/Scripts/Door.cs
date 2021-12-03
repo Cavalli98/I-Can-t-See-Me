@@ -25,7 +25,7 @@ public class Door : Triggerable
 
 
     }
-    public new void activate()
+    public override void activate()
     {
         if (!isOpen)
         {

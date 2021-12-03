@@ -28,13 +28,13 @@ public class Lever : Trigger
     [PunRPC]
     public new void trigger()
     {
-
+        Debug.Log("test");
         if (!isActive)
         {
             GetComponent<SpriteRenderer>().sprite = activated;
             isActive = true;
         }
-        if (isActive)
+        else if (isActive)
         {
             GetComponent<SpriteRenderer>().sprite = deactivated;
             isActive = false;
