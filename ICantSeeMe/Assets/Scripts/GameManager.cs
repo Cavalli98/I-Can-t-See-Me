@@ -11,6 +11,9 @@ public class GameManager : MonoBehaviourPunCallbacks
     public GameObject playerBoy;
     public GameObject playerGirl;
 
+    public Transform spawnPointBoy;
+    public Transform spawnPointGirl;
+
     #region Private Methods
     private void Start()
     {
@@ -22,14 +25,14 @@ public class GameManager : MonoBehaviourPunCallbacks
         if (PhotonNetwork.IsMasterClient)
         {
             // we're in a room. spawn a character for the local player. it gets synced by using PhotonNetwork.Instantiate
-            GameObject player = PhotonNetwork.Instantiate(this.playerBoy.name, new Vector3(-7f, 2f, 0f), Quaternion.identity, 0);
-            Ghost.instance.transform.position = new Vector3(13f, 2f, 0f);
+            GameObject player = PhotonNetwork.Instantiate(this.playerBoy.name, spawnPointBoy.position, Quaternion.identity, 0);
+            Ghost.instance.transform.position = spawnPointBoy.position + new Vector3(26.6f, 0);
             Ghost.instance.transform.SetParent(player.transform);
         }
         else
         {
-            GameObject player = PhotonNetwork.Instantiate(this.playerGirl.name, new Vector3(13f, 2f, 0f), Quaternion.identity, 0);
-            Ghost.instance.transform.position = new Vector3(-7, 2f, 0f);
+            GameObject player = PhotonNetwork.Instantiate(this.playerGirl.name, spawnPointGirl.position, Quaternion.identity, 0);
+            Ghost.instance.transform.position = spawnPointGirl.position + new Vector3(26.6f, 0);
             Ghost.instance.transform.SetParent(player.transform);
         }
     }

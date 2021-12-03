@@ -1242,6 +1242,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cd54227fde6c10e40bebce4ccbf4c8cb, type: 3}
+--- !u!4 &553507278 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6227823909355868369, guid: cd54227fde6c10e40bebce4ccbf4c8cb, type: 3}
+  m_PrefabInstance: {fileID: 553507277}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &576501637
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3426,6 +3431,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cd54227fde6c10e40bebce4ccbf4c8cb, type: 3}
+--- !u!4 &1536521019 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6227823909355868369, guid: cd54227fde6c10e40bebce4ccbf4c8cb, type: 3}
+  m_PrefabInstance: {fileID: 1536521018}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1566460353
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4534,6 +4544,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6870132428275646036, guid: b2d86716b4d4cbe4ea123f97ce6c7576, type: 3}
+      propertyPath: spawnPointBoy
+      value: 
+      objectReference: {fileID: 1536521019}
+    - target: {fileID: 6870132428275646036, guid: b2d86716b4d4cbe4ea123f97ce6c7576, type: 3}
+      propertyPath: spawnPointGirl
+      value: 
+      objectReference: {fileID: 553507278}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b2d86716b4d4cbe4ea123f97ce6c7576, type: 3}
 --- !u!114 &2034725818 stripped

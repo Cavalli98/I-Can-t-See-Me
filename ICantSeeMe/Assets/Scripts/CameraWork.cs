@@ -12,7 +12,7 @@ public class CameraWork : MonoBehaviour
         _camtr = Camera.main.transform;
         if (PhotonNetwork.IsMasterClient)
         {
-            _camtr.position = _camtr.position + new Vector3(20f, 0f, 0f);
+            _camtr.position = _camtr.position + new Vector3(26.6f, 0f, 0f);
         }
     }
 
