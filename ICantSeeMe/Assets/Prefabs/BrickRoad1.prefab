@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: -1612933110488643704}
   - component: {fileID: 3317582422037964573}
   - component: {fileID: 1607461140}
-  m_Layer: 6
+  m_Layer: 8
   m_Name: BrickRoad1
   m_TagString: Untagged
   m_Icon: {fileID: 0}

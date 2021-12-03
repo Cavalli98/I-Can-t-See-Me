@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Door
   - Trigger
+  - Ladder
   layers:
   - Default
   - TransparentFX
@@ -13,9 +14,9 @@ TagManager:
   - 
   - Water
   - UI
+  - Player
+  - Ladder
   - Obstacle
-  - 
-  - 
   - 
   - 
   - 

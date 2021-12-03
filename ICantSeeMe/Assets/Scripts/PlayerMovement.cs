@@ -4,14 +4,23 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviourPun
 {
+    float timePassed = 0f;
+
+
+
     private Rigidbody2D _rb;
     private float _horizontalMovement;
+    private float _verticalMovement;
     private BoxCollider2D _boxCollider;
     private SpriteRenderer _spr;
     private Transform _tr;
 
     private float _playerSkin = 0.05f;
     private float _scaleFactor;
+
+    public float velocity = 10f;
+    public float jumpForce = 2;
+    public LayerMask mask;
 
     //Size of box collider
     private float _playerWidth;
@@ -25,6 +34,7 @@ public class PlayerMovement : MonoBehaviourPun
     private Vector2 _origin;
     private Vector2 _originLeft;
     private Vector2 _originRight;
+    private Vector2 _originDown;
 
     //Size of overlap boxes
     private Vector2 _groundBoxSize;
@@ -35,12 +45,17 @@ public class PlayerMovement : MonoBehaviourPun
     private bool _grounded = false;
     private bool _collidedLeft = false;
     private bool _collidedRight = false;
-
+    private bool _collidedDown = false;
+    private bool _canClimb = false;
     private bool _facingRight = true;
 
-    public float velocity = 10f;
-    public float jumpForce = 5;
-    public LayerMask mask;
+    // for climbing
+    private bool _isCloseToLadder = false, 
+                _climbHeld = false, 
+                _hasStartedClimb = false;
+    private Transform _ladder;
+    public float climbSpeed = 2.0f;
+
 
     private void Awake()
     {
@@ -77,7 +92,8 @@ public class PlayerMovement : MonoBehaviourPun
         }
         
         _horizontalMovement = Input.GetAxisRaw("Horizontal");
-
+        _verticalMovement = Input.GetAxisRaw("Vertical");
+        
         //Player moves right
         if (_horizontalMovement > 0 && !_collidedRight)
         {
@@ -100,10 +116,17 @@ public class PlayerMovement : MonoBehaviourPun
             }
         }
 
-
-        if (Input.GetButtonDown("Jump") && _grounded)
+        // Player jumps
+        if (Input.GetButtonDown("Jump") && _grounded && !_canClimb)
         {
             _jump = true;
+        }
+
+        // Player climbs
+        _climbHeld = (_isCloseToLadder && Input.GetButton("Vertical")) ? true : false;
+        if (_climbHeld)
+        {
+            if (!_hasStartedClimb) _hasStartedClimb = true;
         }
     }
 
@@ -113,6 +136,16 @@ public class PlayerMovement : MonoBehaviourPun
         {
             return;
         }
+
+        _originLeft = _rb.position + Vector2.left * _horizontalBoxOffset;
+        _collidedLeft = Physics2D.OverlapBox(_originLeft, _horizontalBoxSize, 0f, mask);
+
+        _originRight = _rb.position + Vector2.right * _horizontalBoxOffset;
+        _collidedRight = Physics2D.OverlapBox(_originRight, _horizontalBoxSize, 0f, mask);
+        
+        _originDown = _rb.position + Vector2.down * _groundBoxOffset;
+        _collidedDown = Physics2D.OverlapBox(_originDown, _groundBoxSize, 0f, mask);
+
 
         if (_jump)
         {
@@ -126,11 +159,27 @@ public class PlayerMovement : MonoBehaviourPun
             _grounded = Physics2D.OverlapBox(_origin, _groundBoxSize, 0f, mask);
         }
 
-        _originLeft = _rb.position + Vector2.left * _horizontalBoxOffset;
-        _collidedLeft = Physics2D.OverlapBox(_originLeft, _horizontalBoxSize, 0f, mask);
+        // Climbing
+        if(_hasStartedClimb && !_climbHeld)
+        {
+            if(_horizontalMovement > 0 || _horizontalMovement < 0) ResetClimbing();
+        }
+        else if(_hasStartedClimb && _climbHeld)
+        {
+            float halfHeight     = _ladder.GetComponent<BoxCollider2D>().size.y * 0.5f * _ladder.transform.localScale.y;
+            float topHandlerY    = _ladder.transform.position.y + halfHeight;
+            float bottomHandlerY = _ladder.transform.position.y - halfHeight;
 
-        _originRight = _rb.position + Vector2.right * _horizontalBoxOffset;
-        _collidedRight = Physics2D.OverlapBox(_originRight, _horizontalBoxSize, 0f, mask);
+            if (_originDown.y > topHandlerY || _originDown.y < bottomHandlerY)
+            {
+                ResetClimbing();
+            }
+            else if (_originDown.y <= topHandlerY && _originDown.y >= bottomHandlerY)
+            {
+                Climb();
+            }
+        }
+
     }
 
     private void Flip()
@@ -140,5 +189,67 @@ public class PlayerMovement : MonoBehaviourPun
 
         //flipX is true when facing right
         _spr.flipX = _facingRight;
+    }
+
+    private void Climb()
+    {
+        _rb.bodyType = RigidbodyType2D.Kinematic;
+        if (!transform.position.x.Equals(_ladder.transform.position.x))
+            transform.position = new Vector3(_ladder.transform.position.x,transform.position.y,transform.position.z);
+
+        Vector3 newPos = Vector3.zero;
+        if (_verticalMovement > 0)
+            newPos = _tr.position + _verticalMovement * _tr.up * climbSpeed * Time.deltaTime;
+        else if(_verticalMovement < 0)
+            newPos = _tr.position + _verticalMovement * _tr.up * climbSpeed * Time.deltaTime;
+        if (newPos != Vector3.zero) _rb.MovePosition(newPos);
+    }
+
+
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag.Equals("Ladder"))
+        {
+            _isCloseToLadder = true;
+            this._ladder = collision.transform;
+        }
+    }
+
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag.Equals("Ladder"))
+        {
+            _isCloseToLadder = false;
+            this._ladder = null;
+        }
+    }
+
+
+    public static float Half(float value)
+    {
+        return Mathf.Floor(value) + 0.5f;
+    }
+
+
+    private void ResetClimbing()
+    {
+        if(_hasStartedClimb)
+        {
+            _hasStartedClimb = false;
+            _rb.bodyType = RigidbodyType2D.Dynamic;
+        }
+    }
+
+    
+    // to print stuff every s seconds
+    private void PrintStuff(float s)
+    {
+        timePassed += Time.deltaTime;
+        if(timePassed > s)
+        {
+            print("");
+            timePassed=0f;
+        } 
     }
 }
