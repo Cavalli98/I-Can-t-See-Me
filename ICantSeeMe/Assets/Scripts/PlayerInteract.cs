@@ -38,6 +38,7 @@ public class PlayerInteract : MonoBehaviourPun
         }
         if (collider.tag != "Trigger")
             return;
+        Debug.Log("collisione con leva");
         isColliding = true;
         colliderObj = collider.gameObject;
     }

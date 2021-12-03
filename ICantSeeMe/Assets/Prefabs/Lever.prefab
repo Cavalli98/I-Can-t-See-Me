@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: -1516294554932091714}
   m_Layer: 0
   m_Name: Lever
-  m_TagString: Untagged
+  m_TagString: Trigger
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
