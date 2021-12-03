@@ -26,7 +26,7 @@ public class Lever : Trigger
     }
 
     [PunRPC]
-    public void Activate()
+    public new void trigger()
     {
 
         if (!isActive)
@@ -50,7 +50,7 @@ public class Lever : Trigger
         {
             if (Input.GetKeyDown(KeyCode.E))
             {
-                photonView.RPC("Activate", RpcTarget.All, null);
+                photonView.RPC("trigger", RpcTarget.All, null);
             }
         }
     }
