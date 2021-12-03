@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: -7375654632879659387}
   - component: {fileID: 2190421591634967066}
   - component: {fileID: -6625362853601029559}
+  - component: {fileID: -1516294554932091714}
   m_Layer: 0
   m_Name: Lever
   m_TagString: Untagged
@@ -122,5 +123,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e424f480128ede47a585e898f5c3257, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  toActivate: {fileID: 0}
   activated: {fileID: 21300000, guid: 5e89b5370502e8c4daf706dbfeaf462b, type: 3}
   deactivated: {fileID: 21300000, guid: 360ef2931c2454b48900cb3f71b93777, type: 3}
+--- !u!114 &-1516294554932091714
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4285436984414010315}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObservedComponentsFoldoutOpen: 1
+  Group: 0
+  prefixField: -1
+  Synchronization: 3
+  OwnershipTransfer: 0
+  observableSearch: 2
+  ObservedComponents: []
+  sceneViewId: 0
+  InstantiationId: 0
+  isRuntimeInstantiated: 0

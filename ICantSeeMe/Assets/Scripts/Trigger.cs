@@ -1,13 +1,13 @@
 using Photon.Pun;
 using UnityEngine;
 
-public class Trigger : MonoBehaviour
+public class Trigger : MonoBehaviourPun
 {
     public GameObject toActivate;
 
     [PunRPC]
-    public void activate()
+    public void trigger()
     {
-        
+
     }
 }

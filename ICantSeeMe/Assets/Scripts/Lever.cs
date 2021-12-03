@@ -1,28 +1,36 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using Photon.Pun;
+using Photon.Realtime;
+using Photon;
 public class Lever : Trigger
 {
     public Sprite activated;
     public Sprite deactivated;
-    private SpriteRenderer state;
     private bool isColliding = false;
     private bool isActive = false;
+//    public delegate void  OnTrigger();
+//    public static event OnTrigger Trigger;
+
 
     private void Awake()
     {
-        state = GetComponent<SpriteRenderer>();
         isActive = false;
         isColliding = false;
-        state.sprite = deactivated;
+        this.photonView.RPC("activate", RpcTarget.All,null);
+        
     }
     // Start is called before the first frame update
     void Start()
     {
         
     }
-
+    [PunRPC]
+    public new void activate()
+    {
+        toActivate.GetComponent<Triggerable>().activate();
+    }
     // Update is called once per frame
     void Update()
     {
@@ -32,11 +40,13 @@ public class Lever : Trigger
             {
                 GetComponent<SpriteRenderer>().sprite = activated;
                 isActive = true;
+             //   Trigger();
             }
             else if (Input.GetKeyDown(KeyCode.E) && isActive)
             {
                 GetComponent<SpriteRenderer>().sprite = deactivated;
                 isActive = false;
+              //  Trigger();
             }
         }
     }
