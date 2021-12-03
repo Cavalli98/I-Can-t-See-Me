@@ -2812,6 +2812,11 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!1 &1312474024 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6545998966777200907, guid: d1c8a8ee2dc9674408372241b5a53fa0, type: 3}
+  m_PrefabInstance: {fileID: 308005985}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1329539262
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3354,6 +3359,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: StoneButton
       objectReference: {fileID: 0}
+    - target: {fileID: 8048005094658028748, guid: dfb457b91879c7c4a96915bd2380b6e8, type: 3}
+      propertyPath: toActivate
+      value: 
+      objectReference: {fileID: 1209404969}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: dfb457b91879c7c4a96915bd2380b6e8, type: 3}
 --- !u!1001 &1536521018
@@ -4004,6 +4013,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -6625362853601029559, guid: cdb0010b481b4da4c9e55245c9e4ccf5, type: 3}
+      propertyPath: toActivate
+      value: 
+      objectReference: {fileID: 1312474024}
     - target: {fileID: -1516294554932091714, guid: cdb0010b481b4da4c9e55245c9e4ccf5, type: 3}
       propertyPath: sceneViewId
       value: 7
