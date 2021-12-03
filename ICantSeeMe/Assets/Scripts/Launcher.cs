@@ -76,7 +76,6 @@ public class Launcher : MonoBehaviourPunCallbacks
         // this makes sure we can use PhotonNetwork.LoadLevel() on the master client and all clients in the same room sync their level automatically
         PhotonNetwork.AutomaticallySyncScene = true;
         _isCreator = false;
-        roomNumber = "1233";
     }
 
     /// <summary>
@@ -135,9 +134,8 @@ public class Launcher : MonoBehaviourPunCallbacks
         if (!string.IsNullOrEmpty(roomPass))
         {
             _isCreator = true;
-            //roomNumber = Random.Range(1000, 9999).ToString();
+            roomNumber = Random.Range(1000, 9999).ToString();
             //string roomNumber = "1234";
-            roomNumber = (int.Parse(roomNumber) + 1).ToString();
             PlayerPrefs.SetString(roomNumberPrefKey, roomNumber);
             PhotonNetwork.CreateRoom(roomNumber + roomPass, new RoomOptions { MaxPlayers = maxPlayersPerRoom });
         }
