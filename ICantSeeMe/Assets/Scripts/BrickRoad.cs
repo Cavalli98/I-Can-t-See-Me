@@ -20,7 +20,7 @@ public class BrickRoad : Triggerable
 
     }
     [PunRPC]
-    public new void activate()
+    public override void activate()
     {
         if (isUp)
         {
@@ -30,7 +30,7 @@ public class BrickRoad : Triggerable
             }
             isUp = false;
         }
-        if (!isUp)
+        else if (!isUp)
         {
             while (transform.position.y < endY)
             {
