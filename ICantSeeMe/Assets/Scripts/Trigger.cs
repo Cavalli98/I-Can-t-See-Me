@@ -6,7 +6,7 @@ public class Trigger : MonoBehaviourPun
     public GameObject toActivate;
 
     [PunRPC]
-    public void trigger()
+    public virtual void trigger()
     {
 
     }

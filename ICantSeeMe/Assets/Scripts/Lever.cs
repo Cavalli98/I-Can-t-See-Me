@@ -26,7 +26,7 @@ public class Lever : Trigger
     }
 
     [PunRPC]
-    public new void trigger()
+    public override void trigger()
     {
         Debug.Log("test");
         if (!isActive)

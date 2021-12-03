@@ -795,6 +795,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Girl
       objectReference: {fileID: 0}
+    - target: {fileID: 4831168149764279899, guid: 0fcf925ff6bf057468a0a82660b29984, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6931244547710778836, guid: 0fcf925ff6bf057468a0a82660b29984, type: 3}
       propertyPath: sceneViewId
       value: 2
@@ -3939,6 +3943,10 @@ PrefabInstance:
     - target: {fileID: 411636123704206054, guid: 48d7717d0d34b4d49a3be193d14fda42, type: 3}
       propertyPath: m_Name
       value: Boy
+      objectReference: {fileID: 0}
+    - target: {fileID: 411636123704206054, guid: 48d7717d0d34b4d49a3be193d14fda42, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4785693109084580668, guid: 48d7717d0d34b4d49a3be193d14fda42, type: 3}
       propertyPath: sceneViewId
