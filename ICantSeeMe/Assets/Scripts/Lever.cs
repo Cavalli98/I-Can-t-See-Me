@@ -2,8 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
-using Photon.Realtime;
-using Photon;
+
 public class Lever : Trigger
 {
     public Sprite activated;
@@ -18,19 +17,22 @@ public class Lever : Trigger
     {
         isActive = false;
         isColliding = false;
-        this.photonView.RPC("activate", RpcTarget.All,null);
+        photonView.RPC("Activate", RpcTarget.All, null);
         
     }
+
     // Start is called before the first frame update
     void Start()
     {
         
     }
+
     [PunRPC]
-    public new void activate()
+    public void Activate()
     {
         toActivate.GetComponent<Triggerable>().activate();
     }
+
     // Update is called once per frame
     void Update()
     {
