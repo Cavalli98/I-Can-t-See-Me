@@ -8,10 +8,12 @@ public class BrickRoad : Triggerable
     public bool isUp;
     public float startY;
     public float endY;
+    private float _diff;
+
     // Start is called before the first frame update
     void Start()
     {
-
+        _diff = Mathf.Abs(startY - endY);
     }
 
     // Update is called once per frame
@@ -19,23 +21,18 @@ public class BrickRoad : Triggerable
     {
 
     }
+
     [PunRPC]
     public override void activate()
     {
         if (isUp)
         {
-            while (transform.position.y > endY)
-            {
-                transform.Translate(0f, -0.0005f, 0f);
-            }
+            transform.Translate(0f, -_diff * Time.deltaTime, 0f);
             isUp = false;
         }
         else if (!isUp)
         {
-            while (transform.position.y < endY)
-            {
-                transform.Translate(0f, 0.0005f, 0f);
-            }
+            transform.Translate(0f, _diff * Time.deltaTime, 0f);
             isUp = true;
         }
     }
