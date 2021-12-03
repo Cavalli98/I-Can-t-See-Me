@@ -151,7 +151,7 @@ MonoBehaviour:
   jumpForce: 4
   mask:
     serializedVersion: 2
-    m_Bits: 64
+    m_Bits: 256
   climbSpeed: 2
 --- !u!114 &6931244547710778836
 MonoBehaviour:

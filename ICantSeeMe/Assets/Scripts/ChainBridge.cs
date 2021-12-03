@@ -3,15 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
 
-public class BrickRoad : Triggerable
+public class ChainBridge : Triggerable
 {
-    public bool isUp;
+    private bool isUp;
     public float startY;
     public float endY;
     // Start is called before the first frame update
     void Start()
     {
-
+        isUp = true;
     }
 
     // Update is called once per frame
