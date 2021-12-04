@@ -124,8 +124,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fromTrigger: {fileID: 0}
-  open: {fileID: 0}
-  closed: {fileID: 0}
+  open: {fileID: 21300000, guid: 0aacb87556279dc4b983e23df7bccae9, type: 3}
+  closed: {fileID: 21300000, guid: 06177e764ea765b4396fa9027ef6195c, type: 3}
   isTriggered: 0
   isOpen: 0
   isColliding: 0
