@@ -265,6 +265,7 @@ public class PlayerMovement : MonoBehaviourPun
 
     public void OnEvent(EventData photonEvent)
     {
+        print("arrivato un evento player game over");
         if (!photonView.IsMine)
             return;
 
