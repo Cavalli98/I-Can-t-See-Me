@@ -6,14 +6,13 @@ public class PlayerMovement : MonoBehaviourPun
 {
     float timePassed = 0f;
 
-
-
     private Rigidbody2D _rb;
     private float _horizontalMovement;
     private float _verticalMovement;
     private BoxCollider2D _boxCollider;
     private SpriteRenderer _spr;
     private Transform _tr;
+    public GameManager _gameManager;
 
     private float _playerSkin = 0.05f;
     private float _scaleFactor;
@@ -48,6 +47,7 @@ public class PlayerMovement : MonoBehaviourPun
     private bool _collidedDown = false;
     private bool _canClimb = false;
     private bool _facingRight = true;
+    private bool _gameOver = false;
 
     // for climbing
     private bool _isCloseToLadder = false, 
@@ -72,6 +72,7 @@ public class PlayerMovement : MonoBehaviourPun
         _spr = GetComponent<SpriteRenderer>();
         _tr = GetComponent<Transform>();
         _scaleFactor = _tr.localScale.x;
+        _gameOver = false;
 
         _playerWidth = _boxCollider.size.x * _scaleFactor;
         _playerHeight = _boxCollider.size.y * _scaleFactor;
@@ -91,6 +92,10 @@ public class PlayerMovement : MonoBehaviourPun
     {
         if (photonView.IsMine == false && PhotonNetwork.IsConnected == true)
         {
+            return;
+        }
+
+        if (_gameOver) {
             return;
         }
         
@@ -140,6 +145,10 @@ public class PlayerMovement : MonoBehaviourPun
             return;
         }
 
+        if (_gameOver) {
+            return;
+        }
+
         _originLeft = _rb.position + Vector2.left * _horizontalBoxOffset;
         _collidedLeft = Physics2D.OverlapBox(_originLeft, _horizontalBoxSize, 0f, mask);
 
@@ -185,6 +194,7 @@ public class PlayerMovement : MonoBehaviourPun
 
     }
 
+
     private void Flip()
     {
         //Toggle bool
@@ -193,6 +203,7 @@ public class PlayerMovement : MonoBehaviourPun
         //flipX is true when facing right
         _spr.flipX = _facingRight;
     }
+
 
     private void Climb()
     {
@@ -230,9 +241,13 @@ public class PlayerMovement : MonoBehaviourPun
     }
 
 
-    public static float Half(float value)
+    void OnCollisionEnter2D(Collision2D collision)
     {
-        return Mathf.Floor(value) + 0.5f;
+        print("Collision "+collision.gameObject.tag);
+        if (collision.gameObject.tag == "Dangerous")
+        {
+            GameOver();
+        }
     }
 
 
@@ -255,5 +270,13 @@ public class PlayerMovement : MonoBehaviourPun
             print("");
             timePassed=0f;
         } 
+    }
+
+
+    private void GameOver()
+    {
+        print("Player - GameOver");
+        _gameOver = true;
+        _gameManager.GameOver();
     }
 }

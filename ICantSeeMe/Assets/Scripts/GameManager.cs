@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using Photon.Pun;
 using Photon.Realtime;
@@ -10,6 +11,7 @@ public class GameManager : MonoBehaviourPunCallbacks
 {
     public GameObject playerBoy;
     public GameObject playerGirl;
+    public GameOverScreen gameOverScreen;
 
     public Transform spawnPointBoy;
     public Transform spawnPointGirl;
@@ -75,13 +77,20 @@ public class GameManager : MonoBehaviourPunCallbacks
 
     #endregion
 
-
     #region Public Methods
 
 
     public void LeaveRoom()
     {
         PhotonNetwork.LeaveRoom();
+    }
+
+
+    public void GameOver()
+    {
+        print("GM - Game Over!");
+        gameOverScreen.Setup();
+        //gameOverScreenGirl.Setup();
     }
 
 
