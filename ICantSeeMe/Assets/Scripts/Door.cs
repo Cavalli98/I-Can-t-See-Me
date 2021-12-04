@@ -9,13 +9,12 @@ public class Door : Triggerable
     public Sprite open;
     public Sprite closed;
     public bool isTriggered = false;
-    public bool isOpen = false;
+    public bool isOpen;
     public bool isColliding = false;
     //   public EventTrigger trigger;
 
     private void Awake()
     {
-        isOpen = false;
         isTriggered = false;
         isColliding = false;
         //   trigger = GetComponent<EventTrigger>();
@@ -24,8 +23,14 @@ public class Door : Triggerable
     // Start is called before the first frame update
     void Start()
     {
-
-
+        if (isOpen)
+        {
+            GetComponent<SpriteRenderer>().sprite = open;
+        }
+        else if (!isOpen)
+        {
+            GetComponent<SpriteRenderer>().sprite = closed;
+        }
     }
     public override void activate()
     {

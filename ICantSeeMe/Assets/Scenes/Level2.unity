@@ -572,6 +572,10 @@ PrefabInstance:
       propertyPath: sceneViewId
       value: 6
       objectReference: {fileID: 0}
+    - target: {fileID: 3017022391599096225, guid: 7cbda7a1e0ed3514986289687e2223e1, type: 3}
+      propertyPath: isOpen
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7cbda7a1e0ed3514986289687e2223e1, type: 3}
 --- !u!114 &181599294 stripped
@@ -920,6 +924,10 @@ PrefabInstance:
     - target: {fileID: 4953320573755074444, guid: cd54227fde6c10e40bebce4ccbf4c8cb, type: 3}
       propertyPath: m_Name
       value: WoodenDoor (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5768675806045558330, guid: cd54227fde6c10e40bebce4ccbf4c8cb, type: 3}
+      propertyPath: isOpen
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6227823909355868369, guid: cd54227fde6c10e40bebce4ccbf4c8cb, type: 3}
       propertyPath: m_RootOrder
@@ -2662,6 +2670,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: WoodenDoor
       objectReference: {fileID: 0}
+    - target: {fileID: 5768675806045558330, guid: cd54227fde6c10e40bebce4ccbf4c8cb, type: 3}
+      propertyPath: isOpen
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6227823909355868369, guid: cd54227fde6c10e40bebce4ccbf4c8cb, type: 3}
       propertyPath: m_RootOrder
       value: 14
@@ -3626,6 +3638,10 @@ PrefabInstance:
     - target: {fileID: 1712575601764345109, guid: 7cbda7a1e0ed3514986289687e2223e1, type: 3}
       propertyPath: sceneViewId
       value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3017022391599096225, guid: 7cbda7a1e0ed3514986289687e2223e1, type: 3}
+      propertyPath: isOpen
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7cbda7a1e0ed3514986289687e2223e1, type: 3}

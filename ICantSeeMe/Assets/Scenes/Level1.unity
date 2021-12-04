@@ -2492,7 +2492,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4815534067563576905, guid: cdb0010b481b4da4c9e55245c9e4ccf5, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1.96
+      value: -2.05
       objectReference: {fileID: 0}
     - target: {fileID: 4815534067563576905, guid: cdb0010b481b4da4c9e55245c9e4ccf5, type: 3}
       propertyPath: m_LocalPosition.z
@@ -2660,6 +2660,10 @@ PrefabInstance:
     - target: {fileID: 4953320573755074444, guid: cd54227fde6c10e40bebce4ccbf4c8cb, type: 3}
       propertyPath: m_Name
       value: WoodenDoor
+      objectReference: {fileID: 0}
+    - target: {fileID: 5768675806045558330, guid: cd54227fde6c10e40bebce4ccbf4c8cb, type: 3}
+      propertyPath: isOpen
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6227823909355868369, guid: cd54227fde6c10e40bebce4ccbf4c8cb, type: 3}
       propertyPath: m_RootOrder
@@ -3009,6 +3013,10 @@ PrefabInstance:
     - target: {fileID: 4953320573755074444, guid: cd54227fde6c10e40bebce4ccbf4c8cb, type: 3}
       propertyPath: m_Name
       value: WoodenDoor (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5768675806045558330, guid: cd54227fde6c10e40bebce4ccbf4c8cb, type: 3}
+      propertyPath: isOpen
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6227823909355868369, guid: cd54227fde6c10e40bebce4ccbf4c8cb, type: 3}
       propertyPath: m_RootOrder
