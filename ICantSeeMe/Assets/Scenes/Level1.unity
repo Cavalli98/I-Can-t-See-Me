@@ -202,12 +202,17 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 3017022391599096225, guid: 7cbda7a1e0ed3514986289687e2223e1, type: 3}
   m_PrefabInstance: {fileID: 39813138}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 39813140}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3ff525d0372bed048842411cf46bab86, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &39813140 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 901079570901781812, guid: 7cbda7a1e0ed3514986289687e2223e1, type: 3}
+  m_PrefabInstance: {fileID: 39813138}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &84203492
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -725,6 +730,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -6625362853601029559, guid: cdb0010b481b4da4c9e55245c9e4ccf5, type: 3}
+      propertyPath: toActivate
+      value: 
+      objectReference: {fileID: 39813140}
     - target: {fileID: -1516294554932091714, guid: cdb0010b481b4da4c9e55245c9e4ccf5, type: 3}
       propertyPath: sceneViewId
       value: 7
@@ -2567,12 +2576,17 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 3017022391599096225, guid: 7cbda7a1e0ed3514986289687e2223e1, type: 3}
   m_PrefabInstance: {fileID: 1473693170}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 1473693172}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3ff525d0372bed048842411cf46bab86, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &1473693172 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 901079570901781812, guid: 7cbda7a1e0ed3514986289687e2223e1, type: 3}
+  m_PrefabInstance: {fileID: 1473693170}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1482034068
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2580,6 +2594,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -6625362853601029559, guid: cdb0010b481b4da4c9e55245c9e4ccf5, type: 3}
+      propertyPath: toActivate
+      value: 
+      objectReference: {fileID: 1473693172}
     - target: {fileID: -1516294554932091714, guid: cdb0010b481b4da4c9e55245c9e4ccf5, type: 3}
       propertyPath: sceneViewId
       value: 5
