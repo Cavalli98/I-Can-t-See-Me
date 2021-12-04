@@ -40,25 +40,34 @@ public class Door : Triggerable
             isOpen = false;
         }
     }
+
     // Update is called once per frame
     void Update()
     {
 
     }
+
+    [PunRPC]
+    private void SetColliding(bool colliding)
+    {
+        isColliding = colliding;
+    }
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.tag != "Player" && photonView.IsMine != true)
         {
             return;
         }
-        isColliding = true;
+        photonView.RPC("SetColliding", RpcTarget.All, true);
     }
+
     private void OnTriggerExit2D(Collider2D collision)
     {
         if (collision.tag != "Player" && photonView.IsMine != true)
         {
             return;
         }
-        isColliding = false;
+        photonView.RPC("SetColliding", RpcTarget.All, false);
     }
 }
