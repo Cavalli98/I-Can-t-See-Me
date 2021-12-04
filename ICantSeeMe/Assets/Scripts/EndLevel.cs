@@ -1,5 +1,6 @@
 using UnityEngine;
 using Photon.Pun;
+using ExitGames.Client.Photon;
 
 public class EndLevel : MonoBehaviourPun
 {
@@ -19,6 +20,8 @@ public class EndLevel : MonoBehaviourPun
     {
         if (!_done && PhotonNetwork.IsMasterClient && BoyExitDoor.isOpen && BoyExitDoor.isColliding && GirlExitDoor.isOpen && GirlExitDoor.isColliding)
         {
+            Hashtable entries = new Hashtable { { "Level", NextLevel } };
+            PhotonNetwork.CurrentRoom.SetCustomProperties(entries);
             PhotonNetwork.LoadLevel(NextLevel);
             _done = true;
         }

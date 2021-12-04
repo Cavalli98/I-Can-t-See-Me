@@ -7,15 +7,19 @@ public class GameOverScreen : MonoBehaviour
     // Start is called before the first frame update
     public void Setup()
     {
-        gameObject.SetActive(true);
-    }
-
-
-    public void Restart()
-    {
         if (PhotonNetwork.IsMasterClient)
         {
-            PhotonNetwork.LoadLevel(SceneManager.GetActiveScene().name);
+            PhotonNetwork.LoadLevel("GameOver");
         }
+        //gameObject.SetActive(true);
     }
+
+
+    //public void Restart()
+    //{
+    //    if (PhotonNetwork.IsMasterClient)
+    //    {
+    //        PhotonNetwork.LoadLevel("GameOver");
+    //    }
+    //}
 }
