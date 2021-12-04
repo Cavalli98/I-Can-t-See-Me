@@ -1,4 +1,6 @@
+using ExitGames.Client.Photon;
 using Photon.Pun;
+using Photon.Realtime;
 using UnityEngine;
 
 
@@ -56,6 +58,7 @@ public class PlayerMovement : MonoBehaviourPun
     private Transform _ladder;
     public float climbSpeed = 2.0f;
 
+    public const byte gameOverEvent = 1;
 
     private void Awake()
     {
@@ -253,10 +256,25 @@ public class PlayerMovement : MonoBehaviourPun
         print("Collision "+collision.gameObject.tag);
         if (collision.gameObject.tag == "Dangerous")
         {
-            photonView.RPC("GameOver", RpcTarget.All, null);
+            // Send event to all players
+            object[] content = null;
+            RaiseEventOptions raiseEventOptions = new RaiseEventOptions { Receivers = ReceiverGroup.All }; // You would have to set the Receivers to All in order to receive this event on the local client as well
+            PhotonNetwork.RaiseEvent(gameOverEvent, content, raiseEventOptions, SendOptions.SendReliable);
         }
     }
 
+    public void OnEvent(EventData photonEvent)
+    {
+        if (!photonView.IsMine)
+            return;
+
+        byte eventCode = photonEvent.Code;
+
+        if (eventCode == gameOverEvent)
+        {
+            GameOver();
+        }
+    }
 
     private void ResetClimbing()
     {
@@ -279,11 +297,20 @@ public class PlayerMovement : MonoBehaviourPun
         } 
     }
 
-    [PunRPC]
-    private void GameOver()
+    public void GameOver()
     {
         print("Player - GameOver");
         _gameOver = true;
         _gameManager.GameOver();
+    }
+
+    private void OnEnable()
+    {
+        PhotonNetwork.AddCallbackTarget(this);
+    }
+
+    private void OnDisable()
+    {
+        PhotonNetwork.RemoveCallbackTarget(this);
     }
 }
