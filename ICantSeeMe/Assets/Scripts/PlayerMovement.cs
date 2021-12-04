@@ -4,7 +4,7 @@ using Photon.Realtime;
 using UnityEngine;
 
 
-public class PlayerMovement : MonoBehaviourPun
+public class PlayerMovement : MonoBehaviourPun, IOnEventCallback
 {
     float timePassed = 0f;
 
