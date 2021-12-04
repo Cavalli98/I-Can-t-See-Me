@@ -59,13 +59,16 @@ public class PlayerMovement : MonoBehaviourPun
 
     private void Awake()
     {
-        if (!photonView.IsMine)
-        {
-            return;
-        }
-
         _rb = GetComponent<Rigidbody2D>();
         _boxCollider = GetComponent<BoxCollider2D>();
+
+        if (!photonView.IsMine)
+        {
+            Destroy(_rb);
+            Destroy(_boxCollider);
+            return;
+        }
+        
         _spr = GetComponent<SpriteRenderer>();
         _tr = GetComponent<Transform>();
         _scaleFactor = _tr.localScale.x;
