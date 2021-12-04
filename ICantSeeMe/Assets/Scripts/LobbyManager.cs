@@ -20,7 +20,7 @@ public class LobbyManager : MonoBehaviourPunCallbacks
             Debug.LogFormat("OnPlayerEnteredRoom IsMasterClient {0}", PhotonNetwork.IsMasterClient); // called before OnPlayerLeftRoom
 
             //TODO: Load saved level for the two players
-            PhotonNetwork.LoadLevel("Level2");
+            PhotonNetwork.LoadLevel("Level1");
         }
     }
 
