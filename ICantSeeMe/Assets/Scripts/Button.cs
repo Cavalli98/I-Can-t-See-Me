@@ -5,11 +5,11 @@ using Photon.Pun;
 
 public class Button : Trigger
 {
-    private bool isColliding = false;
-    // Start is called before the first frame update
-    void Start()
+    private bool _done;
+
+    private void Awake()
     {
-        isColliding = false;
+        _done = false;
     }
 
     [PunRPC]
@@ -23,14 +23,10 @@ public class Button : Trigger
         if (collision.gameObject.tag != "Tool")
             return;
         Debug.Log("collisione con bottone");
-        isColliding = true;
-        photonView.RPC("trigger", RpcTarget.All, null);
-    }
-
-    private void OnCollisionExit2D(Collision2D collision)
-    {
-        if (collision.gameObject.tag != "Tool")
-            return;
-        isColliding = false;
+        if (!_done)
+        {
+            photonView.RPC("trigger", RpcTarget.All, null);
+            _done = true; 
+        }
     }
 }

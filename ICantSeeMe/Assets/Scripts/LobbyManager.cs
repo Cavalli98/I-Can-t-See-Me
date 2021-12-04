@@ -28,7 +28,7 @@ public class LobbyManager : MonoBehaviourPunCallbacks
     {
         if (propertiesThatChanged.ContainsKey("RoomNumber"))
         {
-            RoomNumber.text = (string)propertiesThatChanged["RoomNumber"];
+            RoomNumber.text = "Room Number: " + (string)propertiesThatChanged["RoomNumber"];
         }
     }
 

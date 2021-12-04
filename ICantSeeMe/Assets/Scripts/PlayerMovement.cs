@@ -175,7 +175,6 @@ public class PlayerMovement : MonoBehaviourPun
 
             if (_originDown.y > topHandlerY || _originDown.y < bottomHandlerY)
             {
-                Debug.Log("ciao");
                 ResetClimbing();
             }
             else if (_originDown.y <= topHandlerY && _originDown.y >= bottomHandlerY)

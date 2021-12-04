@@ -3630,6 +3630,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: -4990528336867305747, guid: b2d86716b4d4cbe4ea123f97ce6c7576, type: 3}
+      propertyPath: NextLevel
+      value: End
+      objectReference: {fileID: 0}
+    - target: {fileID: -4990528336867305747, guid: b2d86716b4d4cbe4ea123f97ce6c7576, type: 3}
       propertyPath: BoyExitDoor
       value: 
       objectReference: {fileID: 181599294}
