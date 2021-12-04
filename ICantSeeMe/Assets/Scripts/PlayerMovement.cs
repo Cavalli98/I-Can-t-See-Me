@@ -12,7 +12,7 @@ public class PlayerMovement : MonoBehaviourPun
     private BoxCollider2D _boxCollider;
     private SpriteRenderer _spr;
     private Transform _tr;
-    public GameManager _gameManager;
+    private GameManager _gameManager;
 
     private float _playerSkin = 0.05f;
     private float _scaleFactor;
@@ -85,6 +85,13 @@ public class PlayerMovement : MonoBehaviourPun
         //Initialize the player facing right
         _facingRight = true;
         _spr.flipX = true;
+    }
+
+    private void Start()
+    {
+        if (!photonView.IsMine)
+            return;
+        _gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
     }
 
     // Update is called once per frame
@@ -246,7 +253,7 @@ public class PlayerMovement : MonoBehaviourPun
         print("Collision "+collision.gameObject.tag);
         if (collision.gameObject.tag == "Dangerous")
         {
-            GameOver();
+            photonView.RPC("GameOver", RpcTarget.All, null);
         }
     }
 
@@ -272,7 +279,7 @@ public class PlayerMovement : MonoBehaviourPun
         } 
     }
 
-
+    [PunRPC]
     private void GameOver()
     {
         print("Player - GameOver");

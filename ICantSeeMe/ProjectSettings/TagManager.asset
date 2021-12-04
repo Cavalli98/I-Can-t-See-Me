@@ -8,6 +8,7 @@ TagManager:
   - Trigger
   - Ladder
   - Tool
+  - Dangerous
   layers:
   - Default
   - TransparentFX
@@ -45,8 +46,17 @@ TagManager:
   - name: Background
     uniqueID: 1171605417
     locked: 0
+  - name: BackStuff
+    uniqueID: 3934536971
+    locked: 0
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Obstacles
+    uniqueID: 3207822079
+    locked: 0
+  - name: FrontStuff
+    uniqueID: 4228951201
     locked: 0
   - name: Player
     uniqueID: 4060435645

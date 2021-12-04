@@ -1,8 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine.SceneManagement;
 using UnityEngine;
-using UnityEngine.UI;
+using Photon.Pun;
 
 public class GameOverScreen : MonoBehaviour
 {
@@ -15,6 +13,9 @@ public class GameOverScreen : MonoBehaviour
 
     public void Restart()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        if (PhotonNetwork.IsMasterClient)
+        {
+            PhotonNetwork.LoadLevel(SceneManager.GetActiveScene().name);
+        }
     }
 }
