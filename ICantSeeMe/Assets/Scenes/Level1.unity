@@ -197,6 +197,17 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7cbda7a1e0ed3514986289687e2223e1, type: 3}
+--- !u!114 &39813139 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3017022391599096225, guid: 7cbda7a1e0ed3514986289687e2223e1, type: 3}
+  m_PrefabInstance: {fileID: 39813138}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3ff525d0372bed048842411cf46bab86, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &84203492
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2063,6 +2074,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a0825b3047706ec4da19c80a5eb40ccf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fromTrigger: {fileID: 0}
+  isUp: 0
+  startY: 0
+  endY: 0
+  speed: 0
 --- !u!4 &1129297219 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6847529697703174243, guid: 72e4575c5bc86d146a974784327ff4f2, type: 3}
@@ -2480,6 +2496,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a0825b3047706ec4da19c80a5eb40ccf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fromTrigger: {fileID: 0}
+  isUp: 0
+  startY: 0
+  endY: 0
+  speed: 0
 --- !u!1001 &1473693170
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2541,6 +2562,17 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7cbda7a1e0ed3514986289687e2223e1, type: 3}
+--- !u!114 &1473693171 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3017022391599096225, guid: 7cbda7a1e0ed3514986289687e2223e1, type: 3}
+  m_PrefabInstance: {fileID: 1473693170}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3ff525d0372bed048842411cf46bab86, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1482034068
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3402,6 +3434,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -4990528336867305747, guid: b2d86716b4d4cbe4ea123f97ce6c7576, type: 3}
+      propertyPath: NextLevel
+      value: Level2
+      objectReference: {fileID: 0}
+    - target: {fileID: -4990528336867305747, guid: b2d86716b4d4cbe4ea123f97ce6c7576, type: 3}
+      propertyPath: BoyExitDoor
+      value: 
+      objectReference: {fileID: 39813139}
+    - target: {fileID: -4990528336867305747, guid: b2d86716b4d4cbe4ea123f97ce6c7576, type: 3}
+      propertyPath: GirlExitDoor
+      value: 
+      objectReference: {fileID: 1473693171}
     - target: {fileID: 5349172286083726097, guid: b2d86716b4d4cbe4ea123f97ce6c7576, type: 3}
       propertyPath: m_Name
       value: GameManager
