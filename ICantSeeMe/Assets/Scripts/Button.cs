@@ -10,32 +10,26 @@ public class Button : Trigger
     void Start()
     {
         isColliding = false;
-        toActivate.GetComponent<Triggerable>();
     }
 
-    // Update is called once per frame
-    void Update()
+    [PunRPC]
+    public override void trigger()
     {
-        if (isColliding)
-        {
-            if (Input.GetKeyDown(KeyCode.E))
-            {
-                PhotonView.Get(toActivate).RPC("activate", RpcTarget.All, null);
-            }
-        }
+        toActivate.GetComponent<Triggerable>().activate();
     }
-    private void OnTriggerEnter2D(Collider2D collider)
+
+    private void OnCollisionEnter2D(Collision2D collision)
     {
-       
-        if (collider.tag != "Tool")
+        if (collision.gameObject.tag != "Tool")
             return;
         Debug.Log("collisione con bottone");
         isColliding = true;
+        photonView.RPC("trigger", RpcTarget.All, null);
     }
 
-    private void OnTriggerExit2D(Collider2D collider)
+    private void OnCollisionExit2D(Collision2D collision)
     {
-        if (collider.tag != "Tool")
+        if (collision.gameObject.tag != "Tool")
             return;
         isColliding = false;
     }

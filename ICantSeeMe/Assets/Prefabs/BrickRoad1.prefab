@@ -123,6 +123,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fromTrigger: {fileID: 0}
-  isUp: 0
+  hasToMoveUp: 0
   startY: -1.15
   endY: 1
+  speed: 2

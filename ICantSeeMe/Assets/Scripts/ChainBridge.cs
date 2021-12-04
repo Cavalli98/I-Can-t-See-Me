@@ -5,38 +5,58 @@ using Photon.Pun;
 
 public class ChainBridge : Triggerable
 {
-    private bool isUp;
+    public bool isUp;
     public float startY;
     public float endY;
-    // Start is called before the first frame update
-    void Start()
+    public float speed;
+
+    private bool hasToMoveUp;
+    private bool _isMoving;
+    private float step;
+    private Vector3 endPosition;
+    private Vector3 startPosition;
+
+    private void Awake()
     {
-        isUp = true;
+        _isMoving = false;
+        hasToMoveUp = isUp;
+        startPosition = new Vector3(transform.position.x, startY);
+        endPosition = new Vector3(transform.position.x, endY);
+        step = speed * Time.deltaTime; // calculate distance to move
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (_isMoving)
+        {
+            // Se isUp prima era true
+            if (hasToMoveUp)
+            {
+                // Move our position a step closer to the target.
+                transform.position = Vector3.MoveTowards(transform.position, endPosition, step);
 
+                if (Vector3.Distance(transform.position, endPosition) < 0.01f)
+                {
+                    _isMoving = false;
+                }
+            }
+            else
+            {
+                // Move our position a step closer to the target.
+                transform.position = Vector3.MoveTowards(transform.position, startPosition, step);
+
+                if (Vector3.Distance(transform.position, startPosition) < 0.01f)
+                {
+                    _isMoving = false;
+                }
+            }
+        }
     }
-    [PunRPC]
-    public new void activate()
+
+    public override void activate()
     {
-        if (isUp)
-        {
-            while (transform.position.y > endY)
-            {
-                transform.Translate(0f, -0.0005f, 0f);
-            }
-            isUp = false;
-        }
-        if (!isUp)
-        {
-            while (transform.position.y < endY)
-            {
-                transform.Translate(0f, 0.0005f, 0f);
-            }
-            isUp = true;
-        }
+        hasToMoveUp = !hasToMoveUp;
+        _isMoving = true;
     }
 }

@@ -175,6 +175,7 @@ public class PlayerMovement : MonoBehaviourPun
 
             if (_originDown.y > topHandlerY || _originDown.y < bottomHandlerY)
             {
+                Debug.Log("ciao");
                 ResetClimbing();
             }
             else if (_originDown.y <= topHandlerY && _originDown.y >= bottomHandlerY)
@@ -196,6 +197,7 @@ public class PlayerMovement : MonoBehaviourPun
 
     private void Climb()
     {
+        Debug.Log("climb");
         _rb.bodyType = RigidbodyType2D.Kinematic;
         if (!transform.position.x.Equals(_ladder.transform.position.x))
             transform.position = new Vector3(_ladder.transform.position.x,transform.position.y,transform.position.z);

@@ -32,7 +32,7 @@ public class GameManager : MonoBehaviourPunCallbacks
         else
         {
             GameObject player = PhotonNetwork.Instantiate(this.playerGirl.name, spawnPointGirl.position, Quaternion.identity, 0);
-            Ghost.instance.transform.position = spawnPointGirl.position + new Vector3(26.6f, 0);
+            Ghost.instance.transform.position = spawnPointGirl.position + new Vector3(-26.6f, 0);
             Ghost.instance.transform.SetParent(player.transform);
         }
     }
