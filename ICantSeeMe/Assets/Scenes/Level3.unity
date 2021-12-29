@@ -4005,7 +4005,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 4937180670247260444, guid: 7fc44c0de25153940bb9d7fe46f8c86b, type: 3}
       propertyPath: endY
-      value: -1
+      value: -1.6
       objectReference: {fileID: 0}
     - target: {fileID: 4937180670247260444, guid: 7fc44c0de25153940bb9d7fe46f8c86b, type: 3}
       propertyPath: isUp
@@ -4013,11 +4013,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4937180670247260444, guid: 7fc44c0de25153940bb9d7fe46f8c86b, type: 3}
       propertyPath: speed
-      value: 3
+      value: 0.4
       objectReference: {fileID: 0}
     - target: {fileID: 4937180670247260444, guid: 7fc44c0de25153940bb9d7fe46f8c86b, type: 3}
       propertyPath: startY
-      value: 1.69
+      value: 1.09
       objectReference: {fileID: 0}
     - target: {fileID: 4937180670247260445, guid: 7fc44c0de25153940bb9d7fe46f8c86b, type: 3}
       propertyPath: m_RootOrder

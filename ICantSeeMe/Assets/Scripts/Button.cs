@@ -22,11 +22,11 @@ public class Button : Trigger
     {
         if (collision.gameObject.tag != "Tool")
             return;
-        Debug.Log("collisione con bottone");
+        //     Debug.Log("collisione con bottone");
         if (!_done)
         {
             photonView.RPC("trigger", RpcTarget.All, null);
-            _done = true; 
+            _done = true;
         }
     }
 }

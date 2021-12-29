@@ -23,7 +23,7 @@ public class Lever : Trigger
 
     }
 
-    [PunRPC]
+   [PunRPC]
     public override void trigger()
     {
         Debug.Log("test");

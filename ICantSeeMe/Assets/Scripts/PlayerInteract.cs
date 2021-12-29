@@ -25,6 +25,7 @@ public class PlayerInteract : MonoBehaviourPun
         {
             if (Input.GetKeyDown(KeyCode.E))
             {
+                // colliderObj.GetComponent<Trigger>().trigger();
                 PhotonView.Get(colliderObj).RPC("trigger", RpcTarget.All, null);
             }
         }
@@ -38,7 +39,7 @@ public class PlayerInteract : MonoBehaviourPun
         }
         if (collider.tag != "Trigger")
             return;
-        Debug.Log("collisione con leva");
+ //       Debug.Log("collisione con leva");
         isColliding = true;
         colliderObj = collider.gameObject;
     }
