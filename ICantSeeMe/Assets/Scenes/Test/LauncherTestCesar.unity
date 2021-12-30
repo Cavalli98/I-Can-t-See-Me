@@ -693,6 +693,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8f6a5a202ca40cb49a178e6f8b76c566, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  nextScene: LevelTestCesar
   maxPlayersPerRoom: 2
 --- !u!4 &1470817500
 Transform:

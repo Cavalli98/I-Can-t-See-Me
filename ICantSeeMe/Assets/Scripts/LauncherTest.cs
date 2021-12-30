@@ -3,9 +3,12 @@ using Photon.Pun;
 using Photon.Realtime;
 using UnityEngine.UI;
 using ExitGames.Client.Photon;
+using UnityEngine.SceneManagement;
 
 public class LauncherTest : MonoBehaviourPunCallbacks
 {
+    public string nextScene;
+
     #region Private Serializable Fields
 
     /// <summary>
@@ -121,7 +124,7 @@ public class LauncherTest : MonoBehaviourPunCallbacks
         {
             Debug.Log("Load the test level");
             // Load the lobby.
-            PhotonNetwork.LoadLevel("LevelTest");
+            PhotonNetwork.LoadLevel(nextScene);
         }
     }
 
