@@ -216,8 +216,8 @@ public class PlayerMovement : MonoBehaviourPun, IOnEventCallback
 
     private void Climb()
     {
-        Debug.Log("climb");
         _rb.bodyType = RigidbodyType2D.Kinematic;
+        _rb.velocity = new Vector2(0, 0);
         if (!transform.position.x.Equals(_ladder.transform.position.x))
             transform.position = new Vector3(_ladder.transform.position.x,transform.position.y,transform.position.z);
 
