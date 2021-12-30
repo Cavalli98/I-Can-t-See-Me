@@ -85,7 +85,7 @@ public class ChainBridge : Triggerable
     // Update is called once per frame
     private void Update()
     {
-        Debug.Log("y: " + transform.position.y);
+        //Debug.Log("y: " + transform.position.y);
         _t += Time.deltaTime * speed;
         if (_hasToMove)
         {

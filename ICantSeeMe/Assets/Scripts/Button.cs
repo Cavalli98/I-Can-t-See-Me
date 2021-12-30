@@ -14,8 +14,9 @@ public class Button : Trigger
 
     [PunRPC]
     public override void trigger()
-    {
-        toActivate.GetComponent<Triggerable>().activate();
+    {        
+        foreach (GameObject t in toActivate)
+            t.GetComponent<Triggerable>().activate();
     }
 
     private void OnCollisionEnter2D(Collision2D collision)

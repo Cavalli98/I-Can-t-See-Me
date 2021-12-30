@@ -37,6 +37,8 @@ public class Lever : Trigger
             GetComponent<SpriteRenderer>().sprite = deactivated;
             isActive = false;
         }
-        toActivate.GetComponent<Triggerable>().activate();
+        
+        foreach (GameObject t in toActivate)
+            t.GetComponent<Triggerable>().activate();
     }
 }

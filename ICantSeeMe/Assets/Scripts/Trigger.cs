@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class Trigger : MonoBehaviourPun
 {
-    public GameObject toActivate;
+    public GameObject[] toActivate;
 
     [PunRPC]
     public virtual void trigger()

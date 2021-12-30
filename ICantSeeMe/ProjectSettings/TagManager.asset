@@ -9,6 +9,7 @@ TagManager:
   - Ladder
   - Tool
   - Dangerous
+  - EnemyPath
   layers:
   - Default
   - TransparentFX
