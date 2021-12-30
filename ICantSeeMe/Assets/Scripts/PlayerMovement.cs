@@ -47,7 +47,6 @@ public class PlayerMovement : MonoBehaviourPun, IOnEventCallback
     private bool _collidedLeft = false;
     private bool _collidedRight = false;
     private bool _collidedDown = false;
-    private bool _canClimb = false;
     private bool _facingRight = true;
     private bool _gameOver = false;
 
@@ -135,7 +134,7 @@ public class PlayerMovement : MonoBehaviourPun, IOnEventCallback
         }
 
         // Player jumps
-        if (Input.GetButtonDown("Jump") && _grounded && !_canClimb)
+        if (Input.GetButtonDown("Jump") && _grounded && !_climbHeld)
         {
             _jump = true;
         }
