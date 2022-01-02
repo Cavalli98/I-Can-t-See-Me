@@ -64,22 +64,26 @@ public class ChainBridge : Triggerable
 
 public class ChainBridge : Triggerable
 {
-    public float startY;
-    public float endY;
+    //public float startY;
+    //public float endY;
     public float speed;
 
     private bool _hasToMove;
     private float _t;
-    public Vector3 endPosition;
+    public Transform startObj;
+    public Transform endObj;
+    private Vector3 endPosition;
     private Vector3 startPosition;
 
 
     private void Awake()
     {
         _hasToMove = false;
-        startPosition = new Vector3(transform.position.x, startY);
-        endPosition = new Vector3(transform.position.x, endY);
-        Debug.Log("x: " + transform.position.x);
+        //startPosition = new Vector3(transform.position.x, startY);
+        //endPosition = new Vector3(transform.position.x, endY);
+        startPosition = startObj.position;
+        endPosition = endObj.position;
+        //Debug.Log("x: " + transform.position.x);
     }
 
     // Update is called once per frame

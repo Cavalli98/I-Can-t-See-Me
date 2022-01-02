@@ -252,7 +252,7 @@ public class PlayerMovement : MonoBehaviourPun, IOnEventCallback
 
     void OnCollisionEnter2D(Collision2D collision)
     {
-        print("Collision "+collision.gameObject.tag);
+     //   print("Collision "+collision.gameObject.tag);
         if (collision.gameObject.tag == "Dangerous")
         {
             // Send event to all players
@@ -264,7 +264,7 @@ public class PlayerMovement : MonoBehaviourPun, IOnEventCallback
 
     public void OnEvent(EventData photonEvent)
     {
-        print("arrivato un evento player game over");
+      //  print("arrivato un evento player game over");
         if (!photonView.IsMine)
             return;
 
@@ -284,6 +284,7 @@ public class PlayerMovement : MonoBehaviourPun, IOnEventCallback
             _rb.bodyType = RigidbodyType2D.Dynamic;
         }
     }
+
 
     
     // to print stuff every s seconds
