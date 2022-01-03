@@ -39,6 +39,10 @@ public class MovingRoad : Triggerable
         _hasRotated = false;
         _hasToRotate = false;
         _increment = 0.1f;
+        if (angle<0)
+        {
+            _increment = -_increment;
+        }
     }
     // Start is called before the first frame update
     void Start()

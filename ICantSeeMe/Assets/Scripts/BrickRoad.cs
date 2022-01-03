@@ -27,10 +27,11 @@ public class BrickRoad : Triggerable
     private void Update()
     {
         //Debug.Log("y: " + transform.position.y);
-        _t += Time.deltaTime * speed;
+      
         if (_hasToMove)
         {
             // Moves the object to target position
+            _t += Time.deltaTime * speed;
             transform.position = Vector3.Lerp(startPosition, endPosition, _t);
 
             //           Debug.Log("x: " + endPosition.x + " y: " + endPosition.y + " t: " + _t + " Lerp: " + Vector3.Lerp(startPosition, endPosition, _t));
