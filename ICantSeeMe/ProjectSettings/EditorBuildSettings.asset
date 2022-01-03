@@ -32,4 +32,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Test/LevelTestCesar.unity
     guid: 074e909c261e68147a9cf37ab097e079
+  - enabled: 1
+    path: Assets/Scenes/Test/LevelTestDario.unity
+    guid: e36eb93cefd3bf247bd07aebaf3fd8ce
   m_configObjects: {}
