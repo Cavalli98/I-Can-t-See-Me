@@ -10,6 +10,7 @@ TagManager:
   - Tool
   - Dangerous
   - EnemyPath
+  - SpringButton
   layers:
   - Default
   - TransparentFX

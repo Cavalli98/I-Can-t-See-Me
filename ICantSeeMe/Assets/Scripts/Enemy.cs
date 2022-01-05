@@ -8,7 +8,7 @@ public class Enemy : Triggerable
     private Transform jogTarget;
     public float speed_running = 4.0f;
     public float speed_jog = 2.0f;
-    private bool _activated = false;
+    public bool activated = false;
 
     private GameObject[] path = null;
     private int path_counter = 0;
@@ -19,7 +19,7 @@ public class Enemy : Triggerable
 
     void Start()
     {
-        _activated = false;
+        activated = false;
         _range = GetComponentInChildren<Range>();
         _prevX = transform.position.x;
         path = GameObject.FindGameObjectsWithTag("EnemyPath");
@@ -35,7 +35,7 @@ public class Enemy : Triggerable
 
     void FixedUpdate()
     {
-        if (!_activated)
+        if (!activated)
             return;
         
         setRange();
@@ -74,6 +74,6 @@ public class Enemy : Triggerable
 
     public override void activate()
     {
-        _activated = true;
+        activated = true;
     }
 }
