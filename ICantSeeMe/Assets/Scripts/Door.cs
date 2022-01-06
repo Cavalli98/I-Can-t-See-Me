@@ -8,7 +8,7 @@ public class Door : Triggerable
 {
     public Sprite open;
     public Sprite closed;
-    public bool isTriggered = false;
+    private bool isTriggered = false;
     public bool isOpen;
     public bool isColliding = false;
     //   public EventTrigger trigger;

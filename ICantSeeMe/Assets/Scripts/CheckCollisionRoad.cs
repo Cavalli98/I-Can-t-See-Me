@@ -7,10 +7,12 @@ public class CheckCollisionRoad : MonoBehaviourPun
 {
 
     public bool collided;
+    public bool ritorna;
     // Start is called before the first frame update
     void Start()
     {
         collided = false;
+        ritorna = false;
     }
 
     // Update is called once per frame
@@ -21,11 +23,16 @@ public class CheckCollisionRoad : MonoBehaviourPun
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        //Debug.Log("Entrato check");
         if (collision.gameObject.tag == "Player")
         {
+            //Debug.Log("Entrato check");
             photonView.TransferOwnership(PhotonView.Get(collision.gameObject).Owner);
             collided = true;
+        }
+        else if (collision.gameObject.tag != "Border")
+        {
+            ritorna = true;
+            //Debug.Log("collisione piattaforma-oggetto");
         }
     }
     private void OnTriggerExit2D(Collider2D collision)

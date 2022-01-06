@@ -19,7 +19,6 @@ public class MovingRoad : Triggerable
     private Vector3 endPosition;
     private Vector3 startPosition;
 
-    public bool rotating;
     public float angle;
     public bool RightPivot;
     private bool _hasRotated;
@@ -27,6 +26,10 @@ public class MovingRoad : Triggerable
     private Vector3 pivot;
     private float _rotation;
     private float _increment;
+
+    private bool _ripartito;
+    private Vector3 _tempEndPosition;
+    private Vector3 _tempStartPosition;
 
     private void Awake()
     {
@@ -38,8 +41,9 @@ public class MovingRoad : Triggerable
         endPosition = endObj.position;
         _hasRotated = false;
         _hasToRotate = false;
-        _increment = 0.1f;
-        if (angle<0)
+        _increment = 1f;
+        _ripartito = false;
+        if (angle < 0)
         {
             _increment = -_increment;
         }
@@ -47,8 +51,8 @@ public class MovingRoad : Triggerable
     // Start is called before the first frame update
     void Start()
     {
-   
-        if(RightPivot)
+
+        if (RightPivot)
         {
             pivot = rightObj.transform.position;
         }
@@ -61,18 +65,17 @@ public class MovingRoad : Triggerable
     // Update is called once per frame
     void Update()
     {
-        //if (_hasToMove)
-        //{
-        //    Move();
-        //}
-
+        //Debug.Log("" + startPosition + " " + endPosition + " " + transform.position); ;
+        //Debug.Log("" + startPosition + " " + endPosition + " " + transform.position);
+        if (_hasToRotate)
+        {
+            Rotate();
+            leftObj.collided = false;
+            rightObj.collided = false;
+        }
         if ((leftObj.collided && startPosition.x < endPosition.x) || (rightObj.collided && startPosition.x > endPosition.x))
         {
             Move();
-        }
-        if (rotating && _hasToRotate)
-        {
-            Rotate();
         }
     }
 
@@ -144,22 +147,51 @@ public class MovingRoad : Triggerable
     {
         _t += Time.deltaTime * speed;
         transform.position = Vector3.Lerp(startPosition, endPosition, _t);
-        
 
-        //Debug.Log("x: " + endPosition.x + " y: " + endPosition.y + " t: " + _t + " Lerp: " + Vector3.Lerp(startPosition, endPosition, _t));
+        Debug.Log("Moving");
+
+        if ((leftObj.ritorna || rightObj.ritorna) && !_ripartito)
+        {
+            Debug.Log("Dovrebbe Ripartire");
+            _ripartito = true;
+            _tempEndPosition = endPosition;
+            _tempStartPosition = startPosition;
+
+            endPosition = startPosition;
+            startPosition = transform.position;
+
+            leftObj.collided = !leftObj.collided;
+            rightObj.collided = !rightObj.collided;
+            _t = 0;
+            Debug.Log("" + (leftObj.collided) + (startPosition.x < endPosition.x) + (rightObj.collided) + (startPosition.x > endPosition.x));
+        }
+            
 
         // Flip the points once it has reached the target
         if (_t >= 1)
         {
-            //_hasToMove = false;
-            var end = endPosition;
-            var start = startPosition;
-            startPosition = end;
-            endPosition = start;
+            if (!leftObj.ritorna && !rightObj.ritorna)
+            {
+                Debug.Log("Dobrebbe essere arrivato");
+                var end = endPosition;
+                var start = startPosition;
+                startPosition = end;
+                endPosition = start;
+
+                //Debug.Log("Uscito check");
+            }
+            else
+            {
+                Debug.Log("Dovrebbe essere ritornato");
+                startPosition = _tempStartPosition;
+                endPosition = _tempEndPosition;
+                _ripartito = false;
+                leftObj.ritorna = false;
+                rightObj.ritorna = false;
+            }
             _t = 0;
             leftObj.collided = false;
             rightObj.collided = false;
-            //Debug.Log("Uscito check");
         }
     }
 }

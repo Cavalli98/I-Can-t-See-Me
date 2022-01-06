@@ -81,9 +81,9 @@ public class ChainBridge : Triggerable
         _hasToMove = false;
         //startPosition = new Vector3(transform.position.x, startY);
         //endPosition = new Vector3(transform.position.x, endY);
-        startPosition = startObj.position;
-        endPosition = endObj.position;
-        transform.position = startPosition;
+        startPosition = new Vector3(transform.position.x, startObj.position.y, transform.position.z);
+        endPosition = new Vector3(transform.position.x, endObj.position.y, transform.position.z);
+        transform.localPosition = startPosition;
         //Debug.Log("x: " + transform.position.x);
     }
 
@@ -95,7 +95,7 @@ public class ChainBridge : Triggerable
         {
             _t += Time.deltaTime * speed;
             // Moves the object to target position
-            transform.position = Vector3.Lerp(startPosition, endPosition, _t);
+            transform.localPosition = Vector3.Lerp(startPosition, endPosition, _t);
 
             //           Debug.Log("x: " + endPosition.x + " y: " + endPosition.y + " t: " + _t + " Lerp: " + Vector3.Lerp(startPosition, endPosition, _t));
 

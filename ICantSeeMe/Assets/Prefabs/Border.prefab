@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: -4236882725307390131}
   m_Layer: 8
   m_Name: Border
-  m_TagString: Untagged
+  m_TagString: Border
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
