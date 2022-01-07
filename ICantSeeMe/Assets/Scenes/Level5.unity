@@ -612,7 +612,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 04ecb6c02ea5f7b4e88ec4720728badf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fromTrigger: {fileID: 0}
   speed: 2
   startObj: {fileID: 220048412}
   endObj: {fileID: 1788034285}
@@ -835,7 +834,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9bff6440b6b9ce54f923a303bba2dd57, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fromTrigger: {fileID: 0}
   endY: -0.69
 --- !u!1001 &212814048
 PrefabInstance:
@@ -1678,7 +1676,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 04ecb6c02ea5f7b4e88ec4720728badf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fromTrigger: {fileID: 0}
   speed: 2
   startObj: {fileID: 1163535713}
   endObj: {fileID: 1569503201}
@@ -2579,7 +2576,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a0825b3047706ec4da19c80a5eb40ccf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fromTrigger: {fileID: 0}
   speed: 0
   startObj: {fileID: 0}
   endObj: {fileID: 0}
@@ -2878,7 +2874,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 20532ebe43c79a84eb0626b6130f7758, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fromTrigger: {fileID: 0}
   speed: 48
   angle: 45
   oneTime: 1
@@ -3298,7 +3293,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a0825b3047706ec4da19c80a5eb40ccf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fromTrigger: {fileID: 0}
   speed: 0
   startObj: {fileID: 0}
   endObj: {fileID: 0}
@@ -4277,7 +4271,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1690072077765144236, guid: 7cbda7a1e0ed3514986289687e2223e1, type: 3}
       propertyPath: m_RootOrder
-      value: 4
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 1690072077765144236, guid: 7cbda7a1e0ed3514986289687e2223e1, type: 3}
       propertyPath: m_LocalPosition.x
@@ -4600,7 +4594,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1556669001109712667, guid: b0dcddcabcd345c4cb2495e492565599, type: 3}
       propertyPath: m_RootOrder
-      value: 5
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 1556669001109712667, guid: b0dcddcabcd345c4cb2495e492565599, type: 3}
       propertyPath: m_LocalPosition.x

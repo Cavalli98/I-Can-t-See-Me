@@ -23,6 +23,7 @@ public class PlayerMovement : MonoBehaviourPun, IOnEventCallback
     public float jumpForce = 2;
     public LayerMask maskObstacle;
     public LayerMask mask;
+    public Animator animator;
 
     //Size of box collider
     private float _playerWidth;
@@ -86,8 +87,8 @@ public class PlayerMovement : MonoBehaviourPun, IOnEventCallback
         _horizontalBoxSize = new Vector2(_playerSkin, _playerHeight - _playerSkin);
 
         //Initialize the player facing right
-        _facingRight = true;
-        _spr.flipX = true;
+        //_facingRight = true;
+        //_spr.flipX = true;
     }
 
     private void Start()
@@ -108,19 +109,22 @@ public class PlayerMovement : MonoBehaviourPun, IOnEventCallback
         if (_gameOver) {
             return;
         }
-        
+
         _horizontalMovement = Input.GetAxisRaw("Horizontal");
         _verticalMovement = Input.GetAxisRaw("Vertical");
+
+        animator.SetBool("climbing", _climbHeld);
+        animator.SetBool("climbStill", _hasStartedClimb);
+        animator.SetFloat("moving", _horizontalMovement);
         
         //Player moves right
         if (_horizontalMovement > 0 && !_collidedRight)
         {
             _tr.position = _tr.position
                                 + _horizontalMovement * _tr.right * velocity * Time.deltaTime;
-            if (!_facingRight)
-            {
-                Flip();
-            }
+
+            //if (!_facingRight) Flip();
+            
         }
 
         //Player moves left
@@ -128,10 +132,8 @@ public class PlayerMovement : MonoBehaviourPun, IOnEventCallback
         {
             _tr.position = _tr.position
                                     + _horizontalMovement * _tr.right * velocity * Time.deltaTime;
-            if (_facingRight)
-            {
-                Flip();
-            }
+
+            //if (_facingRight) Flip();
         }
 
         // Player jumps

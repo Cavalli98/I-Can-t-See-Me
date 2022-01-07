@@ -35,4 +35,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Level5.unity
     guid: e36eb93cefd3bf247bd07aebaf3fd8ce
+  - enabled: 1
+    path: Assets/Scenes/Test/LevelTestDario.unity
+    guid: 5582f8db59feeb141bdb87b3c82a97d3
   m_configObjects: {}

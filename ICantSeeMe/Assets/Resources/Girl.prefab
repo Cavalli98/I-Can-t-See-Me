@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 6931244547710778836}
   - component: {fileID: 6570307588526081111}
   - component: {fileID: 3392231674533101445}
+  - component: {fileID: 6424470637212954058}
   m_Layer: 0
   m_Name: Girl
   m_TagString: Player
@@ -155,6 +156,7 @@ MonoBehaviour:
   mask:
     serializedVersion: 2
     m_Bits: 768
+  animator: {fileID: 6424470637212954058}
   climbSpeed: 2
 --- !u!114 &6931244547710778836
 MonoBehaviour:
@@ -207,3 +209,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fdf97f820c1526242a554d75d777c3d9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!95 &6424470637212954058
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4831168149764279899}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 0d76498ec3c2c5c4394a9ff232f0100b, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
