@@ -1,6 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using ExitGames.Client.Photon;
+using Photon.Pun;
+using Photon.Realtime;
 
 public class Enemy : Triggerable
 {
@@ -8,7 +11,10 @@ public class Enemy : Triggerable
     private Transform jogTarget;
     public float speed_running = 4.0f;
     public float speed_jog = 2.0f;
+    private float speed = 2.0f;
     public bool activated = false;
+    public Animator animator;
+    public bool oneTime = false;
 
     private GameObject[] path = null;
     private int path_counter = 0;
@@ -16,6 +22,10 @@ public class Enemy : Triggerable
     //private bool reached_jogTarget = false;
     private Range _range;
     private float _prevX;
+    private int _direction;
+    private bool _attacking = false;
+    private Coroutine _coroutine;
+    public const byte gameOverEvent = 1;
 
     void Start()
     {
@@ -30,7 +40,8 @@ public class Enemy : Triggerable
 
     void Update()
     {
-
+        animator.SetFloat("speed", Mathf.Abs(speed));
+        animator.SetInteger("direction", _direction);   
     }
 
     void FixedUpdate()
@@ -38,6 +49,9 @@ public class Enemy : Triggerable
         if (!activated)
             return;
         
+        if(_attacking)
+            return;
+
         setRange();
 
         if (Target != null) {
@@ -50,18 +64,21 @@ public class Enemy : Triggerable
 
     private void setRange()
     {
-        _range.setColliderOffset((_prevX < transform.position.x) ? 1: -1);
+        _direction = (_prevX < transform.position.x) ? 1: -1;
+        _range.setColliderOffset(_direction);
         _prevX = transform.position.x;
     }
 
     private void followTarget()
     {
-        transform.position = Vector2.MoveTowards(transform.position, new Vector2(Target.position.x, transform.position.y), speed_running*Time.deltaTime);
+        speed = speed_running;
+        transform.position = Vector2.MoveTowards(transform.position, new Vector2(Target.position.x, transform.position.y), speed*Time.deltaTime);
     }
 
     private void jog()
     {
-        transform.position = Vector2.MoveTowards(transform.position, new Vector2(jogTarget.position.x, transform.position.y), speed_jog*Time.deltaTime);
+        speed = speed_jog;
+        transform.position = Vector2.MoveTowards(transform.position, new Vector2(jogTarget.position.x, transform.position.y), speed*Time.deltaTime);
         if (jogTarget.position.x == transform.position.x)
             updateJogTarget();
     }
@@ -74,6 +91,51 @@ public class Enemy : Triggerable
 
     public override void activate()
     {
-        activated = true;
+        if(oneTime && activated)
+            return;
+        activated = !activated;
+        animator.SetBool("activated", activated);
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.collider.tag == "Player" && Target != null) {
+            _attacking = true;
+            animator.SetBool("attacking", _attacking);
+            _coroutine = StartCoroutine(waiter(0.4f));
+        }
+    }
+
+    private void OnCollisionStay2D(Collision2D collision)
+    {
+        if (collision.collider.tag == "Player" && Target != null && !_attacking) {
+            _attacking = true;
+            animator.SetBool("attacking", _attacking);
+            _coroutine = StartCoroutine(waiter(0.4f));
+        }
+    }
+
+    private void OnCollisionExit2D(Collision2D collision)
+    {
+        if (collision.collider.tag == "Player") {
+            _attacking = false;
+            animator.SetBool("attacking", _attacking);
+            StopCoroutine(_coroutine);
+        }
+    }
+
+    IEnumerator waiter(float s)
+    {
+        yield return new WaitForSeconds(s);
+        if (_attacking = true)
+            gameOver();
+    }
+
+    private void gameOver()
+    {
+        // Send event to all players
+        object[] content = null;
+        RaiseEventOptions raiseEventOptions = new RaiseEventOptions { Receivers = ReceiverGroup.All }; // You would have to set the Receivers to All in order to receive this event on the local client as well
+        PhotonNetwork.RaiseEvent(gameOverEvent, content, raiseEventOptions, SendOptions.SendReliable);
     }
 }

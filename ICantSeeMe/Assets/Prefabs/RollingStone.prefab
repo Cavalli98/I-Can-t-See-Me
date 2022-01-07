@@ -14,6 +14,8 @@ GameObject:
   - component: {fileID: 597845994975728033}
   - component: {fileID: 3775302435875623217}
   - component: {fileID: 7415505097920367473}
+  - component: {fileID: 3405237161942572959}
+  - component: {fileID: 7307888395325314503}
   m_Layer: 0
   m_Name: RollingStone
   m_TagString: Dangerous
@@ -72,8 +74,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -66016095
+  m_SortingLayer: 2
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 2fe444ae3b3fa33489e7be14ca0aa637, type: 3}
   m_Color: {r: 0.7075472, g: 0.0044498947, b: 0.07278184, a: 1}
@@ -162,3 +164,27 @@ MonoBehaviour:
   m_SynchronizeRotation: 1
   m_SynchronizeScale: 0
   m_UseLocal: 1
+--- !u!114 &3405237161942572959
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6283903743100764027}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8954f18facd4113439c518a8f9d17829, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &7307888395325314503
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6283903743100764027}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 65936de3096c5ad48a2b92151bd0b687, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

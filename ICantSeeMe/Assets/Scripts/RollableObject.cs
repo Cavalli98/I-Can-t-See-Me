@@ -25,9 +25,13 @@ public class RollableObject : Triggerable
 
     public override void activate()
     {
+        if (_stop) return;
+        
         changeTarget();
-        if(!_isMoving && !_stop)
+        if(!_isMoving) {
             StartCoroutine(Rotate());
+            if (oneTime) _stop = true;
+        }
     }
 
     private void changeTarget()
@@ -38,9 +42,6 @@ public class RollableObject : Triggerable
 
     IEnumerator Rotate()
     {
-        if (oneTime)
-            _stop = true;
-
         _isMoving = true;
         Vector3 closeEnough = new Vector3(0, 0, 0.1f);
 

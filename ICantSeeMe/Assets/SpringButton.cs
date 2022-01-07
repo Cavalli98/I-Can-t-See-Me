@@ -19,7 +19,7 @@ public class SpringButton : Trigger
         Vector2 center = _box.transform.position;
         Vector2 topLeft = new Vector2(center.x-hSizeX+0.05f, center.y+hSizeY+0.06f);
         Vector2 topCenter = new Vector2(center.x, center.y+hSizeY+0.06f);
-        Vector2 topRight = new Vector2(center.x+hSizeX-0.05f, center.y+0.06f);
+        Vector2 topRight = new Vector2(center.x+hSizeX-0.05f, center.y+hSizeY+0.06f);
         
         _pointsToOverlap = new Vector2[] {
             topLeft,

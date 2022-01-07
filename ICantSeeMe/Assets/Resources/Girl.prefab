@@ -149,9 +149,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   velocity: 4
   jumpForce: 4
-  mask:
+  maskObstacle:
     serializedVersion: 2
     m_Bits: 256
+  mask:
+    serializedVersion: 2
+    m_Bits: 768
   climbSpeed: 2
 --- !u!114 &6931244547710778836
 MonoBehaviour:

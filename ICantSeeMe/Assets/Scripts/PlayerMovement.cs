@@ -21,6 +21,7 @@ public class PlayerMovement : MonoBehaviourPun, IOnEventCallback
 
     public float velocity = 10f;
     public float jumpForce = 2;
+    public LayerMask maskObstacle;
     public LayerMask mask;
 
     //Size of box collider
@@ -159,10 +160,10 @@ public class PlayerMovement : MonoBehaviourPun, IOnEventCallback
         }
 
         _originLeft = _rb.position + Vector2.left * _horizontalBoxOffset;
-        _collidedLeft = Physics2D.OverlapBox(_originLeft, _horizontalBoxSize, 0f, mask);
+        _collidedLeft = Physics2D.OverlapBox(_originLeft, _horizontalBoxSize, 0f, maskObstacle);
 
         _originRight = _rb.position + Vector2.right * _horizontalBoxOffset;
-        _collidedRight = Physics2D.OverlapBox(_originRight, _horizontalBoxSize, 0f, mask);
+        _collidedRight = Physics2D.OverlapBox(_originRight, _horizontalBoxSize, 0f, maskObstacle);
         
         _originDown = _rb.position + Vector2.down * _groundBoxOffset;
         _collidedDown = Physics2D.OverlapBox(_originDown, _groundBoxSize, 0f, mask);
