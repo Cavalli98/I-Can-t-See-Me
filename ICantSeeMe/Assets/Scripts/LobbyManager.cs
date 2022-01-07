@@ -7,6 +7,7 @@ using ExitGames.Client.Photon;
 public class LobbyManager : MonoBehaviourPunCallbacks
 {
     public Text RoomNumber;
+    public string level;
 
     #region Photon Callbacks
 
@@ -19,9 +20,9 @@ public class LobbyManager : MonoBehaviourPunCallbacks
         {
             Debug.LogFormat("OnPlayerEnteredRoom IsMasterClient {0}", PhotonNetwork.IsMasterClient); // called before OnPlayerLeftRoom
 
-            Hashtable entries = new Hashtable { { "Level", "Level1" } };
+            Hashtable entries = new Hashtable { { "Level", level } };
             PhotonNetwork.CurrentRoom.SetCustomProperties(entries);
-            PhotonNetwork.LoadLevel("Level1");
+            PhotonNetwork.LoadLevel(level);
         }
     }
 

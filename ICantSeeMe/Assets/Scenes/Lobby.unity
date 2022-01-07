@@ -575,6 +575,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   RoomNumber: {fileID: 1144898315}
+  level: Level5
 --- !u!1001 &1994674206
 PrefabInstance:
   m_ObjectHideFlags: 0
