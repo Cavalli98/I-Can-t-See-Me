@@ -304,7 +304,7 @@ public class PlayerMovement : MonoBehaviourPun, IOnEventCallback
     public void GameOver()
     {
         print("Player - GameOver");
-        _gameOver = true;
+        //_gameOver = true;
         _gameManager.GameOver();
     }
 

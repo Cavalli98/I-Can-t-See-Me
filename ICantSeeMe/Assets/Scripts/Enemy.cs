@@ -26,45 +26,59 @@ public class Enemy : Triggerable
     private bool _attacking = false;
     private Coroutine _coroutine;
     public const byte gameOverEvent = 1;
+    private Rigidbody2D _rb;
+    private BoxCollider2D _bc;
+    public bool startActive;
 
     void Start()
     {
-        activated = false;
+        //activated = false;
+        _rb = GetComponent<Rigidbody2D>();
+        _bc = GetComponent<BoxCollider2D>();
         _range = GetComponentInChildren<Range>();
         _prevX = transform.position.x;
         path = GameObject.FindGameObjectsWithTag("EnemyPath");
-        path_maxCount = path.Length-1;
+        path_maxCount = path.Length - 1;
         if (path_maxCount != 0)
             jogTarget = path[0].transform;
+        animator.SetBool("activated", activated);
+
     }
 
     void Update()
     {
         animator.SetFloat("speed", Mathf.Abs(speed));
-        animator.SetInteger("direction", _direction);   
+        animator.SetInteger("direction", _direction);
+        //if (startActive)
+        //{
+        //    activate();
+        //    startActive = false;
+        //}
     }
 
     void FixedUpdate()
     {
         if (!activated)
             return;
-        
-        if(_attacking)
+
+        if (_attacking)
             return;
 
         setRange();
 
-        if (Target != null) {
+        if (Target != null)
+        {
             followTarget();
         }
-        else if (path != null && jogTarget != null) {
+        else if (path != null && jogTarget != null)
+        {
             jog();
         }
     }
 
     private void setRange()
     {
-        _direction = (_prevX < transform.position.x) ? 1: -1;
+        _direction = (_prevX < transform.position.x) ? 1 : -1;
         _range.setColliderOffset(_direction);
         _prevX = transform.position.x;
     }
@@ -72,34 +86,46 @@ public class Enemy : Triggerable
     private void followTarget()
     {
         speed = speed_running;
-        transform.position = Vector2.MoveTowards(transform.position, new Vector2(Target.position.x, transform.position.y), speed*Time.deltaTime);
+        transform.position = Vector2.MoveTowards(transform.position, new Vector2(Target.position.x, transform.position.y), speed * Time.deltaTime);
     }
 
     private void jog()
     {
         speed = speed_jog;
-        transform.position = Vector2.MoveTowards(transform.position, new Vector2(jogTarget.position.x, transform.position.y), speed*Time.deltaTime);
+        transform.position = Vector2.MoveTowards(transform.position, new Vector2(jogTarget.position.x, transform.position.y), speed * Time.deltaTime);
         if (jogTarget.position.x == transform.position.x)
             updateJogTarget();
     }
 
     private void updateJogTarget()
     {
-        path_counter = (path_counter == path_maxCount) ? 0 : path_counter+1;
+        path_counter = (path_counter == path_maxCount) ? 0 : path_counter + 1;
         jogTarget = path[path_counter].transform;
     }
 
     public override void activate()
     {
-        if(oneTime && activated)
+        if (oneTime && activated)
             return;
         activated = !activated;
         animator.SetBool("activated", activated);
+        if (!activated)
+        {
+            _rb.bodyType = RigidbodyType2D.Static;
+            _bc.isTrigger = true;
+            _direction = 0;
+        }
+        else
+        {
+            _rb.bodyType = RigidbodyType2D.Dynamic;
+            _bc.isTrigger = false;
+        }
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.collider.tag == "Player" && Target != null) {
+        if (collision.collider.tag == "Player" && Target != null)
+        {
             _attacking = true;
             animator.SetBool("attacking", _attacking);
             _coroutine = StartCoroutine(waiter(0.4f));
@@ -108,7 +134,8 @@ public class Enemy : Triggerable
 
     private void OnCollisionStay2D(Collision2D collision)
     {
-        if (collision.collider.tag == "Player" && Target != null && !_attacking) {
+        if (collision.collider.tag == "Player" && Target != null && !_attacking)
+        {
             _attacking = true;
             animator.SetBool("attacking", _attacking);
             _coroutine = StartCoroutine(waiter(0.4f));
@@ -117,7 +144,8 @@ public class Enemy : Triggerable
 
     private void OnCollisionExit2D(Collision2D collision)
     {
-        if (collision.collider.tag == "Player") {
+        if (collision.collider.tag == "Player")
+        {
             _attacking = false;
             animator.SetBool("attacking", _attacking);
             StopCoroutine(_coroutine);
