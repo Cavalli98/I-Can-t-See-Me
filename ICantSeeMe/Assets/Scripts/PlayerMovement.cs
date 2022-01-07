@@ -51,6 +51,7 @@ public class PlayerMovement : MonoBehaviourPun, IOnEventCallback
     private bool _collidedDown = false;
     private bool _facingRight = true;
     private bool _gameOver = false;
+    private bool _hasMagicSword = false;
 
     // for climbing
     private bool _isCloseToLadder = false, 
@@ -96,6 +97,11 @@ public class PlayerMovement : MonoBehaviourPun, IOnEventCallback
         if (!photonView.IsMine)
             return;
         _gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
+
+        if (PhotonNetwork.CurrentRoom.CustomProperties.ContainsKey("MagicSword"))
+            _hasMagicSword = (bool) PhotonNetwork.CurrentRoom.CustomProperties["MagicSword"];
+        if (_hasMagicSword)
+            animator.SetBool("hasSword", _hasMagicSword);
     }
 
     // Update is called once per frame
@@ -287,8 +293,6 @@ public class PlayerMovement : MonoBehaviourPun, IOnEventCallback
             _rb.bodyType = RigidbodyType2D.Dynamic;
         }
     }
-
-
     
     // to print stuff every s seconds
     private void PrintStuff(float s)
@@ -316,5 +320,14 @@ public class PlayerMovement : MonoBehaviourPun, IOnEventCallback
     private void OnDisable()
     {
         PhotonNetwork.RemoveCallbackTarget(this);
+    }
+
+    private void talkWithStranger()
+    {
+        _hasMagicSword = true;
+        animator.SetBool("hasSword", _hasMagicSword);
+
+        Hashtable entries = new Hashtable { { "MagicSword", _hasMagicSword } };
+        PhotonNetwork.CurrentRoom.SetCustomProperties(entries);
     }
 }

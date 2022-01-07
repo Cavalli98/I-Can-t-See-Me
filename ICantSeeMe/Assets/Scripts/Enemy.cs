@@ -28,11 +28,9 @@ public class Enemy : Triggerable
     public const byte gameOverEvent = 1;
     private Rigidbody2D _rb;
     private BoxCollider2D _bc;
-    public bool startActive;
 
     void Start()
     {
-        //activated = false;
         _rb = GetComponent<Rigidbody2D>();
         _bc = GetComponent<BoxCollider2D>();
         _range = GetComponentInChildren<Range>();
@@ -49,11 +47,6 @@ public class Enemy : Triggerable
     {
         animator.SetFloat("speed", Mathf.Abs(speed));
         animator.SetInteger("direction", _direction);
-        //if (startActive)
-        //{
-        //    activate();
-        //    startActive = false;
-        //}
     }
 
     void FixedUpdate()
@@ -155,7 +148,7 @@ public class Enemy : Triggerable
     IEnumerator waiter(float s)
     {
         yield return new WaitForSeconds(s);
-        if (_attacking = true)
+        if (_attacking)
             gameOver();
     }
 
