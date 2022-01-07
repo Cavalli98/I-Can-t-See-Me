@@ -26,6 +26,7 @@ public class MovingRoad : Triggerable
     private Vector3 pivot;
     private float _rotation;
     private float _increment;
+    private Rigidbody2D _rb;
 
     private bool _ripartito;
     private Vector3 _tempEndPosition;
@@ -37,6 +38,7 @@ public class MovingRoad : Triggerable
         //startX = transform.position.x;
         //startPosition = new Vector3(startX, transform.position.y, transform.position.z);
         //endPosition = new Vector3(endX, transform.position.y, transform.position.z);
+        _rb = GetComponent<Rigidbody2D>();
         startPosition = startObj.position;
         endPosition = endObj.position;
         _hasRotated = false;
@@ -148,11 +150,12 @@ public class MovingRoad : Triggerable
         _t += Time.deltaTime * speed;
         transform.position = Vector3.Lerp(startPosition, endPosition, _t);
 
-        Debug.Log("Moving");
 
-        if ((leftObj.ritorna || rightObj.ritorna) && !_ripartito)
+        //Debug.Log("Moving");
+
+        if (((leftObj.ritorna && startPosition.x > endPosition.x) || (rightObj.ritorna && startPosition.x < endPosition.x)) && !_ripartito)
         {
-            Debug.Log("Dovrebbe Ripartire");
+            //Debug.Log("Dovrebbe Ripartire");
             _ripartito = true;
             _tempEndPosition = endPosition;
             _tempStartPosition = startPosition;
@@ -163,7 +166,7 @@ public class MovingRoad : Triggerable
             leftObj.collided = !leftObj.collided;
             rightObj.collided = !rightObj.collided;
             _t = 0;
-            Debug.Log("" + (leftObj.collided) + (startPosition.x < endPosition.x) + (rightObj.collided) + (startPosition.x > endPosition.x));
+            //Debug.Log("" + (leftObj.collided) + (startPosition.x < endPosition.x) + (rightObj.collided) + (startPosition.x > endPosition.x));
         }
             
 
@@ -172,7 +175,7 @@ public class MovingRoad : Triggerable
         {
             if (!leftObj.ritorna && !rightObj.ritorna)
             {
-                Debug.Log("Dobrebbe essere arrivato");
+                //Debug.Log("Dobrebbe essere arrivato");
                 var end = endPosition;
                 var start = startPosition;
                 startPosition = end;
@@ -182,7 +185,7 @@ public class MovingRoad : Triggerable
             }
             else
             {
-                Debug.Log("Dovrebbe essere ritornato");
+                //Debug.Log("Dovrebbe essere ritornato");
                 startPosition = _tempStartPosition;
                 endPosition = _tempEndPosition;
                 _ripartito = false;

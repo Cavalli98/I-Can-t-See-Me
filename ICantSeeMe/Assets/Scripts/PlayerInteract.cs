@@ -16,6 +16,7 @@ public class PlayerInteract : MonoBehaviourPun
 
     void Update()
     {
+        //Debug.Log(isColliding);
         if (photonView.IsMine == false)
         {
             return;
@@ -30,7 +31,23 @@ public class PlayerInteract : MonoBehaviourPun
         }
     }
 
-    private void OnTriggerEnter2D(Collider2D collider)
+    //private void OnTriggerEnter2D(Collider2D collider)
+    //{
+
+    //    Debug.Log(collider);
+    //    if (photonView.IsMine == false)
+    //    {
+    //        return;
+    //    }
+
+    //    if (collider.tag != "Trigger")
+    //    {
+    //        return;
+    //    }
+    //    isColliding = true;
+    //    colliderObj = collider.gameObject;
+    //}
+    private void OnTriggerStay2D(Collider2D collider)
     {
         if (photonView.IsMine == false)
         {
@@ -38,12 +55,12 @@ public class PlayerInteract : MonoBehaviourPun
         }
 
         if (collider.tag != "Trigger")
+        {
             return;
-        
+        }
         isColliding = true;
         colliderObj = collider.gameObject;
     }
-
     private void OnTriggerExit2D(Collider2D collider)
     {
         if (photonView.IsMine == false)

@@ -33,11 +33,13 @@ public class Lever : Trigger
 
     void FixedUpdate()
     {
-        if (isActive && isTimed) {
-            lever_arm.position = Vector2.MoveTowards(lever_arm.position, arm_path[current_point].position, speed_linear*Time.deltaTime);
-            lever_arm.Rotate(Vector3.forward*speed_angular*Time.deltaTime);
+        if (isActive && isTimed)
+        {
+            lever_arm.position = Vector2.MoveTowards(lever_arm.position, arm_path[current_point].position, speed_linear * Time.deltaTime);
+            lever_arm.Rotate(Vector3.forward * speed_angular * Time.deltaTime);
 
-            if (lever_arm.position == arm_path[current_point].position) {
+            if (lever_arm.position == arm_path[current_point].position)
+            {
                 if (current_point == 0)
                     isActive = false;
                 else current_point--;
@@ -45,10 +47,11 @@ public class Lever : Trigger
         }
     }
 
-   [PunRPC]
+    [PunRPC]
     public override void trigger()
     {
-        if (!isTimed) {
+        if (!isTimed)
+        {
             if (!isActive)
             {
                 GetComponent<SpriteRenderer>().sprite = activated;
@@ -60,11 +63,14 @@ public class Lever : Trigger
                 GetComponent<SpriteRenderer>().sprite = deactivated;
                 isActive = false;
             }
-            
+
             foreach (GameObject t in toActivate)
                 t.GetComponent<Triggerable>().activate();
-        } else {
-            if (!isActive) {
+        }
+        else
+        {
+            if (!isActive)
+            {
                 isActive = true;
                 lever_arm.position = arm_path[4].position;
                 lever_arm.rotation = arm_path[4].rotation;
@@ -80,23 +86,24 @@ public class Lever : Trigger
     {
         float distance = 0.0f;
         float angular_distance = 0.0f;
-        for (int i = 0; i < arm_path.Length-1; i++) {
-            distance += Vector3.Distance(arm_path[i].position, arm_path[i+1].position);
+        for (int i = 0; i < arm_path.Length - 1; i++)
+        {
+            distance += Vector3.Distance(arm_path[i].position, arm_path[i + 1].position);
         }
-        angular_distance = Mathf.DeltaAngle(arm_path[arm_path.Length-1].eulerAngles.z, arm_path[0].eulerAngles.z);
+        angular_distance = Mathf.DeltaAngle(arm_path[arm_path.Length - 1].eulerAngles.z, arm_path[0].eulerAngles.z);
 
-        speed_linear = distance/desired_duration;
-        speed_angular = angular_distance/desired_duration;
+        speed_linear = distance / desired_duration;
+        speed_angular = angular_distance / desired_duration;
     }
-    
+
     // to print stuff every s seconds
     private void PrintStuff(float s)
     {
         timePassed += Time.deltaTime;
-        if(timePassed > s)
+        if (timePassed > s)
         {
-            print("isActive= "+isActive+"  speed_angular= "+speed_angular+"  lever_arm.eulerAngles"+lever_arm.eulerAngles);
-            timePassed=0f;
-        } 
+            print("isActive= " + isActive + "  speed_angular= " + speed_angular + "  lever_arm.eulerAngles" + lever_arm.eulerAngles);
+            timePassed = 0f;
+        }
     }
 }
