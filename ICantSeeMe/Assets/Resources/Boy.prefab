@@ -179,6 +179,7 @@ MonoBehaviour:
   observableSearch: 2
   ObservedComponents:
   - {fileID: 8165061809215368331}
+  - {fileID: -8783747119648336641}
   sceneViewId: 0
   InstantiationId: 0
   isRuntimeInstantiated: 0
@@ -243,5 +244,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ShowLayerWeightsInspector: 1
   ShowParameterInspector: 1
-  m_SynchronizeParameters: []
-  m_SynchronizeLayers: []
+  m_SynchronizeParameters:
+  - Type: 4
+    SynchronizeType: 0
+    Name: climbing
+  - Type: 4
+    SynchronizeType: 0
+    Name: climbStill
+  - Type: 1
+    SynchronizeType: 0
+    Name: moving
+  m_SynchronizeLayers:
+  - SynchronizeType: 0
+    LayerIndex: 0
