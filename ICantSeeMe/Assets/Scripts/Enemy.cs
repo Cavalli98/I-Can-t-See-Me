@@ -22,7 +22,7 @@ public class Enemy : Triggerable
     //private bool reached_jogTarget = false;
     private Range _range;
     private float _prevX;
-    private int _direction;
+    public int _direction;
     private bool _attacking = false;
     private Coroutine _coroutine;
     public const byte gameOverEvent = 1;
@@ -41,6 +41,16 @@ public class Enemy : Triggerable
             jogTarget = path[0].transform;
         animator.SetBool("activated", activated);
 
+        if (!activated)
+        {
+            _rb.bodyType = RigidbodyType2D.Static;
+            _bc.isTrigger = true;
+        }
+        else
+        {
+            _rb.bodyType = RigidbodyType2D.Dynamic;
+            _bc.isTrigger = false;
+        }
     }
 
     void Update()
@@ -56,6 +66,7 @@ public class Enemy : Triggerable
 
         if (_attacking)
             return;
+        
 
         setRange();
 
@@ -71,8 +82,10 @@ public class Enemy : Triggerable
 
     private void setRange()
     {
-        _direction = (_prevX < transform.position.x) ? 1 : -1;
-        _range.setColliderOffset(_direction);
+        if (Target == null) _direction = (jogTarget.position.x < transform.position.x) ? -1 : 1;
+        else _direction = (_prevX < transform.position.x) ? 1 : -1;
+        float newSize = (Mathf.Abs(transform.position.x - jogTarget.position.x)+1.0f)/(_range.getXScale()*transform.localScale.x);
+        _range.setOffsetAndSize(newSize, _direction);
         _prevX = transform.position.x;
     }
 
@@ -86,7 +99,7 @@ public class Enemy : Triggerable
     {
         speed = speed_jog;
         transform.position = Vector2.MoveTowards(transform.position, new Vector2(jogTarget.position.x, transform.position.y), speed * Time.deltaTime);
-        if (jogTarget.position.x == transform.position.x)
+        if (Mathf.Abs(jogTarget.position.x-transform.position.x) < speed*Time.deltaTime)
             updateJogTarget();
     }
 
@@ -106,7 +119,6 @@ public class Enemy : Triggerable
         {
             _rb.bodyType = RigidbodyType2D.Static;
             _bc.isTrigger = true;
-            _direction = 0;
         }
         else
         {

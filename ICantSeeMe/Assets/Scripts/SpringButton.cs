@@ -58,7 +58,6 @@ public class SpringButton : Trigger
             foreach (Vector2 point in _pointsToOverlap) {
                 if (collision.OverlapPoint(point))
                 {
-                    // Collided with a surface facing mostly upwards
                     PhotonView.Get(this).RPC("trigger", RpcTarget.All, null);
                     break;
                 }
@@ -83,7 +82,6 @@ public class SpringButton : Trigger
             foreach (Vector2 point in _pointsToOverlap) {
                 if (collision.OverlapPoint(point))
                 {
-                    // Collided with a surface facing mostly upwards
                     PhotonView.Get(this).RPC("trigger", RpcTarget.All, null);
                     break;
                 }

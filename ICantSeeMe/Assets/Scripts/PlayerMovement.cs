@@ -52,6 +52,7 @@ public class PlayerMovement : MonoBehaviourPun, IOnEventCallback
     private bool _facingRight = true;
     private bool _gameOver = false;
     private bool _hasMagicSword = false;
+    private bool _talking = false;
 
     // for climbing
     private bool _isCloseToLadder = false, 
@@ -98,7 +99,7 @@ public class PlayerMovement : MonoBehaviourPun, IOnEventCallback
             return;
         _gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
 
-        if (PhotonNetwork.CurrentRoom.CustomProperties.ContainsKey("MagicSword"))
+        if (PhotonNetwork.CurrentRoom.CustomProperties.ContainsKey("MagicSword") && this.name == "Girl")
             _hasMagicSword = (bool) PhotonNetwork.CurrentRoom.CustomProperties["MagicSword"];
         if (_hasMagicSword)
             animator.SetBool("hasSword", _hasMagicSword);
@@ -112,7 +113,7 @@ public class PlayerMovement : MonoBehaviourPun, IOnEventCallback
             return;
         }
 
-        if (_gameOver) {
+        if (_gameOver || _talking) {
             return;
         }
 
@@ -163,7 +164,7 @@ public class PlayerMovement : MonoBehaviourPun, IOnEventCallback
             return;
         }
 
-        if (_gameOver) {
+        if (_gameOver || _talking) {
             return;
         }
 
@@ -322,12 +323,18 @@ public class PlayerMovement : MonoBehaviourPun, IOnEventCallback
         PhotonNetwork.RemoveCallbackTarget(this);
     }
 
-    private void talkWithStranger()
+    public void talkWithStranger(bool talking)
     {
-        _hasMagicSword = true;
-        animator.SetBool("hasSword", _hasMagicSword);
-
-        Hashtable entries = new Hashtable { { "MagicSword", _hasMagicSword } };
-        PhotonNetwork.CurrentRoom.SetCustomProperties(entries);
+        _hasMagicSword = !talking;
+        _talking = talking;
+        
+        if (talking)
+            animator.SetFloat("moving", 0.0f);
+        else
+        {
+            animator.SetBool("hasSword", _hasMagicSword);
+            Hashtable entries = new Hashtable { { "MagicSword", _hasMagicSword } };
+            PhotonNetwork.CurrentRoom.SetCustomProperties(entries);
+        }
     }
 }

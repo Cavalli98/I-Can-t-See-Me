@@ -34,6 +34,17 @@ public class RollableObject : Triggerable
         }
     }
 
+    public override void activate(float f)
+    {
+        if (_stop) return;
+        
+        changeTarget();
+        if(!_isMoving) {
+            StartCoroutine(Rotate());
+            if (oneTime) _stop = true;
+        }
+    }
+
     private void changeTarget()
     {
         targetRotation = (targetRotation == endRotation) ? startRotation : endRotation;
@@ -43,9 +54,8 @@ public class RollableObject : Triggerable
     IEnumerator Rotate()
     {
         _isMoving = true;
-        Vector3 closeEnough = new Vector3(0, 0, 0.1f);
 
-        while (Vector3.Distance(transform.eulerAngles, targetRotation) > speed*Time.deltaTime)
+        while (Mathf.Abs(Mathf.DeltaAngle(transform.eulerAngles.z, targetRotation.z)) > speed*Time.deltaTime)
         {
             transform.RotateAround(pivot.position, Vector3.forward, _dir*speed*Time.deltaTime);
             yield return null;

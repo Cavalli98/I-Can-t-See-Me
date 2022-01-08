@@ -11,6 +11,8 @@ public class Door : Triggerable
     private bool isTriggered = false;
     public bool isOpen;
     public bool isColliding = false;
+    public bool oneTime = false;
+    private bool _stop = false;
     //   public EventTrigger trigger;
 
     private void Awake()
@@ -34,6 +36,12 @@ public class Door : Triggerable
     }
     public override void activate()
     {
+        if (_stop)
+            return;
+
+        if (oneTime)
+            _stop = true;
+
         if (!isOpen)
         {
             GetComponent<SpriteRenderer>().sprite = open;

@@ -18,7 +18,23 @@ public class Range : MonoBehaviour
 
     public void setColliderOffset(int dir)
     {
-        _box.offset = new Vector2(dir*_colliderDimension/2, 0);
+        _box.offset = new Vector2(dir*_box.size.x/2, 0);
+    }
+
+    public void setColliderSize(float size)
+    {
+        _box.size = new Vector2(size, _box.size.y);
+    }
+
+    public void setOffsetAndSize(float size, int dir)
+    {
+        _box.offset = new Vector2(dir*size/2, 0);
+        _box.size = new Vector2(size, _box.size.y);
+    }
+
+    public float getXScale()
+    {
+        return transform.localScale.x;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

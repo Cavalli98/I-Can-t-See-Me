@@ -34,7 +34,7 @@ public class TutorialMessages : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetButtonDown("Jump"))// Space Click to move forward
+        if (Input.GetKeyDown(KeyCode.E))// Space Click to move forward
         { 
             CurrentMessageIndex++;
             tutorialText.text = Messages[CurrentMessageIndex];

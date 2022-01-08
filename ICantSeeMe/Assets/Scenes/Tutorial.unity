@@ -1033,11 +1033,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a0825b3047706ec4da19c80a5eb40ccf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fromTrigger: {fileID: 0}
-  isUp: 0
-  startY: 0
-  endY: 0
   speed: 0
+  startObj: {fileID: 0}
+  endObj: {fileID: 0}
 --- !u!1 &1538055410
 GameObject:
   m_ObjectHideFlags: 0
@@ -1190,7 +1188,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Press space to continue...
+  m_Text: Press E to continue...
 --- !u!222 &1587651979
 CanvasRenderer:
   m_ObjectHideFlags: 0
