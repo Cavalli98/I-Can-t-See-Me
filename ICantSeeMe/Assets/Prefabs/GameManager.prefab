@@ -47,6 +47,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerBoy: {fileID: 411636123704206054, guid: 48d7717d0d34b4d49a3be193d14fda42, type: 3}
   playerGirl: {fileID: 4831168149764279899, guid: 0fcf925ff6bf057468a0a82660b29984, type: 3}
+  gameOverScreen: {fileID: 0}
+  ghostBoy: {fileID: 3259315661189023553, guid: 44d36e5c6343ca64d8ae9bc5582fca73, type: 3}
+  ghostGirl: {fileID: 3259315661189023553, guid: 1efe9c1401c11df40bf614abd90e5414, type: 3}
   spawnPointBoy: {fileID: 0}
   spawnPointGirl: {fileID: 0}
 --- !u!114 &5349172286083726096
@@ -61,6 +64,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 365ae505a65e77f4080217494b3e0456, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  player1: {x: 0, y: 0}
+  player2: {x: 0, y: 0}
 --- !u!114 &-4990528336867305747
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -73,3 +78,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 648bdf02d5d1b8f4dba65e78aa31c46f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  BoyExitDoor: {fileID: 0}
+  GirlExitDoor: {fileID: 0}
+  NextLevel: 

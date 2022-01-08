@@ -1,6 +1,7 @@
 using UnityEngine;
 using Photon;
 using Photon.Pun;
+using UnityEngine.Audio;
 
 [System.Serializable]
 public class Sound
@@ -31,8 +32,8 @@ public class Sound
 
     public void Play()
     {
-        source.volume = volume * (1 + Random.Range(-randomVolume / 2f, randomVolume / 2f));
-        source.pitch = pitch * (1 + Random.Range(-randomPitch / 2f, randomPitch / 2f));
+        //source.volume = volume * (1 + Random.Range(-randomVolume / 2f, randomVolume / 2f));
+        //source.pitch = pitch * (1 + Random.Range(-randomPitch / 2f, randomPitch / 2f));
         source.Play();
     }
 }
@@ -45,8 +46,7 @@ public class AudioManager : MonoBehaviourPun
     Sound[] sounds;
     public AudioSource musicSource;
     public AudioSource soundsSource;
-
-
+    
     private void Awake()
     {
         if (instance != null)
@@ -56,6 +56,16 @@ public class AudioManager : MonoBehaviourPun
         else
         {
             instance = this;
+        }
+    }
+
+    private void Start()
+    {
+        for(int i = 0; i< sounds.Length; i++)
+        {
+            GameObject _go = new GameObject("Sound_" + i + "_" + sounds[i].name);
+            sounds[i].SetSource(_go.AddComponent<AudioSource>());
+            //sounds[i].outputAudioMixerGroup = 
         }
     }
 
@@ -75,8 +85,8 @@ public class AudioManager : MonoBehaviourPun
                 else
                 {
                     //soundsSource.volume = sounds[i].volume * (1 + Random.Range(-sounds[i].randomVolume / 2f, sounds[i].randomVolume / 2f));
-                    soundsSource.pitch = sounds[i].pitch * (1 + Random.Range(-sounds[i].randomPitch / 2f, sounds[i].randomPitch / 2f));
-
+                    //soundsSource.pitch = sounds[i].pitch * (1 + Random.Range(-sounds[i].randomPitch / 2f, sounds[i].randomPitch / 2f));
+                    //sounds[i].Play();
                     soundsSource.clip = sounds[i].clip;
                     soundsSource.Play();
                     return;
@@ -99,8 +109,7 @@ public class AudioManager : MonoBehaviourPun
         {
             if (sounds[i].name == _name)
             {
-                musicSource.clip = sounds[i].clip;
-                musicSource.Stop();
+                soundsSource.Stop();
                 return;
             }
         }
@@ -118,14 +127,14 @@ public class AudioManager : MonoBehaviourPun
         {
             if (sounds[i].name == _name)
             {
-                musicSource.clip = sounds[i].clip;
-                musicSource.loop = true;
+                soundsSource.loop = true;
                 return;
             }
         }
         // no sound with _name
         Debug.LogWarning("AudioManager: Sound not found in list, " + _name);
     }
+
     [PunRPC]
     public void StopLoopSound(string _name)
     {
@@ -133,8 +142,7 @@ public class AudioManager : MonoBehaviourPun
         {
             if (sounds[i].name == _name)
             {
-                musicSource.clip = sounds[i].clip;
-                musicSource.loop = false;
+                soundsSource.loop = false;
                 return;
             }
         }

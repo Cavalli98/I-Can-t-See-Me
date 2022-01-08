@@ -67,7 +67,7 @@ MonoBehaviour:
   speed: 0.4
   startObj: {fileID: 764075580631690371}
   endObj: {fileID: 9119730202695319061}
-  Sound: 
+  Sound: elevator
 --- !u!114 &5178532997657868277
 MonoBehaviour:
   m_ObjectHideFlags: 0
