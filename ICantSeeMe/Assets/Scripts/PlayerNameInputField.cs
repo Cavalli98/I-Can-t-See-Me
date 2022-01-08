@@ -10,6 +10,8 @@ using System.Collections;
 [RequireComponent(typeof(InputField))]
 public class PlayerNameInputField : MonoBehaviour
 {
+    public InputField RoomName;
+
     #region Private Constants
 
 
@@ -36,6 +38,7 @@ public class PlayerNameInputField : MonoBehaviour
             {
                 defaultName = PlayerPrefs.GetString(playerNamePrefKey);
                 _inputField.text = defaultName;
+                RoomName.text = defaultName;
             }
         }
 
@@ -62,9 +65,8 @@ public class PlayerNameInputField : MonoBehaviour
             return;
         }
         PhotonNetwork.NickName = value;
-
-
         PlayerPrefs.SetString(playerNamePrefKey, value);
+        RoomName.text = value;
     }
 
 

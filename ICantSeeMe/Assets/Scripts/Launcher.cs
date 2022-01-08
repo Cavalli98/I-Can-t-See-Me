@@ -30,7 +30,13 @@ public class Launcher : MonoBehaviourPunCallbacks
     private InputField joinRoomPassword;
 
     [SerializeField]
+    private InputField createRoomName;
+
+    [SerializeField]
     private InputField createRoomPassword;
+
+    [SerializeField]
+    private Text ErrorText;
 
     [SerializeField]
     private UIManager uiManager;
@@ -57,10 +63,10 @@ public class Launcher : MonoBehaviourPunCallbacks
     // Bool to check if player joining player is also the creator
     private bool _isCreator;
 
-    // Room Number
-    private string roomNumber;
+    // Room Name
+    private string roomName;
 
-    //Room pass
+    //Room Pass
     private string roomPass;
 
     #endregion
@@ -76,6 +82,7 @@ public class Launcher : MonoBehaviourPunCallbacks
         // this makes sure we can use PhotonNetwork.LoadLevel() on the master client and all clients in the same room sync their level automatically
         PhotonNetwork.AutomaticallySyncScene = true;
         _isCreator = false;
+        ErrorText.text = "";
     }
 
     /// <summary>
@@ -83,7 +90,7 @@ public class Launcher : MonoBehaviourPunCallbacks
     /// </summary>
     void Start()
     {
-        
+           
     }
 
     #endregion
@@ -129,27 +136,27 @@ public class Launcher : MonoBehaviourPunCallbacks
 
     public void CreateRoom()
     {
+        roomName = createRoomName.text;
         roomPass = createRoomPassword.text;
         // If room password field is not empty, creates a room
-        if (!string.IsNullOrEmpty(roomPass))
+        if (!string.IsNullOrEmpty(roomPass) && !string.IsNullOrEmpty(roomPass))
         {
             _isCreator = true;
-            roomNumber = Random.Range(1000, 9999).ToString();
             //string roomNumber = "1234";
-            PlayerPrefs.SetString(roomNumberPrefKey, roomNumber);
-            PhotonNetwork.CreateRoom(roomNumber + roomPass, new RoomOptions { MaxPlayers = maxPlayersPerRoom });
+            PlayerPrefs.SetString(roomNumberPrefKey, roomName);
+            PhotonNetwork.CreateRoom(roomName, new RoomOptions { MaxPlayers = maxPlayersPerRoom });
         }
     }
 
     public void JoinRoom()
     {
-        roomNumber = joinRoomNumber.text;
+        roomName = joinRoomNumber.text;
         roomPass = joinRoomPassword.text;
         // If room number and password fields are not empty, creates a room
-        if (!string.IsNullOrEmpty(roomNumber) && !string.IsNullOrEmpty(roomPass))
+        if (!string.IsNullOrEmpty(roomName) && !string.IsNullOrEmpty(roomPass))
         {
             _isCreator = false;
-            PhotonNetwork.JoinRoom(roomNumber + roomPass);
+            PhotonNetwork.JoinRoom(roomName + roomPass);
         }
     }
 
@@ -159,7 +166,7 @@ public class Launcher : MonoBehaviourPunCallbacks
 
     private void SetRoomNumberProperty()
     {
-        Hashtable entries = new Hashtable { { "RoomNumber", roomNumber } };
+        Hashtable entries = new Hashtable { { "RoomNumber", roomName } };
         PhotonNetwork.CurrentRoom.SetCustomProperties(entries);
     }
 
@@ -195,8 +202,7 @@ public class Launcher : MonoBehaviourPunCallbacks
     {
         Debug.Log("OnCreateRoomFailed(). Name already exists. Generating other number...");
 
-        //Try with another number
-        CreateRoom();
+        ErrorText.text = "Room name already in use.Try another name.";
     }
 
     public override void OnJoinRoomFailed(short returnCode, string message)
