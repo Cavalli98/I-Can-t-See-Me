@@ -3,6 +3,7 @@ using Photon.Pun;
 using Photon.Realtime;
 using UnityEngine.UI;
 using ExitGames.Client.Photon;
+using System.Collections.Generic;
 
 public class Launcher : MonoBehaviourPunCallbacks
 {
