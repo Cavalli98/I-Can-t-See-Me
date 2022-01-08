@@ -89,7 +89,8 @@ public class pauseMenu : MonoBehaviourPun
     public void LoadMenu()
     {
         Time.timeScale = 1f;
-        Load(launcher);
+        PhotonNetwork.LeaveRoom();
+        //Load(launcher);
     }
     public void Save()
     {

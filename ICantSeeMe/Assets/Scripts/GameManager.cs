@@ -39,14 +39,14 @@ public class GameManager : MonoBehaviourPunCallbacks
         }
     }
 
-    private void ReturnToLobby()
+    private void ReturnToMenu()
     {
         if (!PhotonNetwork.IsMasterClient)
         {
             Debug.LogError("PhotonNetwork : Trying to Load a level but we are not the master Client");
         }
         Debug.LogFormat("PhotonNetwork : Loading Lobby");
-        PhotonNetwork.LoadLevel("Lobby");
+        PhotonNetwork.LoadLevel("Launcher");
     }    
 
     #endregion
@@ -58,7 +58,7 @@ public class GameManager : MonoBehaviourPunCallbacks
     /// </summary>
     public override void OnLeftRoom()
     {
-        SceneManager.LoadScene(0);
+        SceneManager.LoadScene("Launcher");
     }
 
     public override void OnPlayerLeftRoom(Player other)
@@ -71,7 +71,7 @@ public class GameManager : MonoBehaviourPunCallbacks
             Debug.LogFormat("OnPlayerLeftRoom IsMasterClient {0}", PhotonNetwork.IsMasterClient); // called before OnPlayerLeftRoom
 
 
-            ReturnToLobby();
+            ReturnToMenu();
         }
     }
 
