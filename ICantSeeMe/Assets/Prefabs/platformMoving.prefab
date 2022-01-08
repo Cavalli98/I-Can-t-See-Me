@@ -15,6 +15,7 @@ MonoBehaviour:
   speed: 2
   startObj: {fileID: 7578701165662977597}
   endObj: {fileID: 7578701165542026429}
+  Sound: elevator
 --- !u!114 &7578701164671577437
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -30,6 +31,7 @@ MonoBehaviour:
   speed: 2
   startObj: {fileID: 7578701164727351104}
   endObj: {fileID: 7578701165188556721}
+  Sound: NessunSuono
 --- !u!1 &7578701164727351111
 GameObject:
   m_ObjectHideFlags: 0

@@ -155,6 +155,9 @@ MonoBehaviour:
   activated: 0
   animator: {fileID: 3708184028329760878}
   oneTime: 0
+  _direction: 0
+  attackSound: attacking minotaur
+  sleepSound: sleeping minotaur
 --- !u!95 &3708184028329760878
 Animator:
   serializedVersion: 3

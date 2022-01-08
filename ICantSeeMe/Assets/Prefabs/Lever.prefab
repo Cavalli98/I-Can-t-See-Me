@@ -132,6 +132,7 @@ MonoBehaviour:
   lever_arm: {fileID: 0}
   desired_duration: 5
   leverSound: lever
+  timedLeverSound: timed stuff
 --- !u!114 &-1516294554932091714
 MonoBehaviour:
   m_ObjectHideFlags: 0

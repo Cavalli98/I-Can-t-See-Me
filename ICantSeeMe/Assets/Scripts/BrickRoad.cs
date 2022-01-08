@@ -12,6 +12,7 @@ public class BrickRoad : Triggerable
     private Vector3 endPosition;
     private Vector3 startPosition;
 
+    public string Sound;
 
     private void Awake()
     {
@@ -26,6 +27,8 @@ public class BrickRoad : Triggerable
       
         if (_hasToMove)
         {
+            AudioManager.instance.RpcPlaySound(Sound);
+            AudioManager.instance.RpcLoopSound(Sound);
             // Moves the object to target position
             _t += Time.deltaTime * speed;
             transform.position = Vector3.Lerp(startPosition, endPosition, _t);
@@ -33,6 +36,8 @@ public class BrickRoad : Triggerable
             // Flip the points once it has reached the target
             if (_t >= 1)
             {
+                AudioManager.instance.RpcStopLoopSound(Sound);
+                AudioManager.instance.RpcStopSound(Sound);
                 var end = endPosition;
                 var start = startPosition;
                 startPosition = end;

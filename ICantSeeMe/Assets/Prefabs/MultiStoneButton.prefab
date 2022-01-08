@@ -226,6 +226,7 @@ MonoBehaviour:
   other: {fileID: 0}
   seconds: 0
   text: {fileID: 5037931765003277457}
+  Sound: button
 --- !u!1 &3982591567832184800
 GameObject:
   m_ObjectHideFlags: 0

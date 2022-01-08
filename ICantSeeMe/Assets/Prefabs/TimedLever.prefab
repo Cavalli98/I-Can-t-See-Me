@@ -207,6 +207,8 @@ MonoBehaviour:
   - {fileID: 2858679727800109017}
   lever_arm: {fileID: 2858679727883643402}
   desired_duration: 5
+  leverSound: lever
+  timedLeverSound: timed stuff
 --- !u!61 &2858679728063440195
 BoxCollider2D:
   m_ObjectHideFlags: 0

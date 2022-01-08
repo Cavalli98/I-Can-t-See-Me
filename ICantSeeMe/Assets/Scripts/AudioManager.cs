@@ -104,6 +104,8 @@ public class AudioManager : MonoBehaviourPun
                 return;
             }
         }
+        // no sound with _name
+        Debug.LogWarning("AudioManager: Sound not found in list, " + _name);
     }
     public void RpcStopSound(string _name)
     {
@@ -121,6 +123,8 @@ public class AudioManager : MonoBehaviourPun
                 return;
             }
         }
+        // no sound with _name
+        Debug.LogWarning("AudioManager: Sound not found in list, " + _name);
     }
     [PunRPC]
     public void StopLoopSound(string _name)
@@ -134,6 +138,8 @@ public class AudioManager : MonoBehaviourPun
                 return;
             }
         }
+        // no sound with _name
+        Debug.LogWarning("AudioManager: Sound not found in list, " + _name);
     }
     public void RpcLoopSound(string _name)
     {

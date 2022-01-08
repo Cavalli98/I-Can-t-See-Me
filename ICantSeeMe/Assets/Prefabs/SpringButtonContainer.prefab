@@ -95,6 +95,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   toActivate: []
+  Sound: press plate
 --- !u!1 &945624709214851125
 GameObject:
   m_ObjectHideFlags: 0

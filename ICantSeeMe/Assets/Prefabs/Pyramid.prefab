@@ -173,6 +173,7 @@ MonoBehaviour:
   toActivate: []
   face: 0
   father: {fileID: 0}
+  Sound: pyramid
 --- !u!61 &4875610801608412996
 BoxCollider2D:
   m_ObjectHideFlags: 0

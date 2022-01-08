@@ -123,7 +123,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ab0e0b9c31c6e654fb817a800286107a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  toActivate: {fileID: 0}
+  toActivate:
+  - {fileID: 0}
+  Sound: button
 --- !u!114 &-1330871275280280403
 MonoBehaviour:
   m_ObjectHideFlags: 0
