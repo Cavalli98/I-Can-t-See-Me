@@ -14,7 +14,7 @@ public class Door : Triggerable
     public bool oneTime = false;
     private bool _stop = false;
     //   public EventTrigger trigger;
-
+    public string Sound;
     private void Awake()
     {
         isTriggered = false;
@@ -44,11 +44,13 @@ public class Door : Triggerable
 
         if (!isOpen)
         {
+            AudioManager.instance.RpcPlaySound(Sound);
             GetComponent<SpriteRenderer>().sprite = open;
             isOpen = true;
         }
         else if (isOpen)
         {
+            AudioManager.instance.RpcPlaySound(Sound);
             GetComponent<SpriteRenderer>().sprite = closed;
             isOpen = false;
         }

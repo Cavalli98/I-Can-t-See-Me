@@ -29,6 +29,8 @@ public class Enemy : Triggerable
     private Rigidbody2D _rb;
     private BoxCollider2D _bc;
 
+    public string attackSound;
+    public string sleepSound;
     void Start()
     {
         _rb = GetComponent<Rigidbody2D>();
@@ -40,11 +42,12 @@ public class Enemy : Triggerable
         if (path_maxCount != 0)
             jogTarget = path[0].transform;
         animator.SetBool("activated", activated);
-
         if (!activated)
         {
             _rb.bodyType = RigidbodyType2D.Static;
             _bc.isTrigger = true;
+            AudioManager.instance.RpcPlaySound(sleepSound);
+            AudioManager.instance.RpcLoopSound(sleepSound);
         }
         else
         {
@@ -66,7 +69,7 @@ public class Enemy : Triggerable
 
         if (_attacking)
             return;
-        
+
 
         setRange();
 
@@ -84,7 +87,7 @@ public class Enemy : Triggerable
     {
         if (Target == null) _direction = (jogTarget.position.x < transform.position.x) ? -1 : 1;
         else _direction = (_prevX < transform.position.x) ? 1 : -1;
-        float newSize = (Mathf.Abs(transform.position.x - jogTarget.position.x)+1.0f)/(_range.getXScale()*transform.localScale.x);
+        float newSize = (Mathf.Abs(transform.position.x - jogTarget.position.x) + 1.0f) / (_range.getXScale() * transform.localScale.x);
         _range.setOffsetAndSize(newSize, _direction);
         _prevX = transform.position.x;
     }
@@ -99,7 +102,7 @@ public class Enemy : Triggerable
     {
         speed = speed_jog;
         transform.position = Vector2.MoveTowards(transform.position, new Vector2(jogTarget.position.x, transform.position.y), speed * Time.deltaTime);
-        if (Mathf.Abs(jogTarget.position.x-transform.position.x) < speed*Time.deltaTime)
+        if (Mathf.Abs(jogTarget.position.x - transform.position.x) < speed * Time.deltaTime)
             updateJogTarget();
     }
 
@@ -118,12 +121,16 @@ public class Enemy : Triggerable
         if (!activated)
         {
             _rb.bodyType = RigidbodyType2D.Static;
-            _bc.isTrigger = true;
+            _direction = 0;
+            AudioManager.instance.RpcPlaySound(sleepSound);
+            AudioManager.instance.RpcLoopSound(sleepSound);
         }
         else
         {
             _rb.bodyType = RigidbodyType2D.Dynamic;
             _bc.isTrigger = false;
+            AudioManager.instance.RpcStopLoopSound(sleepSound);
+            AudioManager.instance.RpcStopSound(sleepSound);
         }
     }
 
@@ -133,6 +140,7 @@ public class Enemy : Triggerable
         {
             _attacking = true;
             animator.SetBool("attacking", _attacking);
+            AudioManager.instance.RpcPlaySound(attackSound);
             _coroutine = StartCoroutine(waiter(0.4f));
         }
     }

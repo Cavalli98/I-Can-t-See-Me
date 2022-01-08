@@ -9,7 +9,7 @@ public class MultiButton : Trigger
     public int seconds;
     public TextMeshProUGUI text;
     private bool _isTriggered { get; set; }
-
+    public string Sound;
     private void Awake()
     {
         _isTriggered = false;
@@ -33,6 +33,8 @@ public class MultiButton : Trigger
     {
         if (!_isTriggered)
         {
+            AudioManager.instance.RpcPlaySound(Sound);
+            AudioManager.instance.RpcLoopSound(Sound);
             _isTriggered = true;
             //print("Cliccato");
             StartCoroutine(Wait());
@@ -48,6 +50,8 @@ public class MultiButton : Trigger
         }
         text.text = "";
         _isTriggered = false;
+        AudioManager.instance.RpcStopLoopSound(Sound);
+        AudioManager.instance.RpcStopSound(Sound);
         //print("Fine timer");
     }
 }

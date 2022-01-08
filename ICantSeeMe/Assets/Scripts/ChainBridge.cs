@@ -74,6 +74,7 @@ public class ChainBridge : Triggerable
     public Transform endObj;
     private Vector3 endPosition;
     private Vector3 startPosition;
+    public string Sound;
 
 
     private void Awake()
@@ -81,8 +82,8 @@ public class ChainBridge : Triggerable
         _hasToMove = false;
         //startPosition = new Vector3(transform.position.x, startY);
         //endPosition = new Vector3(transform.position.x, endY);
-        startPosition = new Vector3(transform.position.x, startObj.position.y, transform.position.z);
-        endPosition = new Vector3(transform.position.x, endObj.position.y, transform.position.z);
+        startPosition = new Vector3(transform.localPosition.x, startObj.position.y, transform.localPosition.z);
+        endPosition = new Vector3(transform.localPosition.x, endObj.position.y, transform.localPosition.z);
         transform.localPosition = startPosition;
         //Debug.Log("x: " + transform.position.x);
     }
@@ -93,6 +94,9 @@ public class ChainBridge : Triggerable
         //Debug.Log("y: " + transform.position.y);
         if (_hasToMove)
         {
+            AudioManager.instance.RpcPlaySound(Sound);
+            AudioManager.instance.RpcLoopSound(Sound);
+
             _t += Time.deltaTime * speed;
             // Moves the object to target position
             transform.localPosition = Vector3.Lerp(startPosition, endPosition, _t);
@@ -102,6 +106,8 @@ public class ChainBridge : Triggerable
             // Flip the points once it has reached the target
             if (_t >= 1)
             {
+                AudioManager.instance.RpcStopLoopSound(Sound);
+                AudioManager.instance.RpcStopSound(Sound);
                 var end = endPosition;
                 var start = startPosition;
                 startPosition = end;

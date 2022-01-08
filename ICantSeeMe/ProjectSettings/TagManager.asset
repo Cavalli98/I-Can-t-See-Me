@@ -11,6 +11,9 @@ TagManager:
   - Dangerous
   - EnemyPath
   - SpringButton
+  - Border
+  - PyramidTrigger
+  - Enemy
   layers:
   - Default
   - TransparentFX

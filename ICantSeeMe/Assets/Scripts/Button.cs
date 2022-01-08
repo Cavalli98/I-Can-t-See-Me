@@ -6,6 +6,7 @@ using Photon.Pun;
 public class Button : Trigger
 {
     private bool _done;
+    public string Sound;
 
     private void Awake()
     {
@@ -14,7 +15,8 @@ public class Button : Trigger
 
     [PunRPC]
     public override void trigger()
-    {        
+    {
+        AudioManager.instance.RpcPlaySound(Sound);
         foreach (GameObject t in toActivate)
             t.GetComponent<Triggerable>().activate();
     }

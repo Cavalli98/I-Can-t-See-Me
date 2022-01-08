@@ -1,8 +1,10 @@
 using ExitGames.Client.Photon;
 using Photon.Pun;
 using Photon.Realtime;
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
-
+using Hashtable = ExitGames.Client.Photon.Hashtable;
 
 public class PlayerMovement : MonoBehaviourPun, IOnEventCallback
 {
@@ -55,13 +57,16 @@ public class PlayerMovement : MonoBehaviourPun, IOnEventCallback
     private bool _talking = false;
 
     // for climbing
-    private bool _isCloseToLadder = false, 
-                _climbHeld = false, 
+    private bool _isCloseToLadder = false,
+                _climbHeld = false,
                 _hasStartedClimb = false;
     private Transform _ladder;
     public float climbSpeed = 2.0f;
 
     public const byte gameOverEvent = 1;
+
+
+    private bool _minotaurColliding;
 
     private void Awake()
     {
@@ -74,7 +79,7 @@ public class PlayerMovement : MonoBehaviourPun, IOnEventCallback
             Destroy(_boxCollider);
             return;
         }
-        
+
         _spr = GetComponent<SpriteRenderer>();
         _tr = GetComponent<Transform>();
         _scaleFactor = _tr.localScale.x;
@@ -84,9 +89,11 @@ public class PlayerMovement : MonoBehaviourPun, IOnEventCallback
         _playerHeight = _boxCollider.size.y * _scaleFactor;
         _horizontalBoxOffset = _playerWidth * 0.5f + _playerSkin;
         _groundBoxOffset = _playerHeight * 0.5f + _playerSkin;
-        
+
         _groundBoxSize = new Vector2(_playerWidth - _playerSkin, _playerSkin);
         _horizontalBoxSize = new Vector2(_playerSkin, _playerHeight - _playerSkin);
+
+        _minotaurColliding = false;
 
         //Initialize the player facing right
         //_facingRight = true;
@@ -120,10 +127,11 @@ public class PlayerMovement : MonoBehaviourPun, IOnEventCallback
         _horizontalMovement = Input.GetAxisRaw("Horizontal");
         _verticalMovement = Input.GetAxisRaw("Vertical");
 
+
         animator.SetBool("climbing", _climbHeld);
         animator.SetBool("climbStill", _hasStartedClimb);
         animator.SetFloat("moving", _horizontalMovement);
-        
+
         //Player moves right
         if (_horizontalMovement > 0 && !_collidedRight)
         {
@@ -131,7 +139,7 @@ public class PlayerMovement : MonoBehaviourPun, IOnEventCallback
                                 + _horizontalMovement * _tr.right * velocity * Time.deltaTime;
 
             //if (!_facingRight) Flip();
-            
+
         }
 
         //Player moves left
@@ -159,6 +167,7 @@ public class PlayerMovement : MonoBehaviourPun, IOnEventCallback
 
     private void FixedUpdate()
     {
+
         if (photonView.IsMine == false && PhotonNetwork.IsConnected == true)
         {
             return;
@@ -173,7 +182,7 @@ public class PlayerMovement : MonoBehaviourPun, IOnEventCallback
 
         _originRight = _rb.position + Vector2.right * _horizontalBoxOffset;
         _collidedRight = Physics2D.OverlapBox(_originRight, _horizontalBoxSize, 0f, maskObstacle);
-        
+
         _originDown = _rb.position + Vector2.down * _groundBoxOffset;
         _collidedDown = Physics2D.OverlapBox(_originDown, _groundBoxSize, 0f, mask);
 
@@ -191,14 +200,14 @@ public class PlayerMovement : MonoBehaviourPun, IOnEventCallback
         }
 
         // Climbing
-        if(_hasStartedClimb && !_climbHeld)
+        if (_hasStartedClimb && !_climbHeld)
         {
-            if(_horizontalMovement > 0 || _horizontalMovement < 0) ResetClimbing();
+            if (_horizontalMovement > 0 || _horizontalMovement < 0) ResetClimbing();
         }
-        else if(_hasStartedClimb && _climbHeld)
+        else if (_hasStartedClimb && _climbHeld)
         {
-            float halfHeight     = _ladder.GetComponent<BoxCollider2D>().size.y * 0.5f * _ladder.transform.localScale.y;
-            float topHandlerY    = _ladder.transform.position.y + halfHeight;
+            float halfHeight = _ladder.GetComponent<BoxCollider2D>().size.y * 0.5f * _ladder.transform.localScale.y;
+            float topHandlerY = _ladder.transform.position.y + halfHeight;
             float bottomHandlerY = _ladder.transform.position.y - halfHeight;
 
             if (_originDown.y > topHandlerY || _originDown.y < bottomHandlerY)
@@ -226,19 +235,27 @@ public class PlayerMovement : MonoBehaviourPun, IOnEventCallback
 
     private void Climb()
     {
+
         _rb.bodyType = RigidbodyType2D.Kinematic;
         _rb.velocity = new Vector2(0, 0);
         if (!transform.position.x.Equals(_ladder.transform.position.x))
-            transform.position = new Vector3(_ladder.transform.position.x,transform.position.y,transform.position.z);
+            transform.position = new Vector3(_ladder.transform.position.x, transform.position.y, transform.position.z);
 
         Vector3 newPos = Vector3.zero;
-        if (_verticalMovement > 0)
-            newPos = _tr.position + _verticalMovement * _tr.up * climbSpeed * Time.deltaTime;
-        else if(_verticalMovement < 0)
+        if (_verticalMovement > 0 && !_minotaurColliding)
+            newPos = _tr.position + _verticalMovement * _tr.up * climbSpeed * Time.deltaTime * (_minotaurColliding ? 0 : 1);
+        else if (_verticalMovement < 0)
             newPos = _tr.position + _verticalMovement * _tr.up * climbSpeed * Time.deltaTime;
         if (newPos != Vector3.zero) _rb.MovePosition(newPos);
     }
 
+    //private void OnTriggerEnter2D(Collider2D collision)
+    //{
+    //    if (collision.gameObject.tag == "Enemy")
+    //    {
+    //        _minotaurColliding = true;
+    //    }
+    //}
 
     private void OnTriggerStay2D(Collider2D collision)
     {
@@ -247,6 +264,10 @@ public class PlayerMovement : MonoBehaviourPun, IOnEventCallback
             _isCloseToLadder = true;
             this._ladder = collision.transform;
         }
+        //if (collision.gameObject.tag == "Enemy")
+        //{
+        //    _minotaurColliding = true;
+        //}
     }
 
 
@@ -257,12 +278,16 @@ public class PlayerMovement : MonoBehaviourPun, IOnEventCallback
             _isCloseToLadder = false;
             this._ladder = null;
         }
+        //if (collision.gameObject.tag == "Enemy")
+        //{
+        //    _minotaurColliding = false;
+        //}
     }
 
 
     void OnCollisionEnter2D(Collision2D collision)
     {
-     //   print("Collision "+collision.gameObject.tag);
+        //   print("Collision "+collision.gameObject.tag);
         if (collision.gameObject.tag == "Dangerous")
         {
             // Send event to all players
@@ -270,11 +295,32 @@ public class PlayerMovement : MonoBehaviourPun, IOnEventCallback
             RaiseEventOptions raiseEventOptions = new RaiseEventOptions { Receivers = ReceiverGroup.All }; // You would have to set the Receivers to All in order to receive this event on the local client as well
             PhotonNetwork.RaiseEvent(gameOverEvent, content, raiseEventOptions, SendOptions.SendReliable);
         }
+        if (collision.gameObject.tag == "Enemy")
+        {
+            _minotaurColliding = true;
+        }
+    }
+
+    public void OnCollisionStay2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag == "Enemy")
+        {
+            _minotaurColliding = true;
+        }
+    }
+
+    public void OnCollisionExit2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag == "Enemy")
+        {
+  
+            _minotaurColliding = false;
+        }
     }
 
     public void OnEvent(EventData photonEvent)
     {
-      //  print("arrivato un evento player game over");
+        //  print("arrivato un evento player game over");
         if (!photonView.IsMine)
             return;
 
@@ -288,22 +334,22 @@ public class PlayerMovement : MonoBehaviourPun, IOnEventCallback
 
     private void ResetClimbing()
     {
-        if(_hasStartedClimb)
+        if (_hasStartedClimb)
         {
             _hasStartedClimb = false;
             _rb.bodyType = RigidbodyType2D.Dynamic;
         }
     }
-    
+
     // to print stuff every s seconds
     private void PrintStuff(float s)
     {
         timePassed += Time.deltaTime;
-        if(timePassed > s)
+        if (timePassed > s)
         {
             print("");
-            timePassed=0f;
-        } 
+            timePassed = 0f;
+        }
     }
 
     public void GameOver()

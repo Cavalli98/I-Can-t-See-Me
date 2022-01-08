@@ -123,9 +123,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e424f480128ede47a585e898f5c3257, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  toActivate: {fileID: 0}
+  toActivate:
+  - {fileID: 0}
   activated: {fileID: 21300000, guid: 5e89b5370502e8c4daf706dbfeaf462b, type: 3}
   deactivated: {fileID: 21300000, guid: 360ef2931c2454b48900cb3f71b93777, type: 3}
+  isTimed: 0
+  arm_path: []
+  lever_arm: {fileID: 0}
+  desired_duration: 5
+  leverSound: lever
 --- !u!114 &-1516294554932091714
 MonoBehaviour:
   m_ObjectHideFlags: 0

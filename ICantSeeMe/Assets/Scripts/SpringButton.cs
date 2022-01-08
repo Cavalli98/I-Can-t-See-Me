@@ -10,6 +10,8 @@ public class SpringButton : Trigger
     private Vector2[] _pointsToOverlap;
     private BoxCollider2D _box;
 
+    public string Sound;
+
     void Start()
     {
         _box = GetComponent<BoxCollider2D>();
@@ -34,6 +36,7 @@ public class SpringButton : Trigger
     {
         
         if (!_isTriggered) {
+            AudioManager.instance.RpcPlaySound(Sound);
             _isTriggered = true;
             child.transform.localScale = new Vector3(child.transform.localScale.x, 0.45f, child.transform.localScale.z);
             child.transform.position = new Vector3(child.transform.position.x, child.transform.position.y- 0.175f, child.transform.position.z);
@@ -42,6 +45,7 @@ public class SpringButton : Trigger
                 t.GetComponent<Triggerable>().activate();
 
         } else if (_isTriggered) {
+            AudioManager.instance.RpcPlaySound(Sound);
             _isTriggered = false;
             child.transform.localScale = new Vector3(child.transform.localScale.x, 0.75f, child.transform.localScale.z);
             child.transform.position = new Vector3(child.transform.position.x, child.transform.position .y+ 0.175f, child.transform.position.z);

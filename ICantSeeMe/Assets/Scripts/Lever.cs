@@ -19,6 +19,8 @@ public class Lever : Trigger
     private float speed_angular = 0.0f;
     public float desired_duration = 5.0f;
 
+    public string leverSound;
+    public string timedLeverSound;
 
     private void Awake()
     {
@@ -52,6 +54,8 @@ public class Lever : Trigger
     {
         if (!isTimed)
         {
+
+            AudioManager.instance.RpcPlaySound(leverSound);
             if (!isActive)
             {
                 GetComponent<SpriteRenderer>().sprite = activated;
@@ -69,6 +73,7 @@ public class Lever : Trigger
         }
         else
         {
+            AudioManager.instance.RpcPlaySound(timedLeverSound);
             if (!isActive)
             {
                 isActive = true;

@@ -13,6 +13,8 @@ public class Pyramid : Trigger
 
     public PyramidTrigger father;
 
+    public string Sound;
+
     public void Awake()
     {
         face = 0;
@@ -38,6 +40,7 @@ public class Pyramid : Trigger
     public override void trigger()
     {
         _hasToRotate = true;
+        AudioManager.instance.RpcPlaySound(Sound);
         //Debug.Log("piramide attivata");
     }
 

@@ -14,6 +14,7 @@ public class MoveableObject : Triggerable
     private Vector3 startPosition;
     private Vector3 targetPosition;
 
+    public string Sound;
 
     private void Awake()
     {
@@ -43,13 +44,15 @@ public class MoveableObject : Triggerable
     IEnumerator Move()
     {
         _isMoving = true;
-
+        AudioManager.instance.RpcPlaySound(Sound);
+        AudioManager.instance.RpcLoopSound(Sound);
         while (transform.position != targetPosition)
         {
             transform.position = Vector3.MoveTowards(transform.position, targetPosition, speed*Time.deltaTime);
             yield return null;
         }
-
+        AudioManager.instance.RpcStopLoopSound(Sound);
+        AudioManager.instance.RpcStopSound(Sound);
         _isMoving = false;
     }
 }
