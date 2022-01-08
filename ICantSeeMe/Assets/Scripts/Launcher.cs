@@ -58,9 +58,6 @@ public class Launcher : MonoBehaviourPunCallbacks
     /// </summary>
     private bool _isConnecting;
 
-    // Store the RoomNumber Key to avoid typos
-    private const string roomNumberPrefKey = "RoomNumber";
-
     // Bool to check if player joining player is also the creator
     private bool _isCreator;
 
@@ -139,13 +136,17 @@ public class Launcher : MonoBehaviourPunCallbacks
     {
         roomName = createRoomName.text;
         roomPass = createRoomPassword.text;
-        // If room password field is not empty, creates a room
-        if (!string.IsNullOrEmpty(roomPass) && !string.IsNullOrEmpty(roomPass))
+
+        if (string.IsNullOrEmpty(roomName))
+        {
+            ErrorText.text = "Your room must have a name";
+        }
+        else
         {
             _isCreator = true;
-            //string roomNumber = "1234";
-            PlayerPrefs.SetString(roomNumberPrefKey, roomName);
-            PhotonNetwork.CreateRoom(roomName, new RoomOptions { MaxPlayers = maxPlayersPerRoom });
+            RoomOptions roomOptions = new RoomOptions();
+            roomOptions.MaxPlayers = maxPlayersPerRoom;
+            PhotonNetwork.CreateRoom(roomName, roomOptions);
         }
     }
 
@@ -183,13 +184,25 @@ public class Launcher : MonoBehaviourPunCallbacks
         // we don't want to do anything.
         if (_isConnecting)
         {
+            PhotonNetwork.JoinLobby();
             // #Critical: The first we try to do is to join a potential existing room. If there is, good, else, we'll be called back with OnJoinRandomFailed()
             //PhotonNetwork.JoinRandomRoom();
+        }
+        else
+        {
+            uiManager.PlayButton();
+            uiManager.OnConnected();
+        }
+    }
+
+    public override void OnJoinedLobby()
+    {
+        if (_isConnecting)
+        {
             uiManager.OnConnected();
             _isConnecting = false;
         }
     }
-
 
     public override void OnDisconnected(DisconnectCause cause)
     {

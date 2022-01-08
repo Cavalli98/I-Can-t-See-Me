@@ -65,4 +65,15 @@ public class UIManager : MonoBehaviour
         joinPanel.SetActive(false);
         progressLabel.SetActive(true);
     }
+
+    public void BackFromJoinPanel()
+    {
+        joinPanel.SetActive(false);
+        gameOptions.SetActive(true);
+    }
+    public void BackFromCreatePanel()
+    {
+        createPanel.SetActive(false);
+        gameOptions.SetActive(true);
+    }
 }

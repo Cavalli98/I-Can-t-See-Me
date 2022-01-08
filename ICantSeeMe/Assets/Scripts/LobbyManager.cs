@@ -3,6 +3,7 @@ using Photon.Pun;
 using Photon.Realtime;
 using UnityEngine.UI;
 using ExitGames.Client.Photon;
+using UnityEngine.SceneManagement;
 
 public class LobbyManager : MonoBehaviourPunCallbacks
 {
@@ -32,6 +33,30 @@ public class LobbyManager : MonoBehaviourPunCallbacks
         {
             RoomNumber.text = "Room Number: " + (string)propertiesThatChanged["RoomNumber"];
         }
+    }
+
+    public void LeaveRoom()
+    {
+        PhotonNetwork.LeaveRoom();
+    }
+
+    public override void OnLeftRoom()
+    {
+        SceneManager.LoadScene("Launcher");
+    }
+
+    public override void OnPlayerLeftRoom(Player other)
+    {
+        Debug.LogFormat("OnPlayerLeftRoom() {0}", other.NickName); // seen when other disconnects
+
+        LeaveRoom();
+        //if (PhotonNetwork.IsMasterClient)
+        //{
+        //    Debug.LogFormat("OnPlayerLeftRoom IsMasterClient {0}", PhotonNetwork.IsMasterClient); // called before OnPlayerLeftRoom
+
+
+        //    ReturnToMenu();
+        //}
     }
 
     #endregion

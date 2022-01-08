@@ -65,14 +65,14 @@ public class GameManager : MonoBehaviourPunCallbacks
     {
         Debug.LogFormat("OnPlayerLeftRoom() {0}", other.NickName); // seen when other disconnects
 
+        LeaveRoom();
+        //if (PhotonNetwork.IsMasterClient)
+        //{
+        //    Debug.LogFormat("OnPlayerLeftRoom IsMasterClient {0}", PhotonNetwork.IsMasterClient); // called before OnPlayerLeftRoom
 
-        if (PhotonNetwork.IsMasterClient)
-        {
-            Debug.LogFormat("OnPlayerLeftRoom IsMasterClient {0}", PhotonNetwork.IsMasterClient); // called before OnPlayerLeftRoom
 
-
-            ReturnToMenu();
-        }
+        //    ReturnToMenu();
+        //}
     }
 
     #endregion
