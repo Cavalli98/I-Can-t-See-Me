@@ -1743,10 +1743,10 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 14
+    m_FontSize: 40
     m_FontStyle: 0
     m_BestFit: 0
-    m_MinSize: 10
+    m_MinSize: 0
     m_MaxSize: 40
     m_Alignment: 4
     m_AlignByGeometry: 0
@@ -1754,7 +1754,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Answer 1
+  m_Text: B
 --- !u!222 &358112654
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2616,10 +2616,10 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 14
+    m_FontSize: 40
     m_FontStyle: 0
     m_BestFit: 0
-    m_MinSize: 10
+    m_MinSize: 4
     m_MaxSize: 40
     m_Alignment: 4
     m_AlignByGeometry: 0
@@ -2627,7 +2627,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Answer 1
+  m_Text: C
 --- !u!222 &529416049
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2762,7 +2762,7 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 30
+    m_FontSize: 40
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 0
@@ -2773,7 +2773,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Answer 1
+  m_Text: A
 --- !u!222 &560326551
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2993,12 +2993,12 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: This is a riddle This is a riddle This is a riddle This is a riddle This
-    is a riddle This is a riddle This is a riddle This is a riddle This is a riddle
-    This is a riddle This is a riddle This is a riddle This is a riddle This is a
-    riddle This is a riddle This is a riddle This is a riddle This is a riddle This
-    is a riddle This is a riddle This is a riddle This is a riddle This is a riddle
-    This is a riddle This is a riddle END
+  m_Text: Three prisoners are ordered to stand in a straight line facing the front,
+    A being at the back and C in front. They are told that there will be two black
+    hats and three white hats. One hat is then put on each prisoner's head; each
+    prisoner can only see the hats of the people in front of him and not on his own.
+    Each prisoner who is able to announce the color of his hat correctly will be
+    freed. Which prisoner, for sure, will be released?
 --- !u!222 &618634885
 CanvasRenderer:
   m_ObjectHideFlags: 0
