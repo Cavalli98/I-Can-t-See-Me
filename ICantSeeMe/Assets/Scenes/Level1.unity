@@ -729,6 +729,10 @@ PrefabInstance:
       propertyPath: toActivate
       value: 
       objectReference: {fileID: 39813140}
+    - target: {fileID: -6625362853601029559, guid: cdb0010b481b4da4c9e55245c9e4ccf5, type: 3}
+      propertyPath: toActivate.Array.data[0]
+      value: 
+      objectReference: {fileID: 1473693172}
     - target: {fileID: -1516294554932091714, guid: cdb0010b481b4da4c9e55245c9e4ccf5, type: 3}
       propertyPath: sceneViewId
       value: 7
@@ -2350,6 +2354,10 @@ PrefabInstance:
       propertyPath: toActivate
       value: 
       objectReference: {fileID: 1473693172}
+    - target: {fileID: -6625362853601029559, guid: cdb0010b481b4da4c9e55245c9e4ccf5, type: 3}
+      propertyPath: toActivate.Array.data[0]
+      value: 
+      objectReference: {fileID: 39813140}
     - target: {fileID: -1516294554932091714, guid: cdb0010b481b4da4c9e55245c9e4ccf5, type: 3}
       propertyPath: sceneViewId
       value: 5
