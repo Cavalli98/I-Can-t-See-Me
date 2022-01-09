@@ -21,8 +21,20 @@ EditorBuildSettings:
     path: Assets/Scenes/Level2.unity
     guid: 70d2e47dc50755e4fa92de70f703df80
   - enabled: 1
-    path: Assets/Scenes/Level3.unity
-    guid: 2d9cdcb2b84584e448884185896fdc25
+    path: Assets/Scenes/Level3 Cesar.unity
+    guid: 555a261c16e48f14cb923dc7a7186ff9
+  - enabled: 1
+    path: Assets/Scenes/Level4.unity
+    guid: a7f77f23bb94bae4781720994a71e3d6
+  - enabled: 1
+    path: Assets/Scenes/Level5.unity
+    guid: e36eb93cefd3bf247bd07aebaf3fd8ce
+  - enabled: 1
+    path: Assets/Scenes/Level6 - Thomas.unity
+    guid: 2453941a7231fed46ae027421f045397
+  - enabled: 1
+    path: Assets/Scenes/Level7.unity
+    guid: 4026297f2c622b04483299940f8db83e
   - enabled: 1
     path: Assets/Scenes/End.unity
     guid: 47bccfae3f281a34aa577b11d3735c60
@@ -30,21 +42,12 @@ EditorBuildSettings:
     path: Assets/Scenes/GameOver.unity
     guid: 49784fda6f69e0a44b00a53a0f131d38
   - enabled: 1
-    path: Assets/Scenes/Test/LevelTestCesar.unity
-    guid: 074e909c261e68147a9cf37ab097e079
-  - enabled: 1
-    path: Assets/Scenes/Level5.unity
-    guid: e36eb93cefd3bf247bd07aebaf3fd8ce
-  - enabled: 1
     path: Assets/Scenes/Test/LevelTestDario.unity
     guid: 5582f8db59feeb141bdb87b3c82a97d3
   - enabled: 1
     path: Assets/Scenes/LevelTestCesar 1.unity
     guid: 9c8df9c22250d754f8fe9f333ba7cbeb
   - enabled: 1
-    path: Assets/Scenes/Level7.unity
-    guid: 4026297f2c622b04483299940f8db83e
-  - enabled: 1
-    path: Assets/Scenes/Level6 - Thomas.unity
-    guid: 2453941a7231fed46ae027421f045397
+    path: Assets/Scenes/Test/LevelTestCesar.unity
+    guid: 074e909c261e68147a9cf37ab097e079
   m_configObjects: {}
