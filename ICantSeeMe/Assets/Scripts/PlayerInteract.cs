@@ -26,6 +26,7 @@ public class PlayerInteract : MonoBehaviourPun
         {
             if (Input.GetKeyDown(KeyCode.E))
             {
+                print("Send RPC");
                 PhotonView.Get(colliderObj).RPC("trigger", RpcTarget.All, null);
             }
         }
@@ -47,6 +48,7 @@ public class PlayerInteract : MonoBehaviourPun
     //    isColliding = true;
     //    colliderObj = collider.gameObject;
     //}
+
     private void OnTriggerStay2D(Collider2D collider)
     {
         if (photonView.IsMine == false)
@@ -61,6 +63,7 @@ public class PlayerInteract : MonoBehaviourPun
         isColliding = true;
         colliderObj = collider.gameObject;
     }
+
     private void OnTriggerExit2D(Collider2D collider)
     {
         if (photonView.IsMine == false)
@@ -71,6 +74,32 @@ public class PlayerInteract : MonoBehaviourPun
         if (collider.tag != "Trigger")
             return;
         
+        isColliding = false;
+        colliderObj = null;
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (photonView.IsMine == false)
+            return;
+
+        if (collision.gameObject.tag != "Trigger")
+            return;
+
+        print("player enter coll");
+        isColliding = true;
+        colliderObj = collision.gameObject;
+    }
+
+    private void OnCollisionExit2D(Collision2D collision)
+    { 
+        if (photonView.IsMine == false)
+            return;
+
+        if (collision.gameObject.tag != "Trigger")
+            return;
+
+        print("player exit coll");
         isColliding = false;
         colliderObj = null;
     }
