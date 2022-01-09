@@ -2891,6 +2891,10 @@ PrefabInstance:
       propertyPath: sceneViewId
       value: 9
       objectReference: {fileID: 0}
+    - target: {fileID: 3072096659211162796, guid: ddaf4972bab6e40478aa4e28383383a8, type: 3}
+      propertyPath: OwnershipTransfer
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4198583605577351865, guid: ddaf4972bab6e40478aa4e28383383a8, type: 3}
       propertyPath: m_Name
       value: MovingRoad (1)

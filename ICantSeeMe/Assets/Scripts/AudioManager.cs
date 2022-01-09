@@ -45,12 +45,12 @@ public class Sound
 
     public void Loop()
     {
-        source.loop = true;
+        //source.loop = true;
     }
 
     public void StopLoop()
     {
-        source.loop = false;
+        //source.loop = false;
     }
 }
 

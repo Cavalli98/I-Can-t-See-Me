@@ -26,7 +26,7 @@ public class CheckCollisionRoad : MonoBehaviourPun
         if (collision.gameObject.tag == "Player")
         {
             //Debug.Log("Entrato check");
-            photonView.TransferOwnership(PhotonView.Get(collision.gameObject).Owner);
+            PhotonView.Get(transform.parent.gameObject).TransferOwnership(PhotonView.Get(collision.gameObject).Owner);
             collided = true;
         }
         else if (collision.gameObject.tag != "Border")
