@@ -121,7 +121,7 @@ public class Enemy : Triggerable
         if (!activated)
         {
             _rb.bodyType = RigidbodyType2D.Static;
-            _direction = 0;
+            _bc.isTrigger = true;
             AudioManager.instance.RpcPlaySound(sleepSound);
             AudioManager.instance.RpcLoopSound(sleepSound);
         }

@@ -242,8 +242,8 @@ public class PlayerMovement : MonoBehaviourPun, IOnEventCallback
             transform.position = new Vector3(_ladder.transform.position.x, transform.position.y, transform.position.z);
 
         Vector3 newPos = Vector3.zero;
-        if (_verticalMovement > 0 && !_minotaurColliding)
-            newPos = _tr.position + _verticalMovement * _tr.up * climbSpeed * Time.deltaTime * (_minotaurColliding ? 0 : 1);
+        if (_verticalMovement > 0)
+            newPos = _tr.position + _verticalMovement * _tr.up * climbSpeed * Time.deltaTime;
         else if (_verticalMovement < 0)
             newPos = _tr.position + _verticalMovement * _tr.up * climbSpeed * Time.deltaTime;
         if (newPos != Vector3.zero) _rb.MovePosition(newPos);
