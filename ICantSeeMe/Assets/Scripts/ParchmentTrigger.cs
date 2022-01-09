@@ -15,17 +15,20 @@ public class ParchmentTrigger : Trigger
     [PunRPC]
     public override void trigger()
     {
+        print("Trigger");
         _isActive = true;
 
         //Set panel for player 1
         if (player.name == "Girl")
         {
+            print("Trigger 2");
             parchment.SetActive(true);
             foreach (UnityEngine.UI.Button b in buttons)
                 b.interactable = false;
         }
         else
         {
+            print("Trigger 2");
             foreach (UnityEngine.UI.Button b in buttons)
             {
                 b.gameObject.SetActive(true);
@@ -43,7 +46,7 @@ public class ParchmentTrigger : Trigger
             playerMovement = player.GetComponent<PlayerMovement>();
         }
     }
-    
+
     public void CheckAnswer(bool answer)
     {
         parchment.SetActive(false);
