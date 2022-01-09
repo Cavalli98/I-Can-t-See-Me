@@ -6,6 +6,7 @@ using ExitGames.Client.Photon;
 using UnityEngine.Audio;
 using UnityEngine.UI;
 using Hashtable = ExitGames.Client.Photon.Hashtable;
+using UnityEngine.SceneManagement;
 
 public class pauseMenu : MonoBehaviourPun
 {
@@ -84,7 +85,7 @@ public class pauseMenu : MonoBehaviourPun
     public void Restart()
     {
         Time.timeScale = 1f;
-        Load(level);
+        Load(SceneManager.GetActiveScene().name);
     }
 
     public void LoadMenu()

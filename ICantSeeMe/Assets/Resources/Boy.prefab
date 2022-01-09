@@ -273,7 +273,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 126494ae2a10a34499272ed97a6c9f5d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  logLevel: 3
+  logLevel: 0
   ignoreGlobalLogLevel: 0
   recorderInUse: {fileID: 6394715946924691234}
   speakerInUse: {fileID: 2921176890702834652}
@@ -300,7 +300,7 @@ MonoBehaviour:
   unityMicrophoneDevice: 
   photonMicrophoneDeviceId: 0
   interestGroup: 0
-  debugEchoMode: 1
+  debugEchoMode: 0
   reliableMode: 0
   encrypt: 0
   transmitEnabled: 1
