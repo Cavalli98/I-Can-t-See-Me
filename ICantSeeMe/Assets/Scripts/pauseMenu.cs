@@ -85,7 +85,7 @@ public class pauseMenu : MonoBehaviourPun
     public void Restart()
     {
         Time.timeScale = 1f;
-        Load(SceneManager.GetActiveScene().name);
+        Load(level);
     }
 
     public void LoadMenu()

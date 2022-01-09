@@ -795,6 +795,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: CanvasMenu
       objectReference: {fileID: 0}
+    - target: {fileID: 7470893551227277326, guid: a8d633616724c3341a16a1ba13667f38, type: 3}
+      propertyPath: level
+      value: Level5
+      objectReference: {fileID: 0}
     - target: {fileID: 7470893551227277362, guid: a8d633616724c3341a16a1ba13667f38, type: 3}
       propertyPath: m_Pivot.x
       value: 0
