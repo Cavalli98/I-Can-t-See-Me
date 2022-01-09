@@ -17,6 +17,7 @@ public class ParchmentTrigger : Trigger
     {
         print("Trigger");
         _isActive = true;
+        playerMovement.setTalking(false);
 
         //Set panel for player 1
         if (player.name == "Girl")
@@ -53,6 +54,7 @@ public class ParchmentTrigger : Trigger
         parchment.SetActive(false);
         foreach (UnityEngine.UI.Button b in buttons)
             b.gameObject.SetActive(false);
+        playerMovement.setTalking(false);
         
         if(answer) {
             foreach (GameObject t in toActivate)
@@ -70,8 +72,10 @@ public class ParchmentTrigger : Trigger
         GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
         foreach (GameObject p in players)
         {
-            if (p.name == "Boy")
+            if (p.name == "Boy") {
                 player = p;
+                playerMovement = player.GetComponent<PlayerMovement>();
+            }
         }
     }
 }

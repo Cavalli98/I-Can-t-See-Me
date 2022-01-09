@@ -373,7 +373,7 @@ public class PlayerMovement : MonoBehaviourPun, IOnEventCallback
     {
         _hasMagicSword = !talking;
         _talking = talking;
-        
+
         if (talking)
             animator.SetFloat("moving", 0.0f);
         else
@@ -382,5 +382,10 @@ public class PlayerMovement : MonoBehaviourPun, IOnEventCallback
             Hashtable entries = new Hashtable { { "MagicSword", _hasMagicSword } };
             PhotonNetwork.CurrentRoom.SetCustomProperties(entries);
         }
+    }
+
+    public void setTalking(bool val)
+    {
+        _talking = val;
     }
 }
