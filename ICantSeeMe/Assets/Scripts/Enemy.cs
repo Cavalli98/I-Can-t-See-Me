@@ -136,7 +136,7 @@ public class Enemy : Triggerable
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (!activated && collision.collider.tag == "Player" && Target != null)
+        if (activated && collision.collider.tag == "Player" && Target != null)
         {
             _attacking = true;
             animator.SetBool("attacking", _attacking);
@@ -147,7 +147,7 @@ public class Enemy : Triggerable
 
     private void OnCollisionStay2D(Collision2D collision)
     {
-        if (!activated && collision.collider.tag == "Player" && Target != null && !_attacking)
+        if (activated && collision.collider.tag == "Player" && Target != null && !_attacking)
         {
             _attacking = true;
             animator.SetBool("attacking", _attacking);
@@ -157,7 +157,7 @@ public class Enemy : Triggerable
 
     private void OnCollisionExit2D(Collision2D collision)
     {
-        if (!activated && collision.collider.tag == "Player")
+        if (activated && collision.collider.tag == "Player")
         {
             _attacking = false;
             animator.SetBool("attacking", _attacking);
