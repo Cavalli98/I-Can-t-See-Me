@@ -70,9 +70,11 @@ public class ParchmentTrigger : Trigger
     public void setPlayer()
     {
         GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
+        print("In setPlayer, players size: "+players.Length);
         foreach (GameObject p in players)
         {
-            if (p.name == "Boy") {
+            print("name: "+p.name);
+            if (player == null && p.name == "Boy") {
                 player = p;
                 playerMovement = player.GetComponent<PlayerMovement>();
             }
