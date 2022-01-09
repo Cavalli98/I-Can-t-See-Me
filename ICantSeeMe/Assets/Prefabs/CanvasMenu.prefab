@@ -557,7 +557,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Music
+  m_Text: Voice
 --- !u!114 &7470893550597568399
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -767,7 +767,7 @@ GameObject:
   - component: {fileID: 7470893550787257954}
   - component: {fileID: 7470893550787257955}
   m_Layer: 5
-  m_Name: MusicSlider
+  m_Name: VoiceSlider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -849,7 +849,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 7470893551227277326}
         m_TargetAssemblyTypeName: pauseMenu, Assembly-CSharp
-        m_MethodName: SetMusicVolume
+        m_MethodName: SetVoiceVolume
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

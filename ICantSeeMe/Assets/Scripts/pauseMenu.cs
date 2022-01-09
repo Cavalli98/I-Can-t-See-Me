@@ -61,6 +61,7 @@ public class pauseMenu : MonoBehaviourPun
     public void Resume()
     {
         pauseMenuUI.SetActive(false);
+        settingsMenuUI.SetActive(false);
         Time.timeScale = 1f;
         GameIsPaused = false;
     }
@@ -106,10 +107,10 @@ public class pauseMenu : MonoBehaviourPun
         settingsMenuUI.SetActive(false);
         pauseMenuUI.SetActive(true);
     }
-    public void SetMusicVolume(float volume)
+    public void SetVoiceVolume(float volume)
     {
         //Debug.Log(volume);
-        audioMixer.SetFloat("MusicVolume", volume);
+        audioMixer.SetFloat("VoiceVolume", volume);
     }
     public void SetSoundsVolume(float volume)
     {

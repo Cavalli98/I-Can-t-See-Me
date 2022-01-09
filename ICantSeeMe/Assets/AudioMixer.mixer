@@ -63,10 +63,10 @@ AudioMixerController:
   m_EnableSuspend: 1
   m_UpdateMode: 0
   m_ExposedParameters:
-  - guid: 86fcdc21d17fef24e964d5d037bcbc14
-    name: MusicVolume
   - guid: c0826670c8df84c46b26c577a460f265
     name: SoundsVolume
+  - guid: 86fcdc21d17fef24e964d5d037bcbc14
+    name: VoiceVolume
   m_AudioMixerGroupViews:
   - guids:
     - fb385fa1db7c11540b4294d0aad5f5c9
@@ -129,7 +129,7 @@ AudioMixerGroupController:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Musics
+  m_Name: Voice
   m_AudioMixer: {fileID: 24100000}
   m_GroupID: 1f27e1559d06ccc4c8dc48bfa42e8e17
   m_Children: []

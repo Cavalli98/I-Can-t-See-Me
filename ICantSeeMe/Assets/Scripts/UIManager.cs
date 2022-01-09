@@ -76,4 +76,9 @@ public class UIManager : MonoBehaviour
         createPanel.SetActive(false);
         gameOptions.SetActive(true);
     }
+
+    public void Quit()
+    {
+        Application.Quit();
+    }
 }
