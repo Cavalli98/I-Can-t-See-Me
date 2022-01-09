@@ -86,7 +86,6 @@ public class PlayerInteract : MonoBehaviourPun
         if (collision.gameObject.tag != "Trigger")
             return;
 
-        print("player enter coll");
         isColliding = true;
         colliderObj = collision.gameObject;
     }
@@ -99,7 +98,6 @@ public class PlayerInteract : MonoBehaviourPun
         if (collision.gameObject.tag != "Trigger")
             return;
 
-        print("player exit coll");
         isColliding = false;
         colliderObj = null;
     }

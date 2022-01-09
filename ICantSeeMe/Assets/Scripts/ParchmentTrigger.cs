@@ -21,14 +21,14 @@ public class ParchmentTrigger : Trigger
         //Set panel for player 1
         if (player.name == "Girl")
         {
-            print("Trigger 2");
+            print("Parchment trigger girl");
             parchment.SetActive(true);
             foreach (UnityEngine.UI.Button b in buttons)
                 b.interactable = false;
         }
         else
         {
-            print("Trigger 2");
+            print("Parchment trigger boy");
             foreach (UnityEngine.UI.Button b in buttons)
             {
                 b.gameObject.SetActive(true);
@@ -44,6 +44,7 @@ public class ParchmentTrigger : Trigger
             print("Enter inside");
             player = collision.gameObject;
             playerMovement = player.GetComponent<PlayerMovement>();
+            photonView.RPC("setPlayer", RpcTarget.Others, null);
         }
     }
 
@@ -60,6 +61,17 @@ public class ParchmentTrigger : Trigger
         else {
             foreach (GameObject t in toActivateWrongAnswer)
                 t.GetComponent<Triggerable>().activate();
+        }
+    }
+
+    [PunRPC]
+    public void setPlayer()
+    {
+        GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
+        foreach (GameObject p in players)
+        {
+            if (p.name == "Boy")
+                player = p;
         }
     }
 }
