@@ -94,9 +94,6 @@ public class ChainBridge : Triggerable
         //Debug.Log("y: " + transform.position.y);
         if (_hasToMove)
         {
-            AudioManager.instance.RpcPlaySound(Sound);
-            AudioManager.instance.RpcLoopSound(Sound);
-
             _t += Time.deltaTime * speed;
             // Moves the object to target position
             transform.localPosition = Vector3.Lerp(startPosition, endPosition, _t);
@@ -120,6 +117,11 @@ public class ChainBridge : Triggerable
 
     public override void activate()
     {
-        _hasToMove = true;
+        if (!_hasToMove)
+        {
+            _hasToMove = true;
+            AudioManager.instance.RpcPlaySound(Sound);
+            AudioManager.instance.RpcLoopSound(Sound);
+        }
     }
 }

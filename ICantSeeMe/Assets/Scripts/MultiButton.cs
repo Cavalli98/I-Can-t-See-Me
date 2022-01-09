@@ -34,7 +34,7 @@ public class MultiButton : Trigger
         if (!_isTriggered)
         {
             AudioManager.instance.RpcPlaySound(Sound);
-            AudioManager.instance.RpcLoopSound(Sound);
+            //AudioManager.instance.RpcLoopSound(Sound);
             _isTriggered = true;
             //print("Cliccato");
             StartCoroutine(Wait());
@@ -50,7 +50,7 @@ public class MultiButton : Trigger
         }
         text.text = "";
         _isTriggered = false;
-        AudioManager.instance.RpcStopLoopSound(Sound);
+        //AudioManager.instance.RpcStopLoopSound(Sound);
         AudioManager.instance.RpcStopSound(Sound);
         //print("Fine timer");
     }
