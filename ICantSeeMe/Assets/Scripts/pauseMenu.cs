@@ -79,7 +79,10 @@ public class pauseMenu : MonoBehaviourPun
         Time.timeScale = 1f;
         Hashtable entries = new Hashtable { { "Level", lvl } };
         PhotonNetwork.CurrentRoom.SetCustomProperties(entries);
-        PhotonNetwork.LoadLevel(level);
+        if (PhotonNetwork.IsMasterClient)
+        {
+            PhotonNetwork.LoadLevel(level);
+        }
     }
 
     public void Restart()
