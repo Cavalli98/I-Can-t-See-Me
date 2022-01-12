@@ -31,6 +31,8 @@ public class TimedElevator : Triggerable
     {
         if (_hasToMove)
         {
+            print("activate TimedElevator: speed: "+speed);
+            print("activate TimedElevator: currPos: "+transform.position);
             if (!_reachedEnd)
                 transform.position = Vector2.MoveTowards(transform.position, _endPosition, speed*Time.deltaTime);
             else if (_waiting)
@@ -39,6 +41,7 @@ public class TimedElevator : Triggerable
                 transform.position = Vector2.MoveTowards(transform.position, _startPosition, speed/_slowingFactor*Time.deltaTime);
 
             if (transform.position==_endPosition) {
+                print("TimedElevator: _reachedEnd: "+_reachedEnd+" _waiting: "+_waiting);
                 _reachedEnd = true;
                 _waiting = true;
             }
@@ -49,15 +52,14 @@ public class TimedElevator : Triggerable
         }
     }
 
-    [PunRPC]
     public override void activate()
     {
         _hasToMove = true;
     }
 
-    [PunRPC]
     public override void activate(float duration)
     {
+        print("activate TimedElevator: startPos: "+_startPosition+" endPos: "+_endPosition);
         _hasToMove = true;
         float distance = Vector3.Distance(_startPosition, _endPosition);
         speed = distance/((duration - _wait)/(1+_slowingFactor));
