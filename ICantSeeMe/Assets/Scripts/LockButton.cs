@@ -21,7 +21,7 @@ public class LockButton : MonoBehaviourPun
     }
 
     [PunRPC]
-    public void UpdateNumber()
+    void UpdateNumber()
     {
         number = (number + 1) % 10;
         textUI.text = number.ToString();
