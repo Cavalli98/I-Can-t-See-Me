@@ -49,11 +49,13 @@ public class TimedElevator : Triggerable
         }
     }
 
+    [PunRPC]
     public override void activate()
     {
         _hasToMove = true;
     }
 
+    [PunRPC]
     public override void activate(float duration)
     {
         _hasToMove = true;
