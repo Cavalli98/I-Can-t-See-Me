@@ -32,7 +32,7 @@ public class SpringButton : Trigger
  
 
     [PunRPC]
-    protected override void trigger()
+    public override void trigger()
     {
         
         if (!_isTriggered) {

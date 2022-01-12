@@ -10,7 +10,7 @@ public class RiddleButton : MonoBehaviourPun
 
     public void OnClick()
     {
-        photonView.RPC("Check", RpcTarget.All, null);
+        this.photonView.RPC("Check", RpcTarget.All, null);
     }
 
     [PunRPC]

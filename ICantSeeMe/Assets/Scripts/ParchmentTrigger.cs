@@ -45,7 +45,7 @@ public class ParchmentTrigger : Trigger
             print("Enter inside");
             player = collision.gameObject;
             playerMovement = player.GetComponent<PlayerMovement>();
-            photonView.RPC("setPlayer", RpcTarget.Others, null);
+            this.photonView.RPC("setPlayer", RpcTarget.Others, null);
         }
     }
 

@@ -17,7 +17,7 @@ public class LockButton : MonoBehaviourPun
 
     public void OnClick()
     {
-        photonView.RPC("UpdateNumber", RpcTarget.All, null);
+        this.photonView.RPC("UpdateNumber", RpcTarget.All, null);
     }
 
     [PunRPC]
