@@ -11,9 +11,11 @@ public class RollingStone : MonoBehaviourPun
     private CircleCollider2D _coll;
     private Rigidbody2D _rb;
     public const byte gameOverEvent = 1;
+    private float startingX = 0f;
 
     void Start()
     {
+        startingX = transform.position.x;
         _coll = GetComponent<CircleCollider2D>();
         _rb = GetComponent<Rigidbody2D>();
         _toIgnore = GameObject.FindGameObjectsWithTag("SpringButton");
@@ -23,6 +25,10 @@ public class RollingStone : MonoBehaviourPun
     
     void OnCollisionEnter2D(Collision2D collision)
     {
+        if (collision.gameObject.tag == "Player")
+        {
+            photonView.TransferOwnership(PhotonView.Get(collision.gameObject).Owner);
+        }
 
         if (collision.gameObject.tag == "Player" &&
             (Mathf.Abs(_rb.velocity.x) > 1.5f || 
@@ -36,5 +42,10 @@ public class RollingStone : MonoBehaviourPun
             RaiseEventOptions raiseEventOptions = new RaiseEventOptions { Receivers = ReceiverGroup.All }; // You would have to set the Receivers to All in order to receive this event on the local client as well
             PhotonNetwork.RaiseEvent(gameOverEvent, content, raiseEventOptions, SendOptions.SendReliable);
         }
+    }
+
+    void OnCollisionStay2D(Collision2D collision)
+    {
+        transform.rotation = Quaternion.Euler(Vector3.forward * (transform.position.x - startingX)*(-100));
     }
 }
