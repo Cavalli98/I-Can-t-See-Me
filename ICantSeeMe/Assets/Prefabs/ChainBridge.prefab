@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4937180670247260445}
   - component: {fileID: 4937180670247260444}
-  - component: {fileID: 5178532997657868277}
   m_Layer: 0
   m_Name: ChainBridge
   m_TagString: Untagged
@@ -65,22 +64,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 0.4
-  startObj: {fileID: 764075580631690371}
-  endObj: {fileID: 9119730202695319061}
-  Sound: elevator
---- !u!114 &5178532997657868277
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4937180670247260446}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 04ecb6c02ea5f7b4e88ec4720728badf, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 2
   startObj: {fileID: 764075580631690371}
   endObj: {fileID: 9119730202695319061}
   Sound: elevator
