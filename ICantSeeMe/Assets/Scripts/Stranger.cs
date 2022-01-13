@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using Photon.Pun;
 
-public class Stranger : MonoBehaviour
+public class Stranger : MonoBehaviourPun
 {
     private bool _hasSword = true;
     public Animator animator;
@@ -17,6 +18,7 @@ public class Stranger : MonoBehaviour
     public GameObject panel;
     public GameObject image;
     private PlayerMovement playerMovement;
+    private GameObject player = null;
 
     void Start()
     {
@@ -45,8 +47,7 @@ public class Stranger : MonoBehaviour
                 ShowMessages = false;
                 panel.SetActive(false);
                 image.SetActive(false);
-                animator.SetBool("hasSword", _hasSword);
-                playerMovement.talkWithStranger(false);
+                this.photonView.RPC("changeAnimation", RpcTarget.All, player.name);
             }
             else
                 dialogueText.text = Messages[CurrentMessageIndex];
@@ -60,11 +61,27 @@ public class Stranger : MonoBehaviour
     {
         if (collision.gameObject.tag == "Player" && _hasSword)
         {
+            player = collision.gameObject;
             _hasSword = false;
             playerMovement = collision.gameObject.GetComponent<PlayerMovement>();
             playerMovement.talkWithStranger(true);
             activateDialogue();
         }
+    }
+
+    [PunRPC]
+    private void changeAnimation(string pName)
+    {
+        GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
+        foreach (GameObject p in players)
+        {
+            if (player == null && p.name == pName)
+                player = p;
+        }
+        print("In changeAnimation, players name: "+player.name);
+
+        animator.SetBool("hasSword", false);
+        player.GetComponent<PlayerMovement>().talkWithStranger(false);
     }
 
     public bool getHasSword()

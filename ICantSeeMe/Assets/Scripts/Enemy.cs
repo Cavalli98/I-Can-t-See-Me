@@ -54,6 +54,9 @@ public class Enemy : Triggerable
             _rb.bodyType = RigidbodyType2D.Dynamic;
             _bc.isTrigger = false;
         }
+
+        GameObject stranger = GameObject.FindWithTag("Stranger");
+        Physics.IgnoreCollision(stranger.GetComponent<Collider>(), GetComponent<Collider>());
     }
 
     void Update()
@@ -138,10 +141,7 @@ public class Enemy : Triggerable
     {
         if (activated && collision.collider.tag == "Player" && Target != null)
         {
-            _attacking = true;
-            animator.SetBool("attacking", _attacking);
-            AudioManager.instance.RpcPlaySound(attackSound);
-            _coroutine = StartCoroutine(waiter(0.4f));
+            PhotonView.Get(this).RPC("startAttackRPC", RpcTarget.All, true);
         }
     }
 
@@ -149,9 +149,7 @@ public class Enemy : Triggerable
     {
         if (activated && collision.collider.tag == "Player" && Target != null && !_attacking)
         {
-            _attacking = true;
-            animator.SetBool("attacking", _attacking);
-            _coroutine = StartCoroutine(waiter(0.4f));
+            PhotonView.Get(this).RPC("startAttackRPC", RpcTarget.All, true);
         }
     }
 
@@ -159,9 +157,23 @@ public class Enemy : Triggerable
     {
         if (activated && collision.collider.tag == "Player")
         {
+            PhotonView.Get(this).RPC("startAttackRPC", RpcTarget.All, false);
+        }
+    }
+
+    [PunRPC]
+    void startAttackRPC(bool val)
+    {
+        if (val) {
             _attacking = false;
             animator.SetBool("attacking", _attacking);
             StopCoroutine(_coroutine);
+        }
+        else {
+            _attacking = true;
+            animator.SetBool("attacking", _attacking);
+            AudioManager.instance.RpcPlaySound(attackSound);
+            _coroutine = StartCoroutine(waiter(0.4f));
         }
     }
 

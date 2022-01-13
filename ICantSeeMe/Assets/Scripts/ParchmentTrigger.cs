@@ -15,26 +15,28 @@ public class ParchmentTrigger : Trigger
     [PunRPC]
     public override void trigger()
     {
-        print("Trigger");
+        print("ParchmentTrigger");
         _isActive = true;
         playerMovement.setTalking(false);
 
         //Set panel for player 1
-        if (player.name == "Girl")
+        if (player.name == "Girl(Clone)")
         {
             print("Parchment trigger girl");
             parchment.SetActive(true);
-            foreach (UnityEngine.UI.Button b in buttons)
-                b.interactable = false;
-        }
-        else
-        {
-            print("Parchment trigger boy");
+            parchment.transform.Find("Text").gameObject.SetActive(false);
             foreach (UnityEngine.UI.Button b in buttons)
             {
                 b.gameObject.SetActive(true);
                 b.gameObject.transform.GetChild(0).gameObject.SetActive(false);
             }
+        }
+        else
+        {
+            print("Parchment trigger boy");
+            parchment.SetActive(true);
+            foreach (UnityEngine.UI.Button b in buttons)
+                b.interactable = false;
         }
     }
 
@@ -51,11 +53,13 @@ public class ParchmentTrigger : Trigger
 
     public void CheckAnswer(bool answer)
     {
+        print("CheckAnswer BrickRoad.. "+answer);
         parchment.SetActive(false);
         foreach (UnityEngine.UI.Button b in buttons)
             b.gameObject.SetActive(false);
         playerMovement.setTalking(false);
         
+
         if(answer) {
             foreach (GameObject t in toActivate)
                 t.GetComponent<Triggerable>().activate();
@@ -70,14 +74,14 @@ public class ParchmentTrigger : Trigger
     public void setPlayer()
     {
         GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
-        print("In setPlayer, players size: "+players.Length);
         foreach (GameObject p in players)
         {
             print("name: "+p.name);
-            if (player == null && p.name == "Boy") {
+            if (player == null && p.name == "Boy(Clone)") {
                 player = p;
                 playerMovement = player.GetComponent<PlayerMovement>();
             }
         }
+        print("In setPlayer, players name: "+player.name);
     }
 }

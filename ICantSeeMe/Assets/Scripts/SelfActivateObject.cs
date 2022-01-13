@@ -1,13 +1,18 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Photon.Pun;
 
 public class SelfActivateObject : Trigger
 {
     public Transform triggerPoint;
 
-    void Start()
-    {
+
+    [PunRPC]
+    public override void trigger()
+    {        
+        foreach (GameObject t in toActivate)
+            t.GetComponent<Triggerable>().activate();
     }
 
     private void OnCollisionStay2D(Collision2D collision)
@@ -16,8 +21,7 @@ public class SelfActivateObject : Trigger
         {
             if (collision.collider.OverlapPoint(triggerPoint.position))
             {
-                foreach (GameObject t in toActivate)
-                    t.GetComponent<Triggerable>().activate();
+                this.photonView.RPC("trigger", RpcTarget.All, null);
             }
         }
     }

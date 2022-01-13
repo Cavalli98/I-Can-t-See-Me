@@ -1,8 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Photon.Pun;
 
-public class Range : MonoBehaviour
+public class Range : MonoBehaviourPun
 {
     private Enemy _parent;
     private BoxCollider2D _box;
@@ -40,14 +41,31 @@ public class Range : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.tag == "Player") {
-            _parent.Target = collision.transform;
+            this.photonView.RPC("setParent", RpcTarget.All, collision.gameObject.name);
         }
     }
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.tag == "Player") {
+        if (collision.tag == "Player")
+            this.photonView.RPC("setParent", RpcTarget.All, "null");
+    }
+
+    [PunRPC]
+    void setParent(string playerName)
+    {
+        if (playerName == "null") {
             _parent.Target = null;
+        }
+        else {
+            GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
+            foreach (GameObject p in players)
+            {
+                if (p.name == playerName)
+                    _parent.Target = p.transform;
+            }
+            
+            print("Enemy range, target name: "+_parent.Target.gameObject.name);
         }
     }
 }
