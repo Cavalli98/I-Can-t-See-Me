@@ -3082,7 +3082,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Quit Game
+  m_Text: Main Menu
 --- !u!114 &7470893551879857805
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3453,7 +3453,7 @@ GameObject:
   - component: {fileID: 7470893552091139653}
   - component: {fileID: 7470893552091139652}
   m_Layer: 5
-  m_Name: QuitButton
+  m_Name: MenuButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
