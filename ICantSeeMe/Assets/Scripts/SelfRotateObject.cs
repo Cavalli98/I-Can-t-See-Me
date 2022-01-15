@@ -29,6 +29,16 @@ public class SelfRotateObject : Triggerable
         }
     }
 
+    public override void activate(float f)
+    {
+        if (_stop) return;
+        
+        if(!_isMoving) {
+            StartCoroutine(Rotate());
+            if (oneTime) _stop = true;
+        }
+    }
+
     IEnumerator Rotate()
     {
         _isMoving = true;
