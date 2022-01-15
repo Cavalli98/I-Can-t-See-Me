@@ -15,6 +15,8 @@ public class Enemy : Triggerable
     public bool activated = false;
     public Animator animator;
     public bool oneTime = false;
+    private bool _dying = false;
+    private bool _died = false;
 
     private GameObject[] path = null;
     private int path_counter = 0;
@@ -56,11 +58,14 @@ public class Enemy : Triggerable
         }
 
         GameObject stranger = GameObject.FindWithTag("Stranger");
-        Physics.IgnoreCollision(stranger.GetComponent<Collider>(), GetComponent<Collider>());
+        Physics2D.IgnoreCollision(stranger.GetComponent<Collider2D>(), GetComponent<Collider2D>());
     }
 
     void Update()
     {
+        if (_died)
+            return;
+
         animator.SetFloat("speed", Mathf.Abs(speed));
         animator.SetInteger("direction", _direction);
     }
@@ -71,6 +76,9 @@ public class Enemy : Triggerable
             return;
 
         if (_attacking)
+            return;
+
+        if (_died || _dying)
             return;
 
 
@@ -139,32 +147,41 @@ public class Enemy : Triggerable
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (activated && collision.collider.tag == "Player" && Target != null)
+        if (activated && collision.collider.tag == "Player" && !_died && !_dying)
         {
-            PhotonView.Get(this).RPC("startAttackRPC", RpcTarget.All, true);
+            if (collision.gameObject.GetComponent<PlayerMovement>().getHasMagicSword())
+                PhotonView.Get(this).RPC("dying", RpcTarget.All, null);
+            else
+                PhotonView.Get(this).RPC("startAttackRPC", RpcTarget.All, true);
         }
     }
 
     private void OnCollisionStay2D(Collision2D collision)
     {
-        if (activated && collision.collider.tag == "Player" && Target != null && !_attacking)
+        if (activated && collision.collider.tag == "Player" && Target != null && !_attacking && !_died && !_dying)
         {
-            PhotonView.Get(this).RPC("startAttackRPC", RpcTarget.All, true);
+            if (collision.gameObject.GetComponent<PlayerMovement>().getHasMagicSword())
+                PhotonView.Get(this).RPC("dying", RpcTarget.All, null);
+            else
+                PhotonView.Get(this).RPC("startAttackRPC", RpcTarget.All, true);
         }
     }
 
     private void OnCollisionExit2D(Collision2D collision)
     {
-        if (activated && collision.collider.tag == "Player")
+        if (activated && collision.collider.tag == "Player" && !_died && !_dying)
         {
-            PhotonView.Get(this).RPC("startAttackRPC", RpcTarget.All, false);
+            if (collision.gameObject.GetComponent<PlayerMovement>().getHasMagicSword())
+                PhotonView.Get(this).RPC("dying", RpcTarget.All, null);
+            else
+                PhotonView.Get(this).RPC("startAttackRPC", RpcTarget.All, false);
         }
     }
 
     [PunRPC]
     void startAttackRPC(bool val)
     {
-        if (val) {
+        if (!val) {
             _attacking = false;
             animator.SetBool("attacking", _attacking);
             StopCoroutine(_coroutine);
@@ -173,8 +190,18 @@ public class Enemy : Triggerable
             _attacking = true;
             animator.SetBool("attacking", _attacking);
             AudioManager.instance.RpcPlaySound(attackSound);
-            _coroutine = StartCoroutine(waiter(0.4f));
+            _coroutine = StartCoroutine(waiter(0.5f));
         }
+    }
+    
+    [PunRPC]
+    void dying()
+    {
+        print("Called dying in Enemy..");
+        _dying = true;
+        _attacking = false;
+        animator.SetBool("dying", true);
+        StartCoroutine(waiter(0.4f));
     }
 
     IEnumerator waiter(float s)
@@ -182,6 +209,15 @@ public class Enemy : Triggerable
         yield return new WaitForSeconds(s);
         if (_attacking)
             gameOver();
+        if(_dying){
+            _dying = false;
+            _died = true;
+            animator.SetBool("dying", false);
+            animator.SetBool("died", true);
+            _rb.bodyType = RigidbodyType2D.Static;
+            _bc.isTrigger = true;
+            transform.position = transform.position + Vector3.down * 0.3f;
+        }
     }
 
     private void gameOver()

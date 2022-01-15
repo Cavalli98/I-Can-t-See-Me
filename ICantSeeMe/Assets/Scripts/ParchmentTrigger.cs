@@ -17,7 +17,7 @@ public class ParchmentTrigger : Trigger
     {
         print("ParchmentTrigger");
         _isActive = true;
-        playerMovement.setTalking(false);
+        playerMovement.setTalking(true);
 
         //Set panel for player 1
         if (player.name == "Girl(Clone)")
@@ -42,9 +42,9 @@ public class ParchmentTrigger : Trigger
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
+        print("Parchment trigger Enter collision");
         if (collision.gameObject.tag == "Player")
         {
-            print("Enter inside");
             player = collision.gameObject;
             playerMovement = player.GetComponent<PlayerMovement>();
             this.photonView.RPC("setPlayer", RpcTarget.Others, null);

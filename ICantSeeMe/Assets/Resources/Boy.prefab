@@ -256,7 +256,7 @@ MonoBehaviour:
     SynchronizeType: 1
     Name: climbStill
   - Type: 1
-    SynchronizeType: 2
+    SynchronizeType: 1
     Name: moving
   m_SynchronizeLayers:
   - SynchronizeType: 0

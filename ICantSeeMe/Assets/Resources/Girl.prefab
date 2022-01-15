@@ -253,11 +253,14 @@ MonoBehaviour:
     SynchronizeType: 1
     Name: climbing
   - Type: 1
-    SynchronizeType: 2
+    SynchronizeType: 1
     Name: moving
   - Type: 4
     SynchronizeType: 1
     Name: climbStill
+  - Type: 4
+    SynchronizeType: 1
+    Name: hasSword
   m_SynchronizeLayers:
   - SynchronizeType: 0
     LayerIndex: 0
@@ -298,7 +301,7 @@ MonoBehaviour:
   voiceDetectionThreshold: 0.01
   voiceDetectionDelayMs: 500
   unityMicrophoneDevice: 
-  photonMicrophoneDeviceId: 0
+  photonMicrophoneDeviceId: -1
   interestGroup: 0
   debugEchoMode: 0
   reliableMode: 0

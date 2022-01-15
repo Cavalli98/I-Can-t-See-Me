@@ -388,4 +388,9 @@ public class PlayerMovement : MonoBehaviourPun, IOnEventCallback
     {
         _talking = val;
     }
+
+    public bool getHasMagicSword()
+    {
+        return _hasMagicSword;
+    }
 }
