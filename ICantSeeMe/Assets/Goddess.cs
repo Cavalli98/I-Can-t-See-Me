@@ -16,6 +16,7 @@ public class Goddess : MonoBehaviourPun
     private bool _died = false;
     private bool _done = false;
     private bool _talking = false;
+    private bool _ended = false;
 
     private GameObject[] path = null;
     private int path_counter = 0;
@@ -132,6 +133,7 @@ public class Goddess : MonoBehaviourPun
                 image.SetActive(false);
 
                 print("PUT WHAT MUST HAPPEN BAD END HERE");
+                this.photonView.RPC("ending", RpcTarget.All, null);
             }
             else
                 dialogueText.text = MessagesBadEnd[CurrentMessageIndex];
@@ -193,9 +195,9 @@ public class Goddess : MonoBehaviourPun
         if (collision.collider.tag == "Player" && !_died)
         {
             if (collision.gameObject.GetComponent<PlayerMovement>().getHasMagicSword())
-                PhotonView.Get(this).RPC("finish", RpcTarget.All, true, collision.gameObject.name);
+                PhotonView.Get(this).RPC("finalAttack", RpcTarget.All, true, collision.gameObject.name);
             else
-                PhotonView.Get(this).RPC("finish", RpcTarget.All, false, collision.gameObject.name);
+                PhotonView.Get(this).RPC("finalAttack", RpcTarget.All, false, collision.gameObject.name);
         }
     }
 
@@ -223,7 +225,7 @@ public class Goddess : MonoBehaviourPun
     }
 
     [PunRPC]
-    void finish(bool playerHasSword, string pName)
+    void finalAttack(bool playerHasSword, string pName)
     {
         GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
         foreach (GameObject p in players)
@@ -245,6 +247,18 @@ public class Goddess : MonoBehaviourPun
             _bc.isTrigger = false;
             player.transform.Rotate(Vector3.forward*90);
             startChatting(1);
+        }
+    }
+
+    [PunRPC]
+    void ending()
+    {
+        if (!_ended && PhotonNetwork.IsMasterClient)
+        {
+            ExitGames.Client.Photon.Hashtable entries = new ExitGames.Client.Photon.Hashtable { { "Level", "BadEnding" } };
+            PhotonNetwork.CurrentRoom.SetCustomProperties(entries);
+            PhotonNetwork.LoadLevel("BadEnding");
+            _ended = true;
         }
     }
 }

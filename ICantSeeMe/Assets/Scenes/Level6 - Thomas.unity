@@ -1746,7 +1746,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -4990528336867305747, guid: b2d86716b4d4cbe4ea123f97ce6c7576, type: 3}
       propertyPath: NextLevel
-      value: end
+      value: Level7
       objectReference: {fileID: 0}
     - target: {fileID: -4990528336867305747, guid: b2d86716b4d4cbe4ea123f97ce6c7576, type: 3}
       propertyPath: BoyExitDoor
@@ -3273,6 +3273,10 @@ PrefabInstance:
     - target: {fileID: 148950854821536299, guid: 6587b1aa4f021a042af3f087b2a615a0, type: 3}
       propertyPath: sceneViewId
       value: 14
+      objectReference: {fileID: 0}
+    - target: {fileID: 2982765186574515690, guid: 6587b1aa4f021a042af3f087b2a615a0, type: 3}
+      propertyPath: sceneViewId
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 3708184028329760873, guid: 6587b1aa4f021a042af3f087b2a615a0, type: 3}
       propertyPath: m_RootOrder
