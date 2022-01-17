@@ -24,6 +24,7 @@ public class TutorialMessages : MonoBehaviour
                        "Up/Down - Climb ladders \n" +
                        "Space + Up - Jump and then climb \n" +
                        "E - Interact/Activate \n" +
+                       "Esc - Menu' \n"+
                        "In order to finish the level both players must be on the open brick door \n"+
                        "----------------------------------------------- ";
 
