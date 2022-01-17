@@ -47,6 +47,7 @@ public class ParchmentTrigger : Trigger
         {
             player = collision.gameObject;
             playerMovement = player.GetComponent<PlayerMovement>();
+            photonView.TransferOwnership(PhotonView.Get(player).Owner);
             this.photonView.RPC("setPlayer", RpcTarget.Others, null);
         }
     }
