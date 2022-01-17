@@ -40,6 +40,7 @@ public class Goddess : MonoBehaviourPun
     public GameObject image;
     private GameObject player = null;
     public const byte gameOverEvent = 1;
+    public Transform pivot;
 
     void Start()
     {
@@ -255,8 +256,9 @@ public class Goddess : MonoBehaviourPun
 
         if (_died)
         {
+            //transform.Rotate(Vector3.forward * (-90));
+            transform.RotateAround(pivot.position, Vector3.forward, -90);
             startChatting(2);
-            transform.Rotate(Vector3.forward * (-90));
             _rb.bodyType = RigidbodyType2D.Static;
             _bc.isTrigger = true;
         }
