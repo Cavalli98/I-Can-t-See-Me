@@ -66,6 +66,20 @@ public class Goddess : MonoBehaviourPun
         image.SetActive(false);
     }
 
+    [PunRPC]
+    void NextMessageRPC()
+    {
+        CurrentMessageIndex++;
+    }
+
+    void NextMessage()
+    {
+        if (!PhotonNetwork.IsMasterClient)
+        {
+            photonView.RPC("NextMessage", RpcTarget.All, null);
+        }
+    }
+
     void Update()
     {
         if (Target != null && !_done)
@@ -74,8 +88,9 @@ public class Goddess : MonoBehaviourPun
         if(ShowMessages)
         {
             if (Input.GetKeyDown(KeyCode.E))// Space Click to move forward
-            { 
-                CurrentMessageIndex++;
+            {
+                NextMessage();
+                //CurrentMessageIndex++;
             }
 
             // Turn off messages if we get to the last one.
@@ -97,8 +112,9 @@ public class Goddess : MonoBehaviourPun
         if(ShowMessagesGoodEnd)
         {
             if (Input.GetKeyDown(KeyCode.E))// Space Click to move forward
-            { 
-                CurrentMessageIndex++;
+            {
+                NextMessage();
+                //CurrentMessageIndex++;
             }
 
             // Turn off messages if we get to the last one.
@@ -119,8 +135,9 @@ public class Goddess : MonoBehaviourPun
         if(ShowMessagesBadEnd)
         {
             if (Input.GetKeyDown(KeyCode.E))// Space Click to move forward
-            { 
-                CurrentMessageIndex++;
+            {
+                NextMessage();
+                //CurrentMessageIndex++;
             }
 
             // Turn off messages if we get to the last one.
@@ -240,6 +257,7 @@ public class Goddess : MonoBehaviourPun
             _rb.bodyType = RigidbodyType2D.Static;
             _bc.isTrigger = true;
             startChatting(2);
+            transform.Rotate(Vector3.forward * 90);
         }
         else
         {

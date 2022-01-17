@@ -20,6 +20,7 @@ public class ParchmentTrigger : Trigger
         playerMovement.setTalking(true);
 
         //Set panel for player 1
+        //if (!PhotonNetwork.IsMasterClient)
         if (player.name == "Girl(Clone)")
         {
             print("Parchment trigger girl");

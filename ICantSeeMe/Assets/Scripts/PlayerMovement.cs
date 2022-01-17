@@ -106,8 +106,11 @@ public class PlayerMovement : MonoBehaviourPun, IOnEventCallback
             return;
         _gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
 
-        if (PhotonNetwork.CurrentRoom.CustomProperties.ContainsKey("MagicSword") && this.name == "Girl")
-            _hasMagicSword = (bool) PhotonNetwork.CurrentRoom.CustomProperties["MagicSword"];
+        if (PhotonNetwork.CurrentRoom.CustomProperties.ContainsKey("MagicSword") && gameObject.name == "Girl(Clone)")
+        {
+            _hasMagicSword = (bool)PhotonNetwork.CurrentRoom.CustomProperties["MagicSword"];
+            print("ho la spada");
+        }
         if (_hasMagicSword)
             animator.SetBool("hasSword", _hasMagicSword);
     }
