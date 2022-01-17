@@ -6,7 +6,8 @@ using Photon.Pun;
 public class GameOver : MonoBehaviour
 {
     private string currentLevel;
-    
+    public string strangerLevel;
+
     public void Restart()
     {
         if (PhotonNetwork.IsMasterClient)
@@ -14,5 +15,13 @@ public class GameOver : MonoBehaviour
             currentLevel = (string)PhotonNetwork.CurrentRoom.CustomProperties["Level"];
             PhotonNetwork.LoadLevel(currentLevel);
         }
+    }
+
+    public void RestartFromStrangerLevel()
+    {
+        if (PhotonNetwork.IsMasterClient)
+        {
+            PhotonNetwork.LoadLevel(strangerLevel);
+        }    
     }
 }

@@ -1761,7 +1761,7 @@ MonoBehaviour:
   dialogueText: {fileID: 1564383391}
   panel: {fileID: 3681934}
   image: {fileID: 1467918917}
-  pivot: {fileID: 0}
+  pivot: {fileID: 1923452906}
 --- !u!50 &1028993206
 Rigidbody2D:
   serializedVersion: 4
