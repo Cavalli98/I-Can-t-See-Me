@@ -15,6 +15,8 @@ public class pauseMenu : MonoBehaviourPun
     public GameObject pauseMenuUI;
     public GameObject settingsMenuUI;
 
+    public Text Error;
+
     public string level;
     public string launcher;
 
@@ -82,6 +84,10 @@ public class pauseMenu : MonoBehaviourPun
         if (PhotonNetwork.IsMasterClient)
         {
             PhotonNetwork.LoadLevel(level);
+        }
+        else
+        {
+            Error.gameObject.SetActive(true);
         }
     }
 
