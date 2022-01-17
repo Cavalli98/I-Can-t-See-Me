@@ -382,6 +382,7 @@ GameObject:
   - component: {fileID: 844675967}
   - component: {fileID: 844675966}
   - component: {fileID: 844675965}
+  - component: {fileID: 844675968}
   m_Layer: 5
   m_Name: MainMenu
   m_TagString: Untagged
@@ -453,8 +454,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 7470893551227277326, guid: a8d633616724c3341a16a1ba13667f38, type: 3}
-        m_TargetAssemblyTypeName: pauseMenu, Assembly-CSharp
+      - m_Target: {fileID: 844675968}
+        m_TargetAssemblyTypeName: MainMenu, Assembly-CSharp
         m_MethodName: LoadMenu
         m_Mode: 1
         m_Arguments:
@@ -503,6 +504,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 844675963}
   m_CullTransparentMesh: 1
+--- !u!114 &844675968
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 844675963}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 150af1767061dac418c4e25786c5dc16, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1260142877
 GameObject:
   m_ObjectHideFlags: 0
@@ -562,13 +575,13 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 12800000, guid: 08915075c7daf3f45b1dadd94942fa18, type: 3}
-    m_FontSize: 1
+    m_FontSize: 50
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 1
     m_MaxSize: 100
     m_Alignment: 4
-    m_AlignByGeometry: 0
+    m_AlignByGeometry: 1
     m_RichText: 1
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
