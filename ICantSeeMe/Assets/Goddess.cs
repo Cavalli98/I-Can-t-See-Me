@@ -76,7 +76,7 @@ public class Goddess : MonoBehaviourPun
     {
         if (!PhotonNetwork.IsMasterClient)
         {
-            photonView.RPC("NextMessage", RpcTarget.All, null);
+            photonView.RPC("NextMessageRPC", RpcTarget.All, null);
         }
     }
 
@@ -125,6 +125,7 @@ public class Goddess : MonoBehaviourPun
                 _done = true;
                 panel.SetActive(false);
                 image.SetActive(false);
+                player.GetComponent<PlayerMovement>().setTalking(false);
             }
             else
                 dialogueText.text = MessagesGoodEnd[CurrentMessageIndex];
@@ -148,7 +149,7 @@ public class Goddess : MonoBehaviourPun
                 _done = true;
                 panel.SetActive(false);
                 image.SetActive(false);
-
+                player.GetComponent<PlayerMovement>().setTalking(false);
                 print("PUT WHAT MUST HAPPEN BAD END HERE");
                 this.photonView.RPC("ending", RpcTarget.All, null);
             }
@@ -254,10 +255,10 @@ public class Goddess : MonoBehaviourPun
 
         if (_died)
         {
+            startChatting(2);
+            transform.Rotate(Vector3.forward * (-90));
             _rb.bodyType = RigidbodyType2D.Static;
             _bc.isTrigger = true;
-            startChatting(2);
-            transform.Rotate(Vector3.forward * 90);
         }
         else
         {
