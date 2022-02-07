@@ -13,7 +13,7 @@ public class MovingRoad : Triggerable
     public CheckCollisionRoad rightObj;
     public Transform startObj;
     public Transform endObj;
-
+    public bool dontMove;
     //private bool _hasToMove;
     private float _t;
     private Vector3 endPosition;
@@ -75,7 +75,7 @@ public class MovingRoad : Triggerable
             leftObj.collided = false;
             rightObj.collided = false;
         }
-        if ((leftObj.collided && startPosition.x < endPosition.x) || (rightObj.collided && startPosition.x > endPosition.x))
+        if ( !dontMove && ((leftObj.collided && startPosition.x < endPosition.x) || (rightObj.collided && startPosition.x > endPosition.x)))
         {
             Move();
         }
