@@ -1,4 +1,4 @@
-using System.Collections;
+using ExitGames.Client.Photon;
 using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
@@ -28,6 +28,8 @@ public class GameOver : MonoBehaviour
     {
         if (PhotonNetwork.IsMasterClient)
         {
+            Hashtable entries = new Hashtable { { "Level", strangerLevel } };
+            PhotonNetwork.CurrentRoom.SetCustomProperties(entries);
             PhotonNetwork.LoadLevel(strangerLevel);
         }
         else
