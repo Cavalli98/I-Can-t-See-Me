@@ -66,11 +66,12 @@ public class Door : Triggerable
     private void SetColliding(bool colliding)
     {
         isColliding = colliding;
+        print("door colliding: " + colliding.ToString());
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.tag != "Player" && photonView.IsMine != true)
+        if (collision.tag != "Player")
         {
             return;
         }
@@ -79,7 +80,7 @@ public class Door : Triggerable
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.tag != "Player" && photonView.IsMine != true)
+        if (collision.tag != "Player")
         {
             return;
         }

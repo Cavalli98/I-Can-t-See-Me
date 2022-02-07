@@ -150,8 +150,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Target: {fileID: 0}
-  speed_running: 4
-  speed_jog: 2
+  speed_running: 3
+  speed_jog: 1.5
   activated: 0
   animator: {fileID: 3708184028329760878}
   oneTime: 0
