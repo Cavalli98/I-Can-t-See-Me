@@ -54,14 +54,14 @@ public class Goddess : MonoBehaviourPun
             jogTarget = path[0].transform;
 
         // Load messages, if you did not make them in the Editor
-        string mess1 = "I have to congratulate, you managed to get here.";
-        string mess2 = "But I know I will finish this game! I will end your life and then your beloved's one!";
+        string mess1 = "Invidia: I have to congratulate, you managed to get here.";
+        string mess2 = "Invidia: But I will finish this game! I will end your life and then your beloved's one!";
         Messages = new string[] { mess1, mess2 };
-        string messG1 = "Thanks to the sword the knight of the kingdom gave me, I managed to defeat the goddess.";
-        string messG2 = "Now I can reunite with my partner!";
+        string messG1 = "Sharon: Thanks to the sword the knight of the kingdom gave me, I managed to defeat the goddess.";
+        string messG2 = "Sharon: Now I can reunite with my partner!";
         MessagesGoodEnd = new string[] { messG1, messG2 };
-        string messB1 = "Seeing that you were so selfish to not helping a man in need, you didn't get that sword, which could kill me.";
-        string messB2 = "Now rest with your similar in hell!";
+        string messB1 = "Invidia: Seeing that you were so selfish to not helping a man in need, you didn't get that sword, which could kill me.";
+        string messB2 = "Invidia: Now rest with your similar in hell!";
         MessagesBadEnd = new string[] { messB1, messB2 };
         panel.SetActive(false);
         image.SetActive(false);

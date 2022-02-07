@@ -23,9 +23,9 @@ public class Stranger : MonoBehaviourPun
     void Start()
     {
         // Load messages, if you did not make them in the Editor
-        string mess1 = "Thanks for saving me, young lady. I am a knight of the kingdom who came here a long time ago to defeat the goddess, but she trapped me in here and I couldn't find a way to escape!";
-        string mess2 = "But I can see that your doing better than me. Maybe you have the power and abilities to defeat the goddess.";
-        string mess3 = "Here, take this. We can't help everyone, but everyone can help someone.";
+        string mess1 = "Knight: Thanks for saving me, young lady. I am a knight of the kingdom who came here a long time ago to defeat the goddess, but she trapped me in here and I couldn't find a way to escape!";
+        string mess2 = "Knight: But I can see that your doing better than me. Maybe you have the power and abilities to defeat the goddess.";
+        string mess3 = "Knight: Here, take this. We can't help everyone, but everyone can help someone.";
         Messages = new string[] { mess1, mess2, mess3 };
         animator.SetBool("hasSword", _hasSword);
         panel.SetActive(false);
