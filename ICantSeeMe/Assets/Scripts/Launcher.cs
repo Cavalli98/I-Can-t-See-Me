@@ -184,12 +184,14 @@ public class Launcher : MonoBehaviourPunCallbacks
         // we don't want to do anything.
         if (_isConnecting)
         {
+            print("First time connecting to lobby");
             PhotonNetwork.JoinLobby();
             // #Critical: The first we try to do is to join a potential existing room. If there is, good, else, we'll be called back with OnJoinRandomFailed()
             //PhotonNetwork.JoinRandomRoom();
         }
         else
         {
+            print("Already connected to lobby");
             uiManager.PlayButton();
             uiManager.OnConnected();
         }
@@ -197,6 +199,7 @@ public class Launcher : MonoBehaviourPunCallbacks
 
     public override void OnJoinedLobby()
     {
+        print("OnJoinedLobby was called by PUN");
         if (_isConnecting)
         {
             uiManager.OnConnected();
