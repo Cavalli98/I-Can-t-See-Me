@@ -88,7 +88,7 @@ public class Launcher : MonoBehaviourPunCallbacks
     /// </summary>
     void Start()
     {
-           
+        
     }
 
     #endregion
@@ -194,6 +194,7 @@ public class Launcher : MonoBehaviourPunCallbacks
         //    print("Already connected to lobby");
         //    PhotonNetwork.JoinLobby();
         //}
+        uiManager.PlayButton();
         print("Connecting to lobby");
         PhotonNetwork.JoinLobby();
     }
