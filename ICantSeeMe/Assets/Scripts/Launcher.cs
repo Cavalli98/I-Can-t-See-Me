@@ -122,7 +122,7 @@ public class Launcher : MonoBehaviourPunCallbacks
         if (PhotonNetwork.IsConnected)
         {
             // Switch from control panel to progress label
-            uiManager.OnConnected();
+            uiManager.PlayButton();
         }
         else
         {
@@ -182,29 +182,30 @@ public class Launcher : MonoBehaviourPunCallbacks
         // we don't want to do anything if we are not attempting to join a room.
         // this case where isConnecting is false is typically when you lost or quit the game, when this level is loaded, OnConnectedToMaster will be called, in that case
         // we don't want to do anything.
-        if (_isConnecting)
-        {
-            print("First time connecting to lobby");
-            PhotonNetwork.JoinLobby();
-            // #Critical: The first we try to do is to join a potential existing room. If there is, good, else, we'll be called back with OnJoinRandomFailed()
-            //PhotonNetwork.JoinRandomRoom();
-        }
-        else
-        {
-            print("Already connected to lobby");
-            uiManager.PlayButton();
-            uiManager.OnConnected();
-        }
+        //if (_isConnecting)
+        //{
+        //    print("First time connecting to lobby");
+        //    PhotonNetwork.JoinLobby();
+        //    // #Critical: The first we try to do is to join a potential existing room. If there is, good, else, we'll be called back with OnJoinRandomFailed()
+        //    //PhotonNetwork.JoinRandomRoom();
+        //}
+        //else
+        //{
+        //    print("Already connected to lobby");
+        //    PhotonNetwork.JoinLobby();
+        //}
+        print("Connecting to lobby");
+        PhotonNetwork.JoinLobby();
     }
 
     public override void OnJoinedLobby()
     {
         print("OnJoinedLobby was called by PUN");
-        if (_isConnecting)
-        {
-            uiManager.OnConnected();
-            _isConnecting = false;
-        }
+        //if (_isConnecting)
+        //{
+        //    _isConnecting = false;
+        //} 
+        uiManager.OnConnected();
     }
 
     public override void OnDisconnected(DisconnectCause cause)
