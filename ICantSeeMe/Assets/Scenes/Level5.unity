@@ -5077,6 +5077,10 @@ PrefabInstance:
       propertyPath: player1.x
       value: 41.06
       objectReference: {fileID: 0}
+    - target: {fileID: 5349172286083726096, guid: b2d86716b4d4cbe4ea123f97ce6c7576, type: 3}
+      propertyPath: player2.x
+      value: 0.95
+      objectReference: {fileID: 0}
     - target: {fileID: 5349172286083726097, guid: b2d86716b4d4cbe4ea123f97ce6c7576, type: 3}
       propertyPath: m_Name
       value: GameManager
